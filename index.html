@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>질문 중심 수업과 서·논술형 평가 — 발표 자료</title>
+<meta name="description" content="2026 학생 질문 중심 수업·평가 연수 발표 원고. 질문형성기법으로 질문을 만드는 수업과 서·논술형 평가·채점기준표까지 143장을 장별로 넘겨 보거나 PDF로 내려받습니다.">
+<meta name="theme-color" content="#6356A2">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="질문 중심 수업과 서·논술형 평가 — 발표 자료">
+<meta property="og:description" content="2026 학생 질문 중심 수업·평가 연수 발표 원고. 질문형성기법으로 질문을 만드는 수업과 서·논술형 평가·채점기준표까지 143장을 장별로 넘겨 보거나 PDF로 내려받습니다.">
+<meta property="og:image" content="https://tigerjk9.github.io/question-teaching-assessment/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%236356A2'/%3E%3Crect x='13' y='17' width='38' height='24' rx='3' fill='%23fff'/%3E%3Crect x='19' y='46' width='26' height='4' rx='2' fill='%23fff' opacity='.7'/%3E%3C/svg%3E">
+<style>
+/* ============================================================
+   강의 자료 공유 페이지 — 발표자는 프로젝터로, 참석자는 QR로.
+   색상 토큰은 강의 덱(assets/css/deck.css)에서 그대로 가져온다.
+   한 파일이 어느 강의에나 쓰이도록, 내용은 전부 lecture.config.json이 정한다.
+   ============================================================ */
+
+:root {
+  --lav:        #C8C1E0;
+  --lav-soft:   #EFEEF6;
+  --key:        #6356A2;
+  --key-deep:   #4A3E8F;
+  --key-ink:    #6356A2;   /* 본문 위 링크색 — 다크모드에서 밝게 재정의 */
+  --magenta:    #E85297;
+  --blue:       #3688C9;
+  --highlight:  #F1ED65;
+
+  --ink:        #231815;
+  --ink-2:      #55504E;
+  --ink-3:      #75706B;
+  --paper:      #FBFAFC;
+  --surface:    #FFFFFF;
+  --surface-2:  #F4F2F8;
+  --rule:       #E3E0EC;
+
+  --shadow-1: 0 2px 8px rgba(35,24,21,.05);
+  --shadow-2: 0 8px 24px rgba(35,24,21,.08);
+  --shadow-3: 0 18px 48px rgba(35,24,21,.16);
+
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+          'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+
+  --gutter: 20px;
+  --maxw: 1140px;
+  --radius: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --lav:       #3B3359;
+    --lav-soft:  #251F38;
+    --key:       #A99BE4;
+    --key-deep:  #C9BEF3;
+    --key-ink:   #B6A9EC;
+    --ink:       #F2EFF6;
+    --ink-2:     #C6C0D2;
+    --ink-3:     #968FA6;
+    --paper:     #14111C;
+    --surface:   #1D1929;
+    --surface-2: #262034;
+    --rule:      #332C46;
+    --shadow-1: 0 2px 8px rgba(0,0,0,.4);
+    --shadow-2: 0 8px 24px rgba(0,0,0,.45);
+    --shadow-3: 0 18px 48px rgba(0,0,0,.6);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.75;
+  word-break: keep-all;          /* 한글 음절 고아 줄바꿈 방지 */
+  line-break: strict;
+  /* 마지막 줄에 한 어절만 남는 고아 단어를 막는다. 상속되므로 본문 전체에 걸린다. */
+  text-wrap: pretty;
+  overflow-x: hidden;            /* 가로 스크롤 금지 */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 제목과 짧은 산문은 pretty(마지막 줄만 손봄)보다 balance(줄 길이를 고르게)가 맞다.
+   "긴 첫 줄 + 한 단어"로 끊기는 것도, 마지막 줄만 뭉텅 짧게 남는 것도 함께 사라진다.
+   여기 걸린 것은 전부 네 줄 안쪽이다 — 그보다 길면 브라우저가 balance를 무시하고
+   body의 pretty로 돌아가므로, 긴 글이 늘어나도 손해는 없다. */
+h1, h2, h3, p, li, .cap, .hero-accent, .eyebrow, .chip, .jfoot, .sec-label,
+.dl .t b, .dl .t span { text-wrap: balance; }
+
+/* height:auto가 없으면 HTML의 height 속성이 그대로 먹어 표지가 세로로 늘어난다.
+   aspect-ratio를 쓰는 썸네일은 auto에서 비율대로 높이를 계산하므로 함께 안전하다. */
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--key-ink); }
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+:where(a, button, input, summary):focus-visible {
+  outline: 3px solid var(--key);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* 건너뛰기 링크 — 키보드 사용자가 갤러리 143장을 지나치지 않게 */
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--key); color: #fff; padding: 10px 18px; border-radius: 0 0 10px 0;
+  font-weight: 700; text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+/* ============================================================
+   1. 상단 바
+   ============================================================ */
+
+.topbar {
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.topbar .wrap {
+  display: flex; align-items: center; gap: 14px;
+  height: 58px;
+}
+.topbar-title {
+  font-weight: 800; font-size: 15px; letter-spacing: -.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  flex: 0 1 auto; min-width: 0;
+}
+.topbar-nav { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+.topbar-nav a {
+  font-size: 14px; font-weight: 600; color: var(--ink-2); text-decoration: none;
+  padding: 7px 11px; border-radius: 9px; white-space: nowrap;
+}
+.topbar-nav a:hover { background: var(--surface-2); color: var(--ink); }
+@media (max-width: 720px) { .topbar-nav a.opt { display: none; } }
+
+.qr-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--key); color: #fff; border: 0; cursor: pointer;
+  font-family: inherit; font-size: 14px; font-weight: 700;
+  padding: 9px 15px; border-radius: 10px; white-space: nowrap;
+}
+.qr-btn:hover { background: var(--key-deep); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .qr-btn { color: #17122A; }
+}
+.qr-btn svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+
+/* ============================================================
+   2. 히어로 — 라벤더 필드 + QR 카드
+   ============================================================ */
+
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 88% 5%, color-mix(in srgb, var(--lav) 70%, transparent), transparent 62%),
+    linear-gradient(168deg, var(--lav) 0%, var(--lav-soft) 62%, var(--paper) 100%);
+  padding: clamp(40px, 7vw, 76px) 0 clamp(36px, 6vw, 64px);
+  border-bottom: 1px solid var(--rule);
+}
+.hero-grid {
+  display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,.9fr);
+  gap: clamp(28px, 4vw, 52px); align-items: start;
+}
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface); color: var(--key);
+  border: 1px solid color-mix(in srgb, var(--key) 30%, transparent);
+  font-size: 13px; font-weight: 800; letter-spacing: .01em;
+  padding: 6px 13px; border-radius: 99px; margin-bottom: 18px;
+}
+.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--magenta); flex: none; }
+
+h1.hero-title {
+  font-size: clamp(30px, 6.4vw, 54px);
+  font-weight: 800; letter-spacing: -.038em; line-height: 1.16; color: var(--ink);
+}
+.hero-accent {
+  display: block; margin-top: 6px;
+  font-size: clamp(20px, 4.2vw, 33px); font-weight: 800;
+  letter-spacing: -.03em; color: var(--key);
+}
+.hero-summary {
+  margin-top: 20px; max-width: 46ch;
+  font-size: clamp(15px, 1.7vw, 17px); color: var(--ink-2);
+}
+
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  border: 1px solid var(--rule); color: var(--ink-2);
+  font-size: 13.5px; font-weight: 600; padding: 7px 13px; border-radius: 99px;
+}
+.chip b { color: var(--ink); font-weight: 700; }
+
+.hero-note {
+  margin-top: 26px; padding: 14px 18px;
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  border-left: 4px solid var(--magenta); border-radius: 0 10px 10px 0;
+  font-size: 14.5px; color: var(--ink-2);
+}
+
+/* QR 카드 */
+.qr-card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 20px;
+  box-shadow: var(--shadow-2); padding: 22px; text-align: center;
+  max-width: 340px; width: 100%; justify-self: end;
+}
+@media (max-width: 880px) { .qr-card { justify-self: center; } }
+.qr-card h2 {
+  font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.01em;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.qr-card h2 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--magenta); }
+.qr-card p.qr-hint { font-size: 13.5px; color: var(--ink-3); margin-top: 4px; line-height: 1.55; }
+
+.qr-holder {
+  margin: 16px auto 14px; width: min(212px, 62vw); aspect-ratio: 1;
+  background: #fff; border-radius: 14px; padding: 10px;
+  border: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: center;
+}
+.qr-holder svg { width: 100%; height: 100%; display: block; }
+.qr-holder.is-empty { color: var(--ink-3); font-size: 13px; padding: 18px; line-height: 1.6; }
+
+.qr-url {
+  font-size: 12.5px; color: var(--ink-3); word-break: break-all; line-height: 1.5;
+  background: var(--surface-2); border-radius: 8px; padding: 8px 10px; margin-bottom: 12px;
+}
+.qr-actions { display: flex; gap: 8px; }
+.qr-actions button {
+  flex: 1; font-family: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer;
+  padding: 10px 8px; border-radius: 10px;
+  border: 1px solid var(--rule); background: var(--surface-2); color: var(--ink-2);
+}
+.qr-actions button:hover { background: var(--lav-soft); color: var(--key); border-color: var(--key); }
+
+.qr-setup { margin-top: 12px; }
+.qr-setup summary {
+  cursor: pointer; font-size: 12.5px; color: var(--ink-3); font-weight: 600;
+  list-style: none; padding: 4px;
+}
+.qr-setup summary::-webkit-details-marker { display: none; }
+.qr-setup summary::before { content: "⚙ "; }
+.qr-setup input {
+  width: 100%; margin-top: 8px; font-family: inherit; font-size: 13px;
+  padding: 9px 11px; border-radius: 9px; border: 1px solid var(--rule);
+  background: var(--surface); color: var(--ink);
+}
+
+/* ============================================================
+   3. 섹션 공통
+   ============================================================ */
+
+section.band { padding: clamp(46px, 7vw, 78px) 0; }
+section.band.alt { background: var(--surface-2); border-block: 1px solid var(--rule); }
+
+.sec-head { margin-bottom: clamp(26px, 3.6vw, 40px); max-width: 60ch; }
+.sec-label {
+  font-size: 13px; font-weight: 800; letter-spacing: .05em; color: var(--magenta);
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.sec-head h2 {
+  font-size: clamp(23px, 3.6vw, 33px); font-weight: 800;
+  letter-spacing: -.032em; line-height: 1.28; color: var(--ink);
+}
+.sec-head p { margin-top: 12px; color: var(--ink-2); font-size: clamp(14.5px, 1.6vw, 16.5px); }
+
+/* ============================================================
+   4. 오늘의 여정
+   ============================================================ */
+
+.journey { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.jcard {
+  position: relative; overflow: hidden;             /* 고스트 넘버 bleed 필수 */
+  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 22px 20px 20px; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; min-height: 176px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.jcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: var(--pc, var(--key)); }
+.jcard .ghost {
+  position: absolute; right: -10px; bottom: -26px; z-index: 0;
+  font-size: 104px; font-weight: 800; line-height: 1; letter-spacing: -.06em;
+  color: var(--pc, var(--key)); opacity: .09; pointer-events: none;
+}
+.jcard > * { position: relative; z-index: 1; }
+.jcard .jlabel {
+  font-size: 12.5px; font-weight: 800; letter-spacing: .04em;
+  color: var(--pc, var(--key)); margin-bottom: 9px;
+}
+.jcard h3 { font-size: 17.5px; font-weight: 800; letter-spacing: -.028em; line-height: 1.38; }
+.jcard p { margin-top: 9px; font-size: 14px; color: var(--ink-2); line-height: 1.62; }
+.jcard .jfoot {
+  margin-top: auto; padding-top: 14px; font-size: 13px; font-weight: 700;
+  color: var(--pc, var(--key)); display: flex; align-items: center; gap: 6px;
+}
+
+/* ============================================================
+   5. 슬라이드 갤러리
+   ============================================================ */
+
+.tabs {
+  position: sticky; top: 58px; z-index: 40;
+  display: flex; gap: 7px; overflow-x: auto; padding: 12px 0;
+  margin-bottom: 20px; background: var(--paper);
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+section.band.alt .tabs { background: var(--surface-2); }
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+  padding: 9px 15px; border-radius: 99px; white-space: nowrap;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2);
+}
+.tab:hover { border-color: var(--key); color: var(--key); }
+.tab[aria-selected="true"] { background: var(--key); border-color: var(--key); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tab[aria-selected="true"] { color: #17122A; }
+}
+
+.grid {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+/* 1fr의 최소값은 auto다. keep-all 때문에 안 쪼개지는 긴 어절이 min-content를 밀어올려
+   두 열의 폭이 어긋난다. minmax(0,1fr)로 못을 박아야 정확히 반반이 된다. */
+@media (max-width: 620px) { .grid { gap: 11px; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.thumb {
+  border: 0; padding: 0; background: none; font-family: inherit; cursor: pointer;
+  text-align: left; display: flex; flex-direction: column; gap: 9px;
+}
+.thumb img {
+  width: 100%; aspect-ratio: 16/9; object-fit: cover;
+  border-radius: 11px; border: 1px solid var(--rule);
+  background: var(--surface-2);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.thumb:hover img { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: var(--key); }
+.thumb figcaption { display: flex; gap: 8px; align-items: flex-start; padding: 0 2px; }
+.thumb .num {
+  flex: none; font-size: 11.5px; font-weight: 800; color: #fff;
+  background: var(--pc, var(--key)); border-radius: 5px;
+  padding: 2px 6px; margin-top: 2px; min-width: 26px; text-align: center;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .thumb .num { color: #17122A; }
+}
+.thumb .cap {
+  font-size: 13px; line-height: 1.5; color: var(--ink-2); font-weight: 600;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+/* 폰에서는 2열이라 칸이 좁다. 두 줄로 자르면 제목 절반이 문장 중간에서 끊긴다.
+   좁을수록 줄을 더 준다 — 카드가 조금 길어지는 대신 제목이 온전히 남는다. */
+@media (max-width: 620px) { .thumb .cap { font-size: 12px; -webkit-line-clamp: 3; } }
+@media (max-width: 400px) { .thumb .cap { -webkit-line-clamp: 4; } }
+
+.gallery-empty { color: var(--ink-3); padding: 30px 0; }
+
+/* ============================================================
+   6. 라이트박스
+   ============================================================ */
+
+.lb {
+  position: fixed; inset: 0; z-index: 100; display: none;
+  background: rgba(14,10,22,.93);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.lb[open], .lb.is-open { display: grid; grid-template-rows: auto 1fr auto; }
+.lb-top { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #fff; }
+.lb-count { font-size: 14px; font-weight: 800; letter-spacing: .02em; }
+.lb-title {
+  font-size: 14px; color: rgba(255,255,255,.72); font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0;
+}
+.lb-close {
+  margin-left: auto; flex: none; background: rgba(255,255,255,.13); border: 0; color: #fff;
+  width: 38px; height: 38px; border-radius: 10px; font-size: 20px; cursor: pointer; line-height: 1;
+}
+.lb-close:hover { background: rgba(255,255,255,.26); }
+.lb-stage {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  padding: 0 8px; min-height: 0;
+}
+.lb-stage img {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain; border-radius: 8px; background: #fff;
+}
+.lb-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.14); color: #fff; font-size: 22px; line-height: 1;
+}
+.lb-nav:hover { background: rgba(255,255,255,.3); }
+.lb-nav[disabled] { opacity: .25; cursor: default; }
+.lb-prev { left: 10px; }
+.lb-next { right: 10px; }
+.lb-foot {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+}
+.lb-foot a, .lb-foot button {
+  font-family: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer;
+  text-decoration: none; padding: 9px 16px; border-radius: 10px;
+  background: rgba(255,255,255,.14); color: #fff; border: 0;
+}
+.lb-foot a:hover, .lb-foot button:hover { background: rgba(255,255,255,.28); }
+@media (max-width: 620px) { .lb-nav { width: 40px; height: 40px; } }
+
+/* QR 전체화면 (프로젝터용) */
+.qr-full {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  background: var(--surface); place-items: center; padding: 28px; text-align: center;
+}
+.qr-full.is-open { display: grid; }
+.qr-full .inner { max-width: 660px; }
+.qr-full h2 { font-size: clamp(22px, 4vw, 38px); font-weight: 800; letter-spacing: -.03em; }
+.qr-full p { margin-top: 10px; color: var(--ink-2); font-size: clamp(14px, 2vw, 18px); }
+.qr-full .big {
+  margin: clamp(20px, 3vw, 32px) auto; width: min(58vh, 74vw, 430px); aspect-ratio: 1;
+  background: #fff; padding: 16px; border-radius: 20px; border: 1px solid var(--rule);
+}
+.qr-full .big svg { width: 100%; height: 100%; }
+.qr-full .u { font-size: clamp(13px, 1.8vw, 17px); color: var(--ink-3); word-break: break-all; }
+.qr-full .close {
+  margin-top: 24px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+  padding: 11px 24px; border-radius: 11px; border: 1px solid var(--rule);
+  background: var(--surface-2); color: var(--ink-2);
+}
+
+/* ============================================================
+   7. 자료 받기
+   ============================================================ */
+
+.dl-list { display: grid; gap: 10px; }
+.dl {
+  display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 13px;
+  padding: 15px 18px; transition: border-color .16s ease, transform .16s ease;
+}
+.dl:hover { border-color: var(--key); transform: translateX(3px); }
+.dl .ic {
+  flex: none; width: 40px; height: 40px; border-radius: 10px;
+  background: var(--lav-soft); color: var(--key);
+  display: grid; place-items: center; font-size: 12px; font-weight: 800; letter-spacing: -.02em;
+}
+.dl .t { flex: 1; min-width: 0; }
+.dl .t b { display: block; font-size: 15.5px; font-weight: 700; letter-spacing: -.02em; }
+.dl .t span { font-size: 13px; color: var(--ink-3); }
+.dl .sz { flex: none; font-size: 13px; font-weight: 700; color: var(--ink-3); }
+
+/* ============================================================
+   8. 책 소개
+   ============================================================ */
+
+.book {
+  display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px); align-items: start;
+}
+@media (max-width: 760px) { .book { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+
+.book-cover {
+  border-radius: 6px; box-shadow: var(--shadow-3); width: 100%; max-width: 250px;
+  border: 1px solid var(--rule);
+}
+.book-body h3 {
+  font-size: clamp(20px, 3vw, 27px); font-weight: 800; letter-spacing: -.032em; line-height: 1.35;
+}
+.book-body .by { margin-top: 10px; font-size: 15px; color: var(--ink-2); font-weight: 600; }
+.book-body .bib { margin-top: 6px; font-size: 14px; color: var(--ink-3); }
+.book-body .blurb { margin-top: 18px; font-size: 15.5px; color: var(--ink-2); max-width: 54ch; }
+@media (max-width: 760px) { .book-body .blurb { margin-inline: auto; } }
+
+.book-points { margin-top: 18px; display: grid; gap: 8px; list-style: none; }
+.book-points li {
+  font-size: 14.5px; color: var(--ink-2); padding-left: 25px; position: relative; text-align: left;
+}
+.book-points li::before {
+  content: ""; position: absolute; left: 4px; top: .62em;
+  width: 8px; height: 8px; border-radius: 2px; background: var(--highlight);
+  box-shadow: inset 0 0 0 1px rgba(35,24,21,.12);
+}
+
+.buy { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 9px; }
+@media (max-width: 760px) { .buy { justify-content: center; } }
+.buy a {
+  font-size: 14px; font-weight: 700; text-decoration: none;
+  padding: 11px 19px; border-radius: 11px;
+  background: var(--surface); border: 1px solid var(--rule); color: var(--ink-2);
+}
+.buy a:hover { border-color: var(--key); color: var(--key); }
+.buy a.primary { background: var(--key); border-color: var(--key); color: #fff; }
+.buy a.primary:hover { background: var(--key-deep); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .buy a.primary { color: #17122A; }
+}
+
+/* ============================================================
+   9. 푸터
+   ============================================================ */
+
+footer.foot {
+  background: var(--ink); color: rgba(255,255,255,.72);
+  padding: clamp(36px, 5vw, 56px) 0 clamp(30px, 4vw, 44px); font-size: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) footer.foot { background: #0C0914; }
+}
+footer.foot .frow {
+  display: flex; flex-wrap: wrap; gap: 18px 32px; justify-content: space-between; align-items: flex-start;
+}
+footer.foot b { color: #fff; font-weight: 800; font-size: 15px; display: block; margin-bottom: 6px; }
+footer.foot a { color: rgba(255,255,255,.9); }
+footer.foot .fine {
+  margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.14);
+  font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.7;
+}
+.print-btn {
+  font-family: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer;
+  padding: 10px 18px; border-radius: 10px;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #fff;
+}
+.print-btn:hover { background: rgba(255,255,255,.22); }
+
+/* ============================================================
+   10. 인쇄 — 메뉴·버튼·애니메이션을 걷어내고 A4로
+   ============================================================ */
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+  html { scroll-padding-top: 0; }
+  body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.6; }
+  .topbar, .tabs, .qr-actions, .qr-setup, .lb, .qr-full, .print-btn, .skip { display: none !important; }
+  .hero { background: #fff !important; border-bottom: 1px solid #ccc; padding: 0 0 12mm; }
+  section.band { padding: 8mm 0; break-inside: auto; }
+  section.band.alt { background: #fff; border: 0; }
+  .jcard, .dl, .thumb, .book { break-inside: avoid; }
+  .jcard:hover { transform: none; box-shadow: none; }
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .thumb img { border: 1px solid #ddd; }
+  footer.foot { background: #fff; color: #444; border-top: 1px solid #ccc; }
+  footer.foot b, footer.foot a { color: #000; }
+  a { text-decoration: none; }
+  .qr-card { box-shadow: none; page-break-inside: avoid; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important; transition-duration: .001ms !important;
+  }
+  .jcard:hover, .thumb:hover img, .dl:hover { transform: none; }
+}
+</style>
+<style>@font-face{font-family:PublicPretendard;src:url('assets/fonts/Pretendard-Regular.otf');font-weight:400;font-display:swap}@font-face{font-family:PublicPretendard;src:url('assets/fonts/Pretendard-Bold.otf');font-weight:700;font-display:swap}@font-face{font-family:PublicPretendard;src:url('assets/fonts/Pretendard-ExtraBold.otf');font-weight:800;font-display:swap}:root{--font:PublicPretendard,'Malgun Gothic',sans-serif;--magenta:#A12A66;--ink-3:#68616E}.tabs{flex-wrap:wrap;overflow:visible}.tab{max-width:100%;white-space:normal}.topbar-nav{flex-wrap:wrap}.topbar-title{min-width:0}.journey{grid-template-columns:repeat(3,minmax(0,1fr))}.jcard{min-width:0}.lb{grid-template-columns:minmax(0,1fr)}.lb-top,.lb-stage{min-width:0}.lb-nav{background:#342749;color:white;border:2px solid white}.lb-nav:hover{background:#594476}.lb-nav[disabled]{opacity:.55}.research-callout{padding:24px;border-radius:16px;background:var(--lav-soft);margin-top:24px}.research-callout a{font-weight:700;color:var(--key)}.refs{display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}.ref{background:white;padding:24px;border-radius:16px;border:1px solid var(--rule);min-width:0}.ref h3{font-size:19px;line-height:1.5;overflow-wrap:anywhere}.ref p{margin-top:10px;font-size:15px}.ref .use{color:var(--magenta);font-weight:700}.ref a{color:var(--key);overflow-wrap:anywhere}.research-title{font-size:clamp(30px,5vw,48px);line-height:1.25}.research-intro{margin:24px 0;max-width:780px}.reader-link{display:block;margin-top:12px}@media(max-width:760px){.journey,.refs{grid-template-columns:minmax(0,1fr)}.topbar-title{font-size:13px}.topbar-nav{gap:10px}.topbar-nav a{font-size:13px}.qr-btn{font-size:12px;padding:8px}.ref{padding:20px}}@media print{.thumb .cap{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}}</style>
+<style>
+.thumb{position:relative}
+.vbadge{position:absolute;top:8px;left:8px;z-index:2;display:inline-flex;align-items:center;gap:5px;
+  background:rgba(20,14,28,.82);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.01em;
+  padding:4px 9px;border-radius:99px;pointer-events:none}
+.vbadge::before{content:"";width:0;height:0;border-left:7px solid #F1ED65;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.lb-video{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);max-width:min(92%,560px);
+  background:rgba(20,14,28,.9);color:#fff;border:1px solid rgba(255,255,255,.22);border-left:4px solid #F1ED65;
+  border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.55;text-align:center}
+.lb-video b{color:#F1ED65;font-weight:800}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#downloads">자료 받기로 건너뛰기</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="topbar-title">질문 중심 수업과 서·논술형 평가</span>
+    <nav class="topbar-nav" aria-label="바로가기">
+        <a href="#journey">목차</a>
+        <a href="#slides">슬라이드</a>
+        <a href="#downloads" class="opt">PDF</a>
+        <button class="qr-btn" data-qr-open type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm8-2h3v3h-3v-3zm5 0h3v3h-3v-3zm-5 5h3v3h-3v-3zm5 0h3v3h-3v-3z"/></svg>
+          QR 띄우기
+        </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>2026 학생 질문 중심 수업·평가 연수</span>
+      <h1 class="hero-title">질문 중심 수업과 서·논술형 평가<span class="hero-accent">질문으로 가르치고 배우기 · 정답을 넘어 더 깊은 생각으로</span></h1>
+      <p class="hero-summary">학생이 스스로 질문을 만들어 배우는 수업과, 학생의 사고 과정이 드러나는 서·논술형 평가를 다룹니다. 장을 골라 슬라이드를 크게 보거나 PDF로 내려받을 수 있습니다.</p>
+      <div class="hero-meta">
+          <span class="chip">슬라이드 <b>143장 · 2부 · 6개 장</b></span>
+          <span class="chip">질문 중심 수업 <b>약 2시간</b> · 평가 <b>약 1시간</b></span>
+        </div>
+      <p class="hero-note">발표자는 프로젝터로 슬라이드를 띄우고, 참석자는 QR로 같은 자료를 엽니다. 영상이 들어가는 슬라이드는 이 웹에서 재생되지 않습니다.</p>
+    </div>
+
+    <aside class="qr-card">
+      <h2><span class="dot"></span>휴대전화로 이어 보기</h2>
+      <p class="qr-hint">카메라로 QR을 비추면 같은 자료가 열립니다.</p>
+      <div class="qr-holder" id="qrHolder"></div>
+      <div class="qr-url" id="qrUrl"></div>
+      <div class="qr-actions">
+        <button type="button" id="qrCopy">주소 복사</button>
+        <button type="button" data-qr-open>크게 보기</button>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="band" id="journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-label">CONTENTS</p>
+      <h2>여섯 개 장으로 질문과 평가를 잇습니다</h2>
+      <p>장을 선택하면 해당 슬라이드만 모아 볼 수 있습니다. 1~3장은 질문 중심 수업, 4~6장은 서·논술형 평가입니다.</p>
+    </div>
+    <div class="journey">
+    <a class="jcard" href="#slides" data-jump="ch1" style="--pc:#6356A2">
+      <span class="ghost" aria-hidden="true">01</span>
+      <span class="jlabel">01 · 왜 질문인가</span>
+      <h3>01 · 왜 질문인가</h3>
+      <p>질문이 왜 지금 중요한지, 2022 개정 교육과정의 깊이 있는 학습과 탐구 질문을 짚습니다.</p>
+      <span class="jfoot">슬라이드 21장 · 1–21 →</span>
+    </a>
+    <a class="jcard" href="#slides" data-jump="ch2" style="--pc:#E85297">
+      <span class="ghost" aria-hidden="true">02</span>
+      <span class="jlabel">02 · 질문 초점과 생성</span>
+      <h3>02 · 질문 초점과 생성</h3>
+      <p>질문형성기법 1~2단계 — 질문 초점을 정하고 See-Think-Wonder로 질문을 만듭니다.</p>
+      <span class="jfoot">슬라이드 28장 · 22–49 →</span>
+    </a>
+    <a class="jcard" href="#slides" data-jump="ch3" style="--pc:#3688C9">
+      <span class="ghost" aria-hidden="true">03</span>
+      <span class="jlabel">03 · 개선·우선순위·활용</span>
+      <h3>03 · 개선·우선순위·활용</h3>
+      <p>질문형성기법 3~5단계 — 질문을 다듬고 골라 수업에 활용합니다.</p>
+      <span class="jfoot">슬라이드 35장 · 50–84 →</span>
+    </a>
+    <a class="jcard" href="#slides" data-jump="ch4" style="--pc:#6356A2">
+      <span class="ghost" aria-hidden="true">04</span>
+      <span class="jlabel">04 · 서·논술형 평가의 이해</span>
+      <h3>04 · 서·논술형 평가의 이해</h3>
+      <p>서·논술형 평가가 무엇을 재는지, 설계 원리를 살핍니다.</p>
+      <span class="jfoot">슬라이드 16장 · 85–100 →</span>
+    </a>
+    <a class="jcard" href="#slides" data-jump="ch5" style="--pc:#E85297">
+      <span class="ghost" aria-hidden="true">05</span>
+      <span class="jlabel">05 · 평가 유형과 문항 개발</span>
+      <h3>05 · 평가 유형과 문항 개발</h3>
+      <p>평가 유형을 나누고 문항을 개발하는 절차를 익힙니다.</p>
+      <span class="jfoot">슬라이드 33장 · 101–133 →</span>
+    </a>
+    <a class="jcard" href="#slides" data-jump="ch6" style="--pc:#3688C9">
+      <span class="ghost" aria-hidden="true">06</span>
+      <span class="jlabel">06 · 채점기준표와 마무리</span>
+      <h3>06 · 채점기준표와 마무리</h3>
+      <p>채점기준표를 개발하고 연수를 정리합니다.</p>
+      <span class="jfoot">슬라이드 10장 · 134–143 →</span>
+    </a>
+    </div>
+  </div>
+</section>
+<section class="band alt" id="slides">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>143장 발표 슬라이드</h2>
+      <p>화면을 누르면 확대됩니다. 좌우 화살표 키 또는 화면을 좌우로 밀어 넘기고, Esc 키로 닫을 수 있습니다.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="장 고르기">
+      
+<button class="tab" type="button" data-part="all" aria-selected="true">전체 143장</button>      <button class="tab" type="button" data-part="ch1" aria-selected="false">01 · 왜 질문인가</button>      <button class="tab" type="button" data-part="ch2" aria-selected="false">02 · 질문 초점·생성</button>      <button class="tab" type="button" data-part="ch3" aria-selected="false">03 · 개선·우선순위·활용</button>      <button class="tab" type="button" data-part="ch4" aria-selected="false">04 · 서·논술형 평가의 이해</button>      <button class="tab" type="button" data-part="ch5" aria-selected="false">05 · 유형과 문항 개발</button>      <button class="tab" type="button" data-part="ch6" aria-selected="false">06 · 채점기준표·마무리</button>
+    </div>
+    <label for="slideSearch" style="display:block;margin:4px 0 8px">슬라이드 제목·장 검색</label>
+    <input id="slideSearch" type="search" placeholder="검색어를 입력하세요" style="box-sizing:border-box;width:100%;padding:12px 16px;margin-bottom:20px;border:1px solid #b6accf;border-radius:12px;font:inherit">
+    <div class="grid" id="grid">
+<figure class="thumb" data-part="ch1" data-index="0" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 -질문으로 가르치고, 질문으로 배우기- ( )초등학교 홍 길 동 생각의 힘을 키…" aria-label="슬라이드 1 -질문으로 가르치고, 질문으로 배우기- ( )초등학교 홍 길 동 생각의 힘을 키… 크게 보기"><img src="assets/thumbs/s1.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 1 — -질문으로 가르치고, 질문으로 배우기- ( )초등학교 홍 길 동 생각의 힘을 키…"><figcaption><span class="num">1</span><span class="cap">-질문으로 가르치고, 질문으로 배우기- ( )초등학교 홍 길 동 생각의 힘을 키…</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="1" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차" aria-label="슬라이드 2 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차 크게 보기"><img src="assets/thumbs/s2.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 2 — 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차"><figcaption><span class="num">2</span><span class="cap">왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="2" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차" aria-label="슬라이드 3 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차 크게 보기"><img src="assets/thumbs/s3.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 3 — 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차"><figcaption><span class="num">3</span><span class="cap">왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="3" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요?" aria-label="슬라이드 4 왜, 질문인가요? 크게 보기"><img src="assets/thumbs/s4.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 4 — 왜, 질문인가요?"><figcaption><span class="num">4</span><span class="cap">왜, 질문인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="4" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요?" aria-label="슬라이드 5 왜, 질문인가요? 크게 보기"><img src="assets/thumbs/s5.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 5 — 왜, 질문인가요?"><figcaption><span class="num">5</span><span class="cap">왜, 질문인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="5" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜 질문인가 영상" aria-label="슬라이드 6 왜 질문인가 크게 보기"><span class="vbadge">영상</span><img src="assets/thumbs/s6.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 6 — 왜 질문인가"><figcaption><span class="num">6</span><span class="cap">왜 질문인가</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="6" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요?" aria-label="슬라이드 7 왜, 질문인가요? 크게 보기"><img src="assets/thumbs/s7.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 7 — 왜, 질문인가요?"><figcaption><span class="num">7</span><span class="cap">왜, 질문인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="7" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요?" aria-label="슬라이드 8 왜, 질문인가요? 크게 보기"><img src="assets/thumbs/s8.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 8 — 왜, 질문인가요?"><figcaption><span class="num">8</span><span class="cap">왜, 질문인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="8" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜 질문인가" aria-label="슬라이드 9 왜 질문인가 크게 보기"><img src="assets/thumbs/s9.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 9 — 왜 질문인가"><figcaption><span class="num">9</span><span class="cap">왜 질문인가</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="9" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜 질문인가" aria-label="슬라이드 10 왜 질문인가 크게 보기"><img src="assets/thumbs/s10.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 10 — 왜 질문인가"><figcaption><span class="num">10</span><span class="cap">왜 질문인가</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="10" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 핵심 아이디어가 뭐지?" aria-label="슬라이드 11 핵심 아이디어가 뭐지? 크게 보기"><img src="assets/thumbs/s11.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 11 — 핵심 아이디어가 뭐지?"><figcaption><span class="num">11</span><span class="cap">핵심 아이디어가 뭐지?</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="11" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜 질문인가" aria-label="슬라이드 12 왜 질문인가 크게 보기"><img src="assets/thumbs/s12.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 12 — 왜 질문인가"><figcaption><span class="num">12</span><span class="cap">왜 질문인가</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="12" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…" aria-label="슬라이드 13 5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우… 크게 보기"><img src="assets/thumbs/s13.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 13 — 5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…"><figcaption><span class="num">13</span><span class="cap">5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="13" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…" aria-label="슬라이드 14 5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우… 크게 보기"><img src="assets/thumbs/s14.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 14 — 5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…"><figcaption><span class="num">14</span><span class="cap">5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="14" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜 질문인가" aria-label="슬라이드 15 왜 질문인가 크게 보기"><img src="assets/thumbs/s15.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 15 — 왜 질문인가"><figcaption><span class="num">15</span><span class="cap">왜 질문인가</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="15" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 학생의 능동적 수업 참여" aria-label="슬라이드 16 학생의 능동적 수업 참여 크게 보기"><img src="assets/thumbs/s16.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 16 — 학생의 능동적 수업 참여"><figcaption><span class="num">16</span><span class="cap">학생의 능동적 수업 참여</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="16" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜 질문인가" aria-label="슬라이드 17 왜 질문인가 크게 보기"><img src="assets/thumbs/s17.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 17 — 왜 질문인가"><figcaption><span class="num">17</span><span class="cap">왜 질문인가</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="17" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요? 질문이란?" aria-label="슬라이드 18 왜, 질문인가요? 질문이란? 크게 보기"><img src="assets/thumbs/s18.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 18 — 왜, 질문인가요? 질문이란?"><figcaption><span class="num">18</span><span class="cap">왜, 질문인가요? 질문이란?</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="18" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요? 질문이란? &lt;탐구 질문&gt; &lt;단원의 탐구질문&gt; 상상 질문 사실적…" aria-label="슬라이드 19 왜, 질문인가요? 질문이란? &lt;탐구 질문&gt; &lt;단원의 탐구질문&gt; 상상 질문 사실적… 크게 보기"><img src="assets/thumbs/s19.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 19 — 왜, 질문인가요? 질문이란? &lt;탐구 질문&gt; &lt;단원의 탐구질문&gt; 상상 질문 사실적…"><figcaption><span class="num">19</span><span class="cap">왜, 질문인가요? 질문이란? &lt;탐구 질문&gt; &lt;단원의 탐구질문&gt; 상상 질문 사실적…</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="19" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요? 어떻게 만들어요? 맥락없는 학생의 질문은 도움이 되지 않아요.…" aria-label="슬라이드 20 왜, 질문인가요? 어떻게 만들어요? 맥락없는 학생의 질문은 도움이 되지 않아요.… 크게 보기"><img src="assets/thumbs/s20.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 20 — 왜, 질문인가요? 어떻게 만들어요? 맥락없는 학생의 질문은 도움이 되지 않아요.…"><figcaption><span class="num">20</span><span class="cap">왜, 질문인가요? 어떻게 만들어요? 맥락없는 학생의 질문은 도움이 되지 않아요.…</span></figcaption></figure>
+<figure class="thumb" data-part="ch1" data-index="20" role="button" tabindex="0" style="--pc:#6356A2" data-search="01 · 왜 질문인가 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차" aria-label="슬라이드 21 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차 크게 보기"><img src="assets/thumbs/s21.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 21 — 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차"><figcaption><span class="num">21</span><span class="cap">왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="21" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 교사가 묻는 질문에 반응하기 학생이 자신의 질문을 던짐으로써 스스로 생각하고 활…" aria-label="슬라이드 22 교사가 묻는 질문에 반응하기 학생이 자신의 질문을 던짐으로써 스스로 생각하고 활… 크게 보기"><img src="assets/thumbs/s22.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 22 — 교사가 묻는 질문에 반응하기 학생이 자신의 질문을 던짐으로써 스스로 생각하고 활…"><figcaption><span class="num">22</span><span class="cap">교사가 묻는 질문에 반응하기 학생이 자신의 질문을 던짐으로써 스스로 생각하고 활…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="22" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문초점 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) …" aria-label="슬라이드 23 질문초점 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) … 크게 보기"><img src="assets/thumbs/s23.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 23 — 질문초점 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) …"><figcaption><span class="num">23</span><span class="cap">질문초점 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) …</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="23" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 효과적인 질문 초점의 조건 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고…" aria-label="슬라이드 24 효과적인 질문 초점의 조건 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고… 크게 보기"><img src="assets/thumbs/s24.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 24 — 효과적인 질문 초점의 조건 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고…"><figcaption><span class="num">24</span><span class="cap">효과적인 질문 초점의 조건 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="24" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 학생의 입장이 되어 궁금한 질문을 만들어 볼까요?" aria-label="슬라이드 25 학생의 입장이 되어 궁금한 질문을 만들어 볼까요? 크게 보기"><img src="assets/thumbs/s25.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 25 — 학생의 입장이 되어 궁금한 질문을 만들어 볼까요?"><figcaption><span class="num">25</span><span class="cap">학생의 입장이 되어 궁금한 질문을 만들어 볼까요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="25" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점의 문제점은 무엇인가요? 질문 초점을 수정한다면?" aria-label="슬라이드 26 질문 초점의 문제점은 무엇인가요? 질문 초점을 수정한다면? 크게 보기"><img src="assets/thumbs/s26.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 26 — 질문 초점의 문제점은 무엇인가요? 질문 초점을 수정한다면?"><figcaption><span class="num">26</span><span class="cap">질문 초점의 문제점은 무엇인가요? 질문 초점을 수정한다면?</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="26" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 27 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s27.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 27 — 질문 초점과 생성"><figcaption><span class="num">27</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="27" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 28 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s28.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 28 — 질문 초점과 생성"><figcaption><span class="num">28</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="28" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 29 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s29.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 29 — 질문 초점과 생성"><figcaption><span class="num">29</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="29" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) 관련 자료…" aria-label="슬라이드 30 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) 관련 자료… 크게 보기"><img src="assets/thumbs/s30.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 30 — 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) 관련 자료…"><figcaption><span class="num">30</span><span class="cap">학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) 관련 자료…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="30" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고를 자극하고 촉발한다. 교사…" aria-label="슬라이드 31 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고를 자극하고 촉발한다. 교사… 크게 보기"><img src="assets/thumbs/s31.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 31 — 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고를 자극하고 촉발한다. 교사…"><figcaption><span class="num">31</span><span class="cap">명확한 초점이 있다 질문이 아니다 새로운 방식의 사고를 자극하고 촉발한다. 교사…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="31" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 충주시의 복숭아와 고창군의 수박 모두 맛있어 보이네 동물 복지 인증 표시가 있는…" aria-label="슬라이드 32 충주시의 복숭아와 고창군의 수박 모두 맛있어 보이네 동물 복지 인증 표시가 있는… 크게 보기"><img src="assets/thumbs/s32.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 32 — 충주시의 복숭아와 고창군의 수박 모두 맛있어 보이네 동물 복지 인증 표시가 있는…"><figcaption><span class="num">32</span><span class="cap">충주시의 복숭아와 고창군의 수박 모두 맛있어 보이네 동물 복지 인증 표시가 있는…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="32" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 33 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s33.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 33 — 질문 초점과 생성"><figcaption><span class="num">33</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="33" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 34 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s34.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 34 — 질문 초점과 생성"><figcaption><span class="num">34</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="34" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 35 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s35.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 35 — 질문 초점과 생성"><figcaption><span class="num">35</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="35" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 보이는 것, 관찰한 것을 문장으로 쓰기 See를 바탕으로 근거를 들어 문장으로 …" aria-label="슬라이드 36 보이는 것, 관찰한 것을 문장으로 쓰기 See를 바탕으로 근거를 들어 문장으로 … 크게 보기"><img src="assets/thumbs/s36.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 36 — 보이는 것, 관찰한 것을 문장으로 쓰기 See를 바탕으로 근거를 들어 문장으로 …"><figcaption><span class="num">36</span><span class="cap">보이는 것, 관찰한 것을 문장으로 쓰기 See를 바탕으로 근거를 들어 문장으로 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="36" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 37 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s37.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 37 — 질문 초점과 생성"><figcaption><span class="num">37</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="37" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 아이스크림교과서(2026), 5학년교과서 37쪽 유적과 유물로 살펴본 옛 사람들…" aria-label="슬라이드 38 아이스크림교과서(2026), 5학년교과서 37쪽 유적과 유물로 살펴본 옛 사람들… 크게 보기"><img src="assets/thumbs/s38.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 38 — 아이스크림교과서(2026), 5학년교과서 37쪽 유적과 유물로 살펴본 옛 사람들…"><figcaption><span class="num">38</span><span class="cap">아이스크림교과서(2026), 5학년교과서 37쪽 유적과 유물로 살펴본 옛 사람들…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="38" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 [앞에서 바라 본 모습] [위에서 바라 본 모습]" aria-label="슬라이드 39 [앞에서 바라 본 모습] [위에서 바라 본 모습] 크게 보기"><img src="assets/thumbs/s39.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 39 — [앞에서 바라 본 모습] [위에서 바라 본 모습]"><figcaption><span class="num">39</span><span class="cap">[앞에서 바라 본 모습] [위에서 바라 본 모습]</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="39" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 [앞에서 바라 본 모습] [위에서 바라 본 모습]" aria-label="슬라이드 40 [앞에서 바라 본 모습] [위에서 바라 본 모습] 크게 보기"><img src="assets/thumbs/s40.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 40 — [앞에서 바라 본 모습] [위에서 바라 본 모습]"><figcaption><span class="num">40</span><span class="cap">[앞에서 바라 본 모습] [위에서 바라 본 모습]</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="40" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다." aria-label="슬라이드 41 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 크게 보기"><img src="assets/thumbs/s41.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 41 — 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다."><figcaption><span class="num">41</span><span class="cap">사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다.</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="41" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 [옆에서 바라 본 모습] [위에서 바라 본 모습] 사진 속 ( )과 관련하여 (…" aria-label="슬라이드 42 [옆에서 바라 본 모습] [위에서 바라 본 모습] 사진 속 ( )과 관련하여 (… 크게 보기"><img src="assets/thumbs/s42.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 42 — [옆에서 바라 본 모습] [위에서 바라 본 모습] 사진 속 ( )과 관련하여 (…"><figcaption><span class="num">42</span><span class="cap">[옆에서 바라 본 모습] [위에서 바라 본 모습] 사진 속 ( )과 관련하여 (…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="42" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 신라 사람들은 …" aria-label="슬라이드 43 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 신라 사람들은 … 크게 보기"><img src="assets/thumbs/s43.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 43 — 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 신라 사람들은 …"><figcaption><span class="num">43</span><span class="cap">사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 신라 사람들은 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="43" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 [앞에서 바라 본 모습] [위에서 바라 본 모습] &lt;까만 놀이&gt;" aria-label="슬라이드 44 [앞에서 바라 본 모습] [위에서 바라 본 모습] &lt;까만 놀이&gt; 크게 보기"><img src="assets/thumbs/s44.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 44 — [앞에서 바라 본 모습] [위에서 바라 본 모습] &lt;까만 놀이&gt;"><figcaption><span class="num">44</span><span class="cap">[앞에서 바라 본 모습] [위에서 바라 본 모습] &lt;까만 놀이&gt;</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="44" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 배 모양 토기를…" aria-label="슬라이드 45 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 배 모양 토기를… 크게 보기"><img src="assets/thumbs/s45.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 45 — 사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 배 모양 토기를…"><figcaption><span class="num">45</span><span class="cap">사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 배 모양 토기를…</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="45" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성" aria-label="슬라이드 46 질문 초점과 생성 크게 보기"><img src="assets/thumbs/s46.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 46 — 질문 초점과 생성"><figcaption><span class="num">46</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="46" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 놀이(질문 지도 만들기) 포스트잇 하나에 질문은 하나씩!" aria-label="슬라이드 47 질문 놀이(질문 지도 만들기) 포스트잇 하나에 질문은 하나씩! 크게 보기"><img src="assets/thumbs/s47.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 47 — 질문 놀이(질문 지도 만들기) 포스트잇 하나에 질문은 하나씩!"><figcaption><span class="num">47</span><span class="cap">질문 놀이(질문 지도 만들기) 포스트잇 하나에 질문은 하나씩!</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="47" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 질문 초점과 생성 영상" aria-label="슬라이드 48 질문 초점과 생성 크게 보기"><span class="vbadge">영상</span><img src="assets/thumbs/s48.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 48 — 질문 초점과 생성"><figcaption><span class="num">48</span><span class="cap">질문 초점과 생성</span></figcaption></figure>
+<figure class="thumb" data-part="ch2" data-index="48" role="button" tabindex="0" style="--pc:#E85297" data-search="02 · 질문 초점과 생성 이충렬 감독에게 동영상 관련 질문을 한다면? 장면/자막/배경 음악/효과음 대사/…" aria-label="슬라이드 49 이충렬 감독에게 동영상 관련 질문을 한다면? 장면/자막/배경 음악/효과음 대사/… 크게 보기"><img src="assets/thumbs/s49.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 49 — 이충렬 감독에게 동영상 관련 질문을 한다면? 장면/자막/배경 음악/효과음 대사/…"><figcaption><span class="num">49</span><span class="cap">이충렬 감독에게 동영상 관련 질문을 한다면? 장면/자막/배경 음악/효과음 대사/…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="49" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 질문에 따라 답변과 사고의 깊이가 달라진다! 어떤 정보 얻을까? 질문 목적이 뭐…" aria-label="슬라이드 50 질문에 따라 답변과 사고의 깊이가 달라진다! 어떤 정보 얻을까? 질문 목적이 뭐… 크게 보기"><img src="assets/thumbs/s50.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 50 — 질문에 따라 답변과 사고의 깊이가 달라진다! 어떤 정보 얻을까? 질문 목적이 뭐…"><figcaption><span class="num">50</span><span class="cap">질문에 따라 답변과 사고의 깊이가 달라진다! 어떤 정보 얻을까? 질문 목적이 뭐…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="50" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 확산적 질문 수렴적 질문 너무 많은 정보를 얻을 수 있다 적확한 답을 얻을 수 …" aria-label="슬라이드 51 확산적 질문 수렴적 질문 너무 많은 정보를 얻을 수 있다 적확한 답을 얻을 수 … 크게 보기"><img src="assets/thumbs/s51.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 51 — 확산적 질문 수렴적 질문 너무 많은 정보를 얻을 수 있다 적확한 답을 얻을 수 …"><figcaption><span class="num">51</span><span class="cap">확산적 질문 수렴적 질문 너무 많은 정보를 얻을 수 있다 적확한 답을 얻을 수 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="51" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 눈처럼 하얀 피부 피처럼 붉은 입술 흑단처럼 검은 머리카락 내가 만약 왕비라면 …" aria-label="슬라이드 52 눈처럼 하얀 피부 피처럼 붉은 입술 흑단처럼 검은 머리카락 내가 만약 왕비라면 … 크게 보기"><img src="assets/thumbs/s52.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 52 — 눈처럼 하얀 피부 피처럼 붉은 입술 흑단처럼 검은 머리카락 내가 만약 왕비라면 …"><figcaption><span class="num">52</span><span class="cap">눈처럼 하얀 피부 피처럼 붉은 입술 흑단처럼 검은 머리카락 내가 만약 왕비라면 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="52" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 새 왕비가 다른 사람과 비교하며 자신의 아름다움을 확인 받고 싶어한 이유는 무엇…" aria-label="슬라이드 53 새 왕비가 다른 사람과 비교하며 자신의 아름다움을 확인 받고 싶어한 이유는 무엇… 크게 보기"><img src="assets/thumbs/s53.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 53 — 새 왕비가 다른 사람과 비교하며 자신의 아름다움을 확인 받고 싶어한 이유는 무엇…"><figcaption><span class="num">53</span><span class="cap">새 왕비가 다른 사람과 비교하며 자신의 아름다움을 확인 받고 싶어한 이유는 무엇…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="53" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 난쟁이들의 경고에도 3번씩이나 같은 실수를 반복하며 문을 열어 준 까닭은 무엇일…" aria-label="슬라이드 54 난쟁이들의 경고에도 3번씩이나 같은 실수를 반복하며 문을 열어 준 까닭은 무엇일… 크게 보기"><img src="assets/thumbs/s54.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 54 — 난쟁이들의 경고에도 3번씩이나 같은 실수를 반복하며 문을 열어 준 까닭은 무엇일…"><figcaption><span class="num">54</span><span class="cap">난쟁이들의 경고에도 3번씩이나 같은 실수를 반복하며 문을 열어 준 까닭은 무엇일…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="54" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 55 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s55.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 55 — 개선·우선순위·활용"><figcaption><span class="num">55</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="55" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 나무는 어떻게 약으로 활용될까요? [Why] 이유/원인: 왜 나무는 우리에게 중…" aria-label="슬라이드 56 나무는 어떻게 약으로 활용될까요? [Why] 이유/원인: 왜 나무는 우리에게 중… 크게 보기"><img src="assets/thumbs/s56.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 56 — 나무는 어떻게 약으로 활용될까요? [Why] 이유/원인: 왜 나무는 우리에게 중…"><figcaption><span class="num">56</span><span class="cap">나무는 어떻게 약으로 활용될까요? [Why] 이유/원인: 왜 나무는 우리에게 중…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="56" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 57 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s57.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 57 — 개선·우선순위·활용"><figcaption><span class="num">57</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="57" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 투표 결과 확인-포스트잇 작성-모둠 질문판(아래) 부착 내가 진짜 궁금해하는 내…" aria-label="슬라이드 58 투표 결과 확인-포스트잇 작성-모둠 질문판(아래) 부착 내가 진짜 궁금해하는 내… 크게 보기"><img src="assets/thumbs/s58.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 58 — 투표 결과 확인-포스트잇 작성-모둠 질문판(아래) 부착 내가 진짜 궁금해하는 내…"><figcaption><span class="num">58</span><span class="cap">투표 결과 확인-포스트잇 작성-모둠 질문판(아래) 부착 내가 진짜 궁금해하는 내…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="58" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 질문 유목화-모둠의 탐구 질문 선정-칠판에 부착" aria-label="슬라이드 59 질문 유목화-모둠의 탐구 질문 선정-칠판에 부착 크게 보기"><img src="assets/thumbs/s59.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 59 — 질문 유목화-모둠의 탐구 질문 선정-칠판에 부착"><figcaption><span class="num">59</span><span class="cap">질문 유목화-모둠의 탐구 질문 선정-칠판에 부착</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="59" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 탐구할 가치가 있나? 단원의 탐구 질문을 해결에 도움이 되는가? 우리 힘으로 해…" aria-label="슬라이드 60 탐구할 가치가 있나? 단원의 탐구 질문을 해결에 도움이 되는가? 우리 힘으로 해… 크게 보기"><img src="assets/thumbs/s60.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 60 — 탐구할 가치가 있나? 단원의 탐구 질문을 해결에 도움이 되는가? 우리 힘으로 해…"><figcaption><span class="num">60</span><span class="cap">탐구할 가치가 있나? 단원의 탐구 질문을 해결에 도움이 되는가? 우리 힘으로 해…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="60" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 단원에서 알아보고 싶은 탐구 질문을 만들어 볼까요?" aria-label="슬라이드 61 단원에서 알아보고 싶은 탐구 질문을 만들어 볼까요? 크게 보기"><img src="assets/thumbs/s61.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 61 — 단원에서 알아보고 싶은 탐구 질문을 만들어 볼까요?"><figcaption><span class="num">61</span><span class="cap">단원에서 알아보고 싶은 탐구 질문을 만들어 볼까요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="61" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 포스트잇 하나에 질문 하나씩! 굵고 크게!! 이름 기록" aria-label="슬라이드 62 포스트잇 하나에 질문 하나씩! 굵고 크게!! 이름 기록 크게 보기"><img src="assets/thumbs/s62.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 62 — 포스트잇 하나에 질문 하나씩! 굵고 크게!! 이름 기록"><figcaption><span class="num">62</span><span class="cap">포스트잇 하나에 질문 하나씩! 굵고 크게!! 이름 기록</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="62" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 63 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s63.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 63 — 개선·우선순위·활용"><figcaption><span class="num">63</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="63" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 아래와 윗 줄에서 각각 하나씩의 질문을 선택해요. 필요한 경우, 두 개 이상의 …" aria-label="슬라이드 64 아래와 윗 줄에서 각각 하나씩의 질문을 선택해요. 필요한 경우, 두 개 이상의 … 크게 보기"><img src="assets/thumbs/s64.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 64 — 아래와 윗 줄에서 각각 하나씩의 질문을 선택해요. 필요한 경우, 두 개 이상의 …"><figcaption><span class="num">64</span><span class="cap">아래와 윗 줄에서 각각 하나씩의 질문을 선택해요. 필요한 경우, 두 개 이상의 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="64" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 65 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s65.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 65 — 개선·우선순위·활용"><figcaption><span class="num">65</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="65" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 A모둠 B모둠" aria-label="슬라이드 66 A모둠 B모둠 크게 보기"><img src="assets/thumbs/s66.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 66 — A모둠 B모둠"><figcaption><span class="num">66</span><span class="cap">A모둠 B모둠</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="66" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 67 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s67.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 67 — 개선·우선순위·활용"><figcaption><span class="num">67</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="67" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 68 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s68.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 68 — 개선·우선순위·활용"><figcaption><span class="num">68</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="68" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 단원/수업 시작 단원/수업의 중간 단원/수업의 끝 단원/수업 전체에 대한 학습 …" aria-label="슬라이드 69 단원/수업 시작 단원/수업의 중간 단원/수업의 끝 단원/수업 전체에 대한 학습 … 크게 보기"><img src="assets/thumbs/s69.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 69 — 단원/수업 시작 단원/수업의 중간 단원/수업의 끝 단원/수업 전체에 대한 학습 …"><figcaption><span class="num">69</span><span class="cap">단원/수업 시작 단원/수업의 중간 단원/수업의 끝 단원/수업 전체에 대한 학습 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="69" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 QFT를 통해 개발된 질문을 모두 탐구에 사용해야 하나요? 많은 질문을 바탕으로…" aria-label="슬라이드 70 QFT를 통해 개발된 질문을 모두 탐구에 사용해야 하나요? 많은 질문을 바탕으로… 크게 보기"><img src="assets/thumbs/s70.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 70 — QFT를 통해 개발된 질문을 모두 탐구에 사용해야 하나요? 많은 질문을 바탕으로…"><figcaption><span class="num">70</span><span class="cap">QFT를 통해 개발된 질문을 모두 탐구에 사용해야 하나요? 많은 질문을 바탕으로…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="70" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 71 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s71.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 71 — 개선·우선순위·활용"><figcaption><span class="num">71</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="71" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 72 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s72.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 72 — 개선·우선순위·활용"><figcaption><span class="num">72</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="72" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 73 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s73.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 73 — 개선·우선순위·활용"><figcaption><span class="num">73</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="73" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 74 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s74.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 74 — 개선·우선순위·활용"><figcaption><span class="num">74</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="74" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 75 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s75.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 75 — 개선·우선순위·활용"><figcaption><span class="num">75</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="75" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 76 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s76.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 76 — 개선·우선순위·활용"><figcaption><span class="num">76</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="76" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 탐구 질문을 활용하여 차시 학습을 마무리 할 수 있어요" aria-label="슬라이드 77 탐구 질문을 활용하여 차시 학습을 마무리 할 수 있어요 크게 보기"><img src="assets/thumbs/s77.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 77 — 탐구 질문을 활용하여 차시 학습을 마무리 할 수 있어요"><figcaption><span class="num">77</span><span class="cap">탐구 질문을 활용하여 차시 학습을 마무리 할 수 있어요</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="77" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 탐구 질문을 활용한 차시 학습 마무리 영상 영상" aria-label="슬라이드 78 탐구 질문을 활용한 차시 학습 마무리 영상 크게 보기"><span class="vbadge">영상</span><img src="assets/thumbs/s78.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 78 — 탐구 질문을 활용한 차시 학습 마무리 영상"><figcaption><span class="num">78</span><span class="cap">탐구 질문을 활용한 차시 학습 마무리 영상</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="78" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차" aria-label="슬라이드 79 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차 크게 보기"><img src="assets/thumbs/s79.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 79 — 왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차"><figcaption><span class="num">79</span><span class="cap">왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="79" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 그래서 질문입니다! 2022 개정 교육과정 내용에 대한 이해 제고 및 학습 증진…" aria-label="슬라이드 80 그래서 질문입니다! 2022 개정 교육과정 내용에 대한 이해 제고 및 학습 증진… 크게 보기"><img src="assets/thumbs/s80.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 80 — 그래서 질문입니다! 2022 개정 교육과정 내용에 대한 이해 제고 및 학습 증진…"><figcaption><span class="num">80</span><span class="cap">그래서 질문입니다! 2022 개정 교육과정 내용에 대한 이해 제고 및 학습 증진…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="80" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 81 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s81.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 81 — 개선·우선순위·활용"><figcaption><span class="num">81</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="81" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 질문 수업 오늘 연수를 질문으로 마무리 해 볼까요? ㄱ ㄴ ㅇ ㄹ ㅁ ㅂ ㅅ ㄷ…" aria-label="슬라이드 82 질문 수업 오늘 연수를 질문으로 마무리 해 볼까요? ㄱ ㄴ ㅇ ㄹ ㅁ ㅂ ㅅ ㄷ… 크게 보기"><img src="assets/thumbs/s82.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 82 — 질문 수업 오늘 연수를 질문으로 마무리 해 볼까요? ㄱ ㄴ ㅇ ㄹ ㅁ ㅂ ㅅ ㄷ…"><figcaption><span class="num">82</span><span class="cap">질문 수업 오늘 연수를 질문으로 마무리 해 볼까요? ㄱ ㄴ ㅇ ㄹ ㅁ ㅂ ㅅ ㄷ…</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="82" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 개선·우선순위·활용" aria-label="슬라이드 83 개선·우선순위·활용 크게 보기"><img src="assets/thumbs/s83.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 83 — 개선·우선순위·활용"><figcaption><span class="num">83</span><span class="cap">개선·우선순위·활용</span></figcaption></figure>
+<figure class="thumb" data-part="ch3" data-index="83" role="button" tabindex="0" style="--pc:#3688C9" data-search="03 · 개선·우선순위·활용 감사합니다 끝!" aria-label="슬라이드 84 감사합니다 끝! 크게 보기"><img src="assets/thumbs/s84.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 84 — 감사합니다 끝!"><figcaption><span class="num">84</span><span class="cap">감사합니다 끝!</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="84" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 질문과 사고를 여는 서·논술형 평가 -정답을 넘어, 더 깊은 생각으로- 2026…" aria-label="슬라이드 85 질문과 사고를 여는 서·논술형 평가 -정답을 넘어, 더 깊은 생각으로- 2026… 크게 보기"><img src="assets/thumbs/s85.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 85 — 질문과 사고를 여는 서·논술형 평가 -정답을 넘어, 더 깊은 생각으로- 2026…"><figcaption><span class="num">85</span><span class="cap">질문과 사고를 여는 서·논술형 평가 -정답을 넘어, 더 깊은 생각으로- 2026…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="85" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 목차 1 2 서논술형 평가의 이해와 설계 원리 서논술형 평가의 유형 3 서논술형…" aria-label="슬라이드 86 목차 1 2 서논술형 평가의 이해와 설계 원리 서논술형 평가의 유형 3 서논술형… 크게 보기"><img src="assets/thumbs/s86.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 86 — 목차 1 2 서논술형 평가의 이해와 설계 원리 서논술형 평가의 유형 3 서논술형…"><figcaption><span class="num">86</span><span class="cap">목차 1 2 서논술형 평가의 이해와 설계 원리 서논술형 평가의 유형 3 서논술형…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="86" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 서·논술형 평가의 이해와 설계 원리" aria-label="슬라이드 87 서·논술형 평가의 이해와 설계 원리 크게 보기"><img src="assets/thumbs/s87.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 87 — 서·논술형 평가의 이해와 설계 원리"><figcaption><span class="num">87</span><span class="cap">서·논술형 평가의 이해와 설계 원리</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="87" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 서논술형 평가는 학생들의 고차원적 사고력을 측정하기 때문에 학생 중심 탐구 수업…" aria-label="슬라이드 88 서논술형 평가는 학생들의 고차원적 사고력을 측정하기 때문에 학생 중심 탐구 수업… 크게 보기"><img src="assets/thumbs/s88.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 88 — 서논술형 평가는 학생들의 고차원적 사고력을 측정하기 때문에 학생 중심 탐구 수업…"><figcaption><span class="num">88</span><span class="cap">서논술형 평가는 학생들의 고차원적 사고력을 측정하기 때문에 학생 중심 탐구 수업…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="88" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 문항을 만들기 전에 먼저 살펴보아야 할 것은 무엇일까?" aria-label="슬라이드 89 문항을 만들기 전에 먼저 살펴보아야 할 것은 무엇일까? 크게 보기"><img src="assets/thumbs/s89.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 89 — 문항을 만들기 전에 먼저 살펴보아야 할 것은 무엇일까?"><figcaption><span class="num">89</span><span class="cap">문항을 만들기 전에 먼저 살펴보아야 할 것은 무엇일까?</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="89" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 •왜 배우는가? •무엇을 이해해야 하는가? •무엇을 할 수 있어야 하는가? 문항…" aria-label="슬라이드 90 •왜 배우는가? •무엇을 이해해야 하는가? •무엇을 할 수 있어야 하는가? 문항… 크게 보기"><img src="assets/thumbs/s90.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 90 — •왜 배우는가? •무엇을 이해해야 하는가? •무엇을 할 수 있어야 하는가? 문항…"><figcaption><span class="num">90</span><span class="cap">•왜 배우는가? •무엇을 이해해야 하는가? •무엇을 할 수 있어야 하는가? 문항…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="90" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 사회과 교육과정은 무엇을 목표로 하고 있을까? [그림] 사회과 교육과정 설계의 …" aria-label="슬라이드 91 사회과 교육과정은 무엇을 목표로 하고 있을까? [그림] 사회과 교육과정 설계의 … 크게 보기"><img src="assets/thumbs/s91.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 91 — 사회과 교육과정은 무엇을 목표로 하고 있을까? [그림] 사회과 교육과정 설계의 …"><figcaption><span class="num">91</span><span class="cap">사회과 교육과정은 무엇을 목표로 하고 있을까? [그림] 사회과 교육과정 설계의 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="91" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 시민의 자질 함양 사회과 교육과정은 무엇을 목표로 하고 있을까? •사회 현상과 …" aria-label="슬라이드 92 시민의 자질 함양 사회과 교육과정은 무엇을 목표로 하고 있을까? •사회 현상과 … 크게 보기"><img src="assets/thumbs/s92.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 92 — 시민의 자질 함양 사회과 교육과정은 무엇을 목표로 하고 있을까? •사회 현상과 …"><figcaption><span class="num">92</span><span class="cap">시민의 자질 함양 사회과 교육과정은 무엇을 목표로 하고 있을까? •사회 현상과 …</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="92" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 서·논술형 평가 설계 원리" aria-label="슬라이드 93 서·논술형 평가 설계 원리 크게 보기"><img src="assets/thumbs/s93.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 93 — 서·논술형 평가 설계 원리"><figcaption><span class="num">93</span><span class="cap">서·논술형 평가 설계 원리</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="93" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 성취기준에 문화유산이 들어 있으니, 문화유산을 쓰게 하자! -성취기준의 일부 단…" aria-label="슬라이드 94 성취기준에 문화유산이 들어 있으니, 문화유산을 쓰게 하자! -성취기준의 일부 단… 크게 보기"><img src="assets/thumbs/s94.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 94 — 성취기준에 문화유산이 들어 있으니, 문화유산을 쓰게 하자! -성취기준의 일부 단…"><figcaption><span class="num">94</span><span class="cap">성취기준에 문화유산이 들어 있으니, 문화유산을 쓰게 하자! -성취기준의 일부 단…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="94" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 핵심아이디어 성취기준 문화유산은 과거와 현재를 이어주는 자료이다. 지역의 박물관…" aria-label="슬라이드 95 핵심아이디어 성취기준 문화유산은 과거와 현재를 이어주는 자료이다. 지역의 박물관… 크게 보기"><img src="assets/thumbs/s95.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 95 — 핵심아이디어 성취기준 문화유산은 과거와 현재를 이어주는 자료이다. 지역의 박물관…"><figcaption><span class="num">95</span><span class="cap">핵심아이디어 성취기준 문화유산은 과거와 현재를 이어주는 자료이다. 지역의 박물관…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="95" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 핵심아이디어 성취기준 성취기준 해설 문화유산은 과거와 현재를 이어주는 자료이다.…" aria-label="슬라이드 96 핵심아이디어 성취기준 성취기준 해설 문화유산은 과거와 현재를 이어주는 자료이다.… 크게 보기"><img src="assets/thumbs/s96.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 96 — 핵심아이디어 성취기준 성취기준 해설 문화유산은 과거와 현재를 이어주는 자료이다.…"><figcaption><span class="num">96</span><span class="cap">핵심아이디어 성취기준 성취기준 해설 문화유산은 과거와 현재를 이어주는 자료이다.…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="96" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 생각해보기 학습한 내용을 새로운 상황에 적용하게 하는가? 근거를 바탕으로 비판적…" aria-label="슬라이드 97 생각해보기 학습한 내용을 새로운 상황에 적용하게 하는가? 근거를 바탕으로 비판적… 크게 보기"><img src="assets/thumbs/s97.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 97 — 생각해보기 학습한 내용을 새로운 상황에 적용하게 하는가? 근거를 바탕으로 비판적…"><figcaption><span class="num">97</span><span class="cap">생각해보기 학습한 내용을 새로운 상황에 적용하게 하는가? 근거를 바탕으로 비판적…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="97" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 생각해보기 학생의 이해 수준과 사고 과정을 함께 볼 수 있는가? 3. 학생의 사…" aria-label="슬라이드 98 생각해보기 학생의 이해 수준과 사고 과정을 함께 볼 수 있는가? 3. 학생의 사… 크게 보기"><img src="assets/thumbs/s98.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 98 — 생각해보기 학생의 이해 수준과 사고 과정을 함께 볼 수 있는가? 3. 학생의 사…"><figcaption><span class="num">98</span><span class="cap">생각해보기 학생의 이해 수준과 사고 과정을 함께 볼 수 있는가? 3. 학생의 사…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="98" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 생각해보기 무엇을 해야 하는가? 어떤 자료를 활용해야 하는가? 어떤 조건을 고려…" aria-label="슬라이드 99 생각해보기 무엇을 해야 하는가? 어떤 자료를 활용해야 하는가? 어떤 조건을 고려… 크게 보기"><img src="assets/thumbs/s99.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 99 — 생각해보기 무엇을 해야 하는가? 어떤 자료를 활용해야 하는가? 어떤 조건을 고려…"><figcaption><span class="num">99</span><span class="cap">생각해보기 무엇을 해야 하는가? 어떤 자료를 활용해야 하는가? 어떤 조건을 고려…</span></figcaption></figure>
+<figure class="thumb" data-part="ch4" data-index="99" role="button" tabindex="0" style="--pc:#6356A2" data-search="04 · 서·논술형 평가의 이해 5. 단계적 사고 확장을 고려한 문항 학생의 이해와 적용이 단계적으로 확장되도록…" aria-label="슬라이드 100 5. 단계적 사고 확장을 고려한 문항 학생의 이해와 적용이 단계적으로 확장되도록… 크게 보기"><img src="assets/thumbs/s100.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 100 — 5. 단계적 사고 확장을 고려한 문항 학생의 이해와 적용이 단계적으로 확장되도록…"><figcaption><span class="num">100</span><span class="cap">5. 단계적 사고 확장을 고려한 문항 학생의 이해와 적용이 단계적으로 확장되도록…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="100" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가의 유형" aria-label="슬라이드 101 서·논술형 평가의 유형 크게 보기"><img src="assets/thumbs/s101.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 101 — 서·논술형 평가의 유형"><figcaption><span class="num">101</span><span class="cap">서·논술형 평가의 유형</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="101" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서술형 문항과 논술형 문항 출처: 한국교육과정평가원(2025), 초등학교 서논술…" aria-label="슬라이드 102 서술형 문항과 논술형 문항 출처: 한국교육과정평가원(2025), 초등학교 서논술… 크게 보기"><img src="assets/thumbs/s102.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 102 — 서술형 문항과 논술형 문항 출처: 한국교육과정평가원(2025), 초등학교 서논술…"><figcaption><span class="num">102</span><span class="cap">서술형 문항과 논술형 문항 출처: 한국교육과정평가원(2025), 초등학교 서논술…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="102" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가 유형" aria-label="슬라이드 103 서·논술형 평가 유형 크게 보기"><img src="assets/thumbs/s103.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 103 — 서·논술형 평가 유형"><figcaption><span class="num">103</span><span class="cap">서·논술형 평가 유형</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="103" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오." aria-label="슬라이드 104 어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오. 크게 보기"><img src="assets/thumbs/s104.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 104 — 어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오."><figcaption><span class="num">104</span><span class="cap">어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="104" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오." aria-label="슬라이드 105 어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오. 크게 보기"><img src="assets/thumbs/s105.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 105 — 어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오."><figcaption><span class="num">105</span><span class="cap">어떤 유형일까요? Q1. &quot;씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="105" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오." aria-label="슬라이드 106 어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오. 크게 보기"><img src="assets/thumbs/s106.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 106 — 어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오."><figcaption><span class="num">106</span><span class="cap">어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="106" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오." aria-label="슬라이드 107 어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오. 크게 보기"><img src="assets/thumbs/s107.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 107 — 어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오."><figcaption><span class="num">107</span><span class="cap">어떤 유형일까요? Q2. &quot;인물의 말과 행동을 근거로 까닭을 쓰시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="107" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오." aria-label="슬라이드 108 어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오. 크게 보기"><img src="assets/thumbs/s108.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 108 — 어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오."><figcaption><span class="num">108</span><span class="cap">어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="108" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오." aria-label="슬라이드 109 어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오. 크게 보기"><img src="assets/thumbs/s109.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 109 — 어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오."><figcaption><span class="num">109</span><span class="cap">어떤 유형일까요? Q3. &quot;나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="109" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오." aria-label="슬라이드 110 어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오. 크게 보기"><img src="assets/thumbs/s110.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 110 — 어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오."><figcaption><span class="num">110</span><span class="cap">어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="110" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오." aria-label="슬라이드 111 어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오. 크게 보기"><img src="assets/thumbs/s111.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 111 — 어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오."><figcaption><span class="num">111</span><span class="cap">어떤 유형일까요? Q4. &quot;까닭을 자신의 생각을 근거로 들어 논술하시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="111" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오." aria-label="슬라이드 112 어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오. 크게 보기"><img src="assets/thumbs/s112.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 112 — 어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오."><figcaption><span class="num">112</span><span class="cap">어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="112" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오." aria-label="슬라이드 113 어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오. 크게 보기"><img src="assets/thumbs/s113.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 113 — 어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오."><figcaption><span class="num">113</span><span class="cap">어떤 유형일까요? Q5. &quot;그래프를 보고해결 방안을 제안하고 이유를 논술하시오.</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="113" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)" aria-label="슬라이드 114 어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X) 크게 보기"><img src="assets/thumbs/s114.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 114 — 어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)"><figcaption><span class="num">114</span><span class="cap">어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="114" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)" aria-label="슬라이드 115 어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X) 크게 보기"><img src="assets/thumbs/s115.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 115 — 어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)"><figcaption><span class="num">115</span><span class="cap">어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="115" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 Q1 씨앗이 싹트는 데 필요한 조건을 두 가지 쓰세요. 까닭을 자신의 생각을 근…" aria-label="슬라이드 116 Q1 씨앗이 싹트는 데 필요한 조건을 두 가지 쓰세요. 까닭을 자신의 생각을 근… 크게 보기"><img src="assets/thumbs/s116.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 116 — Q1 씨앗이 싹트는 데 필요한 조건을 두 가지 쓰세요. 까닭을 자신의 생각을 근…"><figcaption><span class="num">116</span><span class="cap">Q1 씨앗이 싹트는 데 필요한 조건을 두 가지 쓰세요. 까닭을 자신의 생각을 근…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="116" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 [활동2] 건의서 작성 활동이 곧 서·논술형 평가 - 타인을 논리적으로 설득하기…" aria-label="슬라이드 117 [활동2] 건의서 작성 활동이 곧 서·논술형 평가 - 타인을 논리적으로 설득하기… 크게 보기"><img src="assets/thumbs/s117.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 117 — [활동2] 건의서 작성 활동이 곧 서·논술형 평가 - 타인을 논리적으로 설득하기…"><figcaption><span class="num">117</span><span class="cap">[활동2] 건의서 작성 활동이 곧 서·논술형 평가 - 타인을 논리적으로 설득하기…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="117" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가 문항 개발" aria-label="슬라이드 118 서·논술형 평가 문항 개발 크게 보기"><img src="assets/thumbs/s118.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 118 — 서·논술형 평가 문항 개발"><figcaption><span class="num">118</span><span class="cap">서·논술형 평가 문항 개발</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="118" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 문항이 더 매력적인가요?" aria-label="슬라이드 119 어떤 문항이 더 매력적인가요? 크게 보기"><img src="assets/thumbs/s119.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 119 — 어떤 문항이 더 매력적인가요?"><figcaption><span class="num">119</span><span class="cap">어떤 문항이 더 매력적인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="119" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 어떤 문항이 더 매력적인가요?" aria-label="슬라이드 120 어떤 문항이 더 매력적인가요? 크게 보기"><img src="assets/thumbs/s120.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 120 — 어떤 문항이 더 매력적인가요?"><figcaption><span class="num">120</span><span class="cap">어떤 문항이 더 매력적인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="120" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 좋은 서·논술형 평가 문항은? 성취기준과의 정합성 명확한 평가 요소 학생이 수행…" aria-label="슬라이드 121 좋은 서·논술형 평가 문항은? 성취기준과의 정합성 명확한 평가 요소 학생이 수행… 크게 보기"><img src="assets/thumbs/s121.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 121 — 좋은 서·논술형 평가 문항은? 성취기준과의 정합성 명확한 평가 요소 학생이 수행…"><figcaption><span class="num">121</span><span class="cap">좋은 서·논술형 평가 문항은? 성취기준과의 정합성 명확한 평가 요소 학생이 수행…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="121" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가 문항 개발 절차 성취기준 분석 및 학생 탐구 질문 도출 평가 목…" aria-label="슬라이드 122 서·논술형 평가 문항 개발 절차 성취기준 분석 및 학생 탐구 질문 도출 평가 목… 크게 보기"><img src="assets/thumbs/s122.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 122 — 서·논술형 평가 문항 개발 절차 성취기준 분석 및 학생 탐구 질문 도출 평가 목…"><figcaption><span class="num">122</span><span class="cap">서·논술형 평가 문항 개발 절차 성취기준 분석 및 학생 탐구 질문 도출 평가 목…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="122" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 평가 장면 구성시 고려사항 성취기준 학생들은 무엇을 알고, 할 수 있어야 하는가…" aria-label="슬라이드 123 평가 장면 구성시 고려사항 성취기준 학생들은 무엇을 알고, 할 수 있어야 하는가… 크게 보기"><img src="assets/thumbs/s123.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 123 — 평가 장면 구성시 고려사항 성취기준 학생들은 무엇을 알고, 할 수 있어야 하는가…"><figcaption><span class="num">123</span><span class="cap">평가 장면 구성시 고려사항 성취기준 학생들은 무엇을 알고, 할 수 있어야 하는가…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="123" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…" aria-label="슬라이드 124 교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2… 크게 보기"><img src="assets/thumbs/s124.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 124 — 교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…"><figcaption><span class="num">124</span><span class="cap">교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="124" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…" aria-label="슬라이드 125 교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2… 크게 보기"><img src="assets/thumbs/s125.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 125 — 교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…"><figcaption><span class="num">125</span><span class="cap">교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="125" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 평가 요소 선정하기" aria-label="슬라이드 126 평가 요소 선정하기 크게 보기"><img src="assets/thumbs/s126.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 126 — 평가 요소 선정하기"><figcaption><span class="num">126</span><span class="cap">평가 요소 선정하기</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="126" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가 문항 구성하기" aria-label="슬라이드 127 서·논술형 평가 문항 구성하기 크게 보기"><img src="assets/thumbs/s127.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 127 — 서·논술형 평가 문항 구성하기"><figcaption><span class="num">127</span><span class="cap">서·논술형 평가 문항 구성하기</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="127" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …" aria-label="슬라이드 128 학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) … 크게 보기"><img src="assets/thumbs/s128.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 128 — 학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …"><figcaption><span class="num">128</span><span class="cap">학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="128" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …" aria-label="슬라이드 129 학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) … 크게 보기"><img src="assets/thumbs/s129.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 129 — 학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …"><figcaption><span class="num">129</span><span class="cap">학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="129" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 인지적 사고 수준 출처: https://m.cafe.daum.net/moral-…" aria-label="슬라이드 130 인지적 사고 수준 출처: https://m.cafe.daum.net/moral-… 크게 보기"><img src="assets/thumbs/s130.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 130 — 인지적 사고 수준 출처: https://m.cafe.daum.net/moral-…"><figcaption><span class="num">130</span><span class="cap">인지적 사고 수준 출처: https://m.cafe.daum.net/moral-…</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="130" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 고차적 사고를 촉진하는 서·논술형 문항 개발" aria-label="슬라이드 131 고차적 사고를 촉진하는 서·논술형 문항 개발 크게 보기"><img src="assets/thumbs/s131.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 131 — 고차적 사고를 촉진하는 서·논술형 문항 개발"><figcaption><span class="num">131</span><span class="cap">고차적 사고를 촉진하는 서·논술형 문항 개발</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="131" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가 문항 개발시 고려사항" aria-label="슬라이드 132 서·논술형 평가 문항 개발시 고려사항 크게 보기"><img src="assets/thumbs/s132.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 132 — 서·논술형 평가 문항 개발시 고려사항"><figcaption><span class="num">132</span><span class="cap">서·논술형 평가 문항 개발시 고려사항</span></figcaption></figure>
+<figure class="thumb" data-part="ch5" data-index="132" role="button" tabindex="0" style="--pc:#E85297" data-search="05 · 평가 유형과 문항 개발 서·논술형 평가 문항 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(202…" aria-label="슬라이드 133 서·논술형 평가 문항 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(202… 크게 보기"><img src="assets/thumbs/s133.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 133 — 서·논술형 평가 문항 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(202…"><figcaption><span class="num">133</span><span class="cap">서·논술형 평가 문항 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(202…</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="133" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 채점기준표 개발" aria-label="슬라이드 134 채점기준표 개발 크게 보기"><img src="assets/thumbs/s134.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 134 — 채점기준표 개발"><figcaption><span class="num">134</span><span class="cap">채점기준표 개발</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="134" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 채점기준표란? 배움이 제대로 일어났는지 어떻게 확인할 수 있을까? •학생들이 과…" aria-label="슬라이드 135 채점기준표란? 배움이 제대로 일어났는지 어떻게 확인할 수 있을까? •학생들이 과… 크게 보기"><img src="assets/thumbs/s135.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 135 — 채점기준표란? 배움이 제대로 일어났는지 어떻게 확인할 수 있을까? •학생들이 과…"><figcaption><span class="num">135</span><span class="cap">채점기준표란? 배움이 제대로 일어났는지 어떻게 확인할 수 있을까? •학생들이 과…</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="135" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 어떤 채점기준표가 더 매력적인가요?" aria-label="슬라이드 136 어떤 채점기준표가 더 매력적인가요? 크게 보기"><img src="assets/thumbs/s136.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 136 — 어떤 채점기준표가 더 매력적인가요?"><figcaption><span class="num">136</span><span class="cap">어떤 채점기준표가 더 매력적인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="136" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 어떤 채점기준표가 더 매력적인가요?" aria-label="슬라이드 137 어떤 채점기준표가 더 매력적인가요? 크게 보기"><img src="assets/thumbs/s137.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 137 — 어떤 채점기준표가 더 매력적인가요?"><figcaption><span class="num">137</span><span class="cap">어떤 채점기준표가 더 매력적인가요?</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="137" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 채점기준 왜 중요한가요? •학습목표와 기준에 맞게 수업을 설계하는 데 도움을 줌…" aria-label="슬라이드 138 채점기준 왜 중요한가요? •학습목표와 기준에 맞게 수업을 설계하는 데 도움을 줌… 크게 보기"><img src="assets/thumbs/s138.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 138 — 채점기준 왜 중요한가요? •학습목표와 기준에 맞게 수업을 설계하는 데 도움을 줌…"><figcaption><span class="num">138</span><span class="cap">채점기준 왜 중요한가요? •학습목표와 기준에 맞게 수업을 설계하는 데 도움을 줌…</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="138" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 채점기준표의 구성 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부}" aria-label="슬라이드 139 채점기준표의 구성 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부} 크게 보기"><img src="assets/thumbs/s139.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 139 — 채점기준표의 구성 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부}"><figcaption><span class="num">139</span><span class="cap">채점기준표의 구성 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부}</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="139" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 채점기준표 개발 절차 수행평가 과제의 목표 확인하기 수행평가 과제 분석 및 목록…" aria-label="슬라이드 140 채점기준표 개발 절차 수행평가 과제의 목표 확인하기 수행평가 과제 분석 및 목록… 크게 보기"><img src="assets/thumbs/s140.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 140 — 채점기준표 개발 절차 수행평가 과제의 목표 확인하기 수행평가 과제 분석 및 목록…"><figcaption><span class="num">140</span><span class="cap">채점기준표 개발 절차 수행평가 과제의 목표 확인하기 수행평가 과제 분석 및 목록…</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="140" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 채점기준표 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부)" aria-label="슬라이드 141 채점기준표 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부) 크게 보기"><img src="assets/thumbs/s141.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 141 — 채점기준표 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부)"><figcaption><span class="num">141</span><span class="cap">채점기준표 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부)</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="141" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 배운 내용을 정리해요 서논술형 평가의 유형 서논술형 평가 문항의 개발 채점기준표…" aria-label="슬라이드 142 배운 내용을 정리해요 서논술형 평가의 유형 서논술형 평가 문항의 개발 채점기준표… 크게 보기"><img src="assets/thumbs/s142.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 142 — 배운 내용을 정리해요 서논술형 평가의 유형 서논술형 평가 문항의 개발 채점기준표…"><figcaption><span class="num">142</span><span class="cap">배운 내용을 정리해요 서논술형 평가의 유형 서논술형 평가 문항의 개발 채점기준표…</span></figcaption></figure>
+<figure class="thumb" data-part="ch6" data-index="142" role="button" tabindex="0" style="--pc:#3688C9" data-search="06 · 채점기준표와 마무리 경청해 주셔서 감사합니다. 대부분의 자료는 2026 학생 질문 중심 수업·평가 …" aria-label="슬라이드 143 경청해 주셔서 감사합니다. 대부분의 자료는 2026 학생 질문 중심 수업·평가 … 크게 보기"><img src="assets/thumbs/s143.webp" width="520" height="293" loading="lazy" decoding="async" alt="슬라이드 143 — 경청해 주셔서 감사합니다. 대부분의 자료는 2026 학생 질문 중심 수업·평가 …"><figcaption><span class="num">143</span><span class="cap">경청해 주셔서 감사합니다. 대부분의 자료는 2026 학생 질문 중심 수업·평가 …</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="band" id="downloads">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>발표 자료 내려받기</h2>
+      <p>PDF는 글꼴 설치 없이 어디서나 열립니다.</p>
+    </div>
+    <div class="dl-list">
+    <a class="dl" href="pdf/question-teaching-assessment-slides.pdf" download>
+      <span class="ic" aria-hidden="true">PDF</span>
+      <span class="t"><b>PDF · 143장 발표 자료</b><span>질문 중심 수업 + 서·논술형 평가 전체 슬라이드</span></span>
+      <span class="sz">15MB</span>
+    </a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="frow">
+      <div>
+        <b>이어서 보기</b>
+        <div><a href="https://tigerjk9.github.io" target="_blank" rel="noopener">김진관의 연구 블로그</a></div>
+        <div><a href="https://tigerjk9.github.io/lectures/" target="_blank" rel="noopener">닷커넥터 자료실</a></div>
+      </div>
+      <div>
+        <b>자료 안내</b>
+        <div>영상이 들어가는 슬라이드는 이 웹에서 재생되지 않습니다. 실제 발표에서 시청하세요.</div>
+        <div>대부분의 자료는 2026 학생 질문 중심 수업·평가 초등 선도교원 연수에서 발췌했습니다.</div>
+      </div>
+      <div>
+        <b>인쇄 / PDF 저장</b>
+        <div style="margin-bottom:10px">메뉴와 버튼을 뺀 A4 형태로 출력됩니다.</div>
+        <button class="print-btn" type="button" id="printBtn">이 페이지 인쇄하기</button>
+      </div>
+    </div>
+    <p class="fine">© 2026 학생 질문 중심 수업·평가 연수 발표 원고 · 큐레이션 김진관(닷커넥터). 강연용 공유 자료입니다.</p>
+  </div>
+</footer>
+<!-- 라이트박스 -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="슬라이드 크게 보기">
+  <div class="lb-top">
+    <span class="lb-count" id="lbCount"></span>
+    <span class="lb-title" id="lbTitle"></span>
+    <button class="lb-close" id="lbClose" aria-label="닫기">✕</button>
+  </div>
+  <div class="lb-stage" id="lbStage">
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="이전 슬라이드">‹</button>
+    <img id="lbImg" alt="">
+    <button class="lb-nav lb-next" id="lbNext" aria-label="다음 슬라이드">›</button>
+    <div class="lb-video" id="lbVideo" style="display:none"><b>영상 슬라이드</b> · 이 슬라이드에는 영상이 들어갑니다. 공유용 웹에서는 재생되지 않으니 실제 발표에서 시청하세요.</div>
+  </div>
+  <div class="lb-foot">
+    <a id="lbOpen" href="#" target="_blank" rel="noopener">이미지 새 탭에서 열기</a>
+  </div>
+</div>
+
+<!-- 프로젝터용 QR 전체화면 -->
+<div class="qr-full" id="qrFull" role="dialog" aria-modal="true" aria-label="QR 코드 크게 보기">
+  <div class="inner">
+    <h2>질문 중심 수업과 서·논술형 평가</h2>
+    <p>발표가 끝난 뒤에도 슬라이드를 다시 볼 수 있습니다.</p>
+    <div class="big" id="qrBig"></div>
+    <div class="u" id="qrBigUrl"></div>
+    <button class="close" id="qrFullClose">닫기 (Esc)</button>
+  </div>
+</div>
+<script src="assets/vendor/qrcode.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var CFG = {"site": {"url": "https://tigerjk9.github.io/question-teaching-assessment/"}};
+  var SLIDES = [{"n": 1, "title": "-질문으로 가르치고, 질문으로 배우기- ( )초등학교 홍 길 동 생각의 힘을 키…", "full": "assets/slides/s1.webp"}, {"n": 2, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s2.webp"}, {"n": 3, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s3.webp"}, {"n": 4, "title": "왜, 질문인가요?", "full": "assets/slides/s4.webp"}, {"n": 5, "title": "왜, 질문인가요?", "full": "assets/slides/s5.webp"}, {"n": 6, "title": "왜 질문인가", "full": "assets/slides/s6.webp", "video": true}, {"n": 7, "title": "왜, 질문인가요?", "full": "assets/slides/s7.webp"}, {"n": 8, "title": "왜, 질문인가요?", "full": "assets/slides/s8.webp"}, {"n": 9, "title": "왜 질문인가", "full": "assets/slides/s9.webp"}, {"n": 10, "title": "왜 질문인가", "full": "assets/slides/s10.webp"}, {"n": 11, "title": "핵심 아이디어가 뭐지?", "full": "assets/slides/s11.webp"}, {"n": 12, "title": "왜 질문인가", "full": "assets/slides/s12.webp"}, {"n": 13, "title": "5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…", "full": "assets/slides/s13.webp"}, {"n": 14, "title": "5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…", "full": "assets/slides/s14.webp"}, {"n": 15, "title": "왜 질문인가", "full": "assets/slides/s15.webp"}, {"n": 16, "title": "학생의 능동적 수업 참여", "full": "assets/slides/s16.webp"}, {"n": 17, "title": "왜 질문인가", "full": "assets/slides/s17.webp"}, {"n": 18, "title": "왜, 질문인가요? 질문이란?", "full": "assets/slides/s18.webp"}, {"n": 19, "title": "왜, 질문인가요? 질문이란? <탐구 질문> <단원의 탐구질문> 상상 질문 사실적…", "full": "assets/slides/s19.webp"}, {"n": 20, "title": "왜, 질문인가요? 어떻게 만들어요? 맥락없는 학생의 질문은 도움이 되지 않아요.…", "full": "assets/slides/s20.webp"}, {"n": 21, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s21.webp"}, {"n": 22, "title": "교사가 묻는 질문에 반응하기 학생이 자신의 질문을 던짐으로써 스스로 생각하고 활…", "full": "assets/slides/s22.webp"}, {"n": 23, "title": "질문초점 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) …", "full": "assets/slides/s23.webp"}, {"n": 24, "title": "효과적인 질문 초점의 조건 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고…", "full": "assets/slides/s24.webp"}, {"n": 25, "title": "학생의 입장이 되어 궁금한 질문을 만들어 볼까요?", "full": "assets/slides/s25.webp"}, {"n": 26, "title": "질문 초점의 문제점은 무엇인가요? 질문 초점을 수정한다면?", "full": "assets/slides/s26.webp"}, {"n": 27, "title": "질문 초점과 생성", "full": "assets/slides/s27.webp"}, {"n": 28, "title": "질문 초점과 생성", "full": "assets/slides/s28.webp"}, {"n": 29, "title": "질문 초점과 생성", "full": "assets/slides/s29.webp"}, {"n": 30, "title": "학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) 관련 자료…", "full": "assets/slides/s30.webp"}, {"n": 31, "title": "명확한 초점이 있다 질문이 아니다 새로운 방식의 사고를 자극하고 촉발한다. 교사…", "full": "assets/slides/s31.webp"}, {"n": 32, "title": "충주시의 복숭아와 고창군의 수박 모두 맛있어 보이네 동물 복지 인증 표시가 있는…", "full": "assets/slides/s32.webp"}, {"n": 33, "title": "질문 초점과 생성", "full": "assets/slides/s33.webp"}, {"n": 34, "title": "질문 초점과 생성", "full": "assets/slides/s34.webp"}, {"n": 35, "title": "질문 초점과 생성", "full": "assets/slides/s35.webp"}, {"n": 36, "title": "보이는 것, 관찰한 것을 문장으로 쓰기 See를 바탕으로 근거를 들어 문장으로 …", "full": "assets/slides/s36.webp"}, {"n": 37, "title": "질문 초점과 생성", "full": "assets/slides/s37.webp"}, {"n": 38, "title": "아이스크림교과서(2026), 5학년교과서 37쪽 유적과 유물로 살펴본 옛 사람들…", "full": "assets/slides/s38.webp"}, {"n": 39, "title": "[앞에서 바라 본 모습] [위에서 바라 본 모습]", "full": "assets/slides/s39.webp"}, {"n": 40, "title": "[앞에서 바라 본 모습] [위에서 바라 본 모습]", "full": "assets/slides/s40.webp"}, {"n": 41, "title": "사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다.", "full": "assets/slides/s41.webp"}, {"n": 42, "title": "[옆에서 바라 본 모습] [위에서 바라 본 모습] 사진 속 ( )과 관련하여 (…", "full": "assets/slides/s42.webp"}, {"n": 43, "title": "사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 신라 사람들은 …", "full": "assets/slides/s43.webp"}, {"n": 44, "title": "[앞에서 바라 본 모습] [위에서 바라 본 모습] <까만 놀이>", "full": "assets/slides/s44.webp"}, {"n": 45, "title": "사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 배 모양 토기를…", "full": "assets/slides/s45.webp"}, {"n": 46, "title": "질문 초점과 생성", "full": "assets/slides/s46.webp"}, {"n": 47, "title": "질문 놀이(질문 지도 만들기) 포스트잇 하나에 질문은 하나씩!", "full": "assets/slides/s47.webp"}, {"n": 48, "title": "질문 초점과 생성", "full": "assets/slides/s48.webp", "video": true}, {"n": 49, "title": "이충렬 감독에게 동영상 관련 질문을 한다면? 장면/자막/배경 음악/효과음 대사/…", "full": "assets/slides/s49.webp"}, {"n": 50, "title": "질문에 따라 답변과 사고의 깊이가 달라진다! 어떤 정보 얻을까? 질문 목적이 뭐…", "full": "assets/slides/s50.webp"}, {"n": 51, "title": "확산적 질문 수렴적 질문 너무 많은 정보를 얻을 수 있다 적확한 답을 얻을 수 …", "full": "assets/slides/s51.webp"}, {"n": 52, "title": "눈처럼 하얀 피부 피처럼 붉은 입술 흑단처럼 검은 머리카락 내가 만약 왕비라면 …", "full": "assets/slides/s52.webp"}, {"n": 53, "title": "새 왕비가 다른 사람과 비교하며 자신의 아름다움을 확인 받고 싶어한 이유는 무엇…", "full": "assets/slides/s53.webp"}, {"n": 54, "title": "난쟁이들의 경고에도 3번씩이나 같은 실수를 반복하며 문을 열어 준 까닭은 무엇일…", "full": "assets/slides/s54.webp"}, {"n": 55, "title": "개선·우선순위·활용", "full": "assets/slides/s55.webp"}, {"n": 56, "title": "나무는 어떻게 약으로 활용될까요? [Why] 이유/원인: 왜 나무는 우리에게 중…", "full": "assets/slides/s56.webp"}, {"n": 57, "title": "개선·우선순위·활용", "full": "assets/slides/s57.webp"}, {"n": 58, "title": "투표 결과 확인-포스트잇 작성-모둠 질문판(아래) 부착 내가 진짜 궁금해하는 내…", "full": "assets/slides/s58.webp"}, {"n": 59, "title": "질문 유목화-모둠의 탐구 질문 선정-칠판에 부착", "full": "assets/slides/s59.webp"}, {"n": 60, "title": "탐구할 가치가 있나? 단원의 탐구 질문을 해결에 도움이 되는가? 우리 힘으로 해…", "full": "assets/slides/s60.webp"}, {"n": 61, "title": "단원에서 알아보고 싶은 탐구 질문을 만들어 볼까요?", "full": "assets/slides/s61.webp"}, {"n": 62, "title": "포스트잇 하나에 질문 하나씩! 굵고 크게!! 이름 기록", "full": "assets/slides/s62.webp"}, {"n": 63, "title": "개선·우선순위·활용", "full": "assets/slides/s63.webp"}, {"n": 64, "title": "아래와 윗 줄에서 각각 하나씩의 질문을 선택해요. 필요한 경우, 두 개 이상의 …", "full": "assets/slides/s64.webp"}, {"n": 65, "title": "개선·우선순위·활용", "full": "assets/slides/s65.webp"}, {"n": 66, "title": "A모둠 B모둠", "full": "assets/slides/s66.webp"}, {"n": 67, "title": "개선·우선순위·활용", "full": "assets/slides/s67.webp"}, {"n": 68, "title": "개선·우선순위·활용", "full": "assets/slides/s68.webp"}, {"n": 69, "title": "단원/수업 시작 단원/수업의 중간 단원/수업의 끝 단원/수업 전체에 대한 학습 …", "full": "assets/slides/s69.webp"}, {"n": 70, "title": "QFT를 통해 개발된 질문을 모두 탐구에 사용해야 하나요? 많은 질문을 바탕으로…", "full": "assets/slides/s70.webp"}, {"n": 71, "title": "개선·우선순위·활용", "full": "assets/slides/s71.webp"}, {"n": 72, "title": "개선·우선순위·활용", "full": "assets/slides/s72.webp"}, {"n": 73, "title": "개선·우선순위·활용", "full": "assets/slides/s73.webp"}, {"n": 74, "title": "개선·우선순위·활용", "full": "assets/slides/s74.webp"}, {"n": 75, "title": "개선·우선순위·활용", "full": "assets/slides/s75.webp"}, {"n": 76, "title": "개선·우선순위·활용", "full": "assets/slides/s76.webp"}, {"n": 77, "title": "탐구 질문을 활용하여 차시 학습을 마무리 할 수 있어요", "full": "assets/slides/s77.webp"}, {"n": 78, "title": "탐구 질문을 활용한 차시 학습 마무리 영상", "full": "assets/slides/s78.webp", "video": true}, {"n": 79, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s79.webp"}, {"n": 80, "title": "그래서 질문입니다! 2022 개정 교육과정 내용에 대한 이해 제고 및 학습 증진…", "full": "assets/slides/s80.webp"}, {"n": 81, "title": "개선·우선순위·활용", "full": "assets/slides/s81.webp"}, {"n": 82, "title": "질문 수업 오늘 연수를 질문으로 마무리 해 볼까요? ㄱ ㄴ ㅇ ㄹ ㅁ ㅂ ㅅ ㄷ…", "full": "assets/slides/s82.webp"}, {"n": 83, "title": "개선·우선순위·활용", "full": "assets/slides/s83.webp"}, {"n": 84, "title": "감사합니다 끝!", "full": "assets/slides/s84.webp"}, {"n": 85, "title": "질문과 사고를 여는 서·논술형 평가 -정답을 넘어, 더 깊은 생각으로- 2026…", "full": "assets/slides/s85.webp"}, {"n": 86, "title": "목차 1 2 서논술형 평가의 이해와 설계 원리 서논술형 평가의 유형 3 서논술형…", "full": "assets/slides/s86.webp"}, {"n": 87, "title": "서·논술형 평가의 이해와 설계 원리", "full": "assets/slides/s87.webp"}, {"n": 88, "title": "서논술형 평가는 학생들의 고차원적 사고력을 측정하기 때문에 학생 중심 탐구 수업…", "full": "assets/slides/s88.webp"}, {"n": 89, "title": "문항을 만들기 전에 먼저 살펴보아야 할 것은 무엇일까?", "full": "assets/slides/s89.webp"}, {"n": 90, "title": "•왜 배우는가? •무엇을 이해해야 하는가? •무엇을 할 수 있어야 하는가? 문항…", "full": "assets/slides/s90.webp"}, {"n": 91, "title": "사회과 교육과정은 무엇을 목표로 하고 있을까? [그림] 사회과 교육과정 설계의 …", "full": "assets/slides/s91.webp"}, {"n": 92, "title": "시민의 자질 함양 사회과 교육과정은 무엇을 목표로 하고 있을까? •사회 현상과 …", "full": "assets/slides/s92.webp"}, {"n": 93, "title": "서·논술형 평가 설계 원리", "full": "assets/slides/s93.webp"}, {"n": 94, "title": "성취기준에 문화유산이 들어 있으니, 문화유산을 쓰게 하자! -성취기준의 일부 단…", "full": "assets/slides/s94.webp"}, {"n": 95, "title": "핵심아이디어 성취기준 문화유산은 과거와 현재를 이어주는 자료이다. 지역의 박물관…", "full": "assets/slides/s95.webp"}, {"n": 96, "title": "핵심아이디어 성취기준 성취기준 해설 문화유산은 과거와 현재를 이어주는 자료이다.…", "full": "assets/slides/s96.webp"}, {"n": 97, "title": "생각해보기 학습한 내용을 새로운 상황에 적용하게 하는가? 근거를 바탕으로 비판적…", "full": "assets/slides/s97.webp"}, {"n": 98, "title": "생각해보기 학생의 이해 수준과 사고 과정을 함께 볼 수 있는가? 3. 학생의 사…", "full": "assets/slides/s98.webp"}, {"n": 99, "title": "생각해보기 무엇을 해야 하는가? 어떤 자료를 활용해야 하는가? 어떤 조건을 고려…", "full": "assets/slides/s99.webp"}, {"n": 100, "title": "5. 단계적 사고 확장을 고려한 문항 학생의 이해와 적용이 단계적으로 확장되도록…", "full": "assets/slides/s100.webp"}, {"n": 101, "title": "서·논술형 평가의 유형", "full": "assets/slides/s101.webp"}, {"n": 102, "title": "서술형 문항과 논술형 문항 출처: 한국교육과정평가원(2025), 초등학교 서논술…", "full": "assets/slides/s102.webp"}, {"n": 103, "title": "서·논술형 평가 유형", "full": "assets/slides/s103.webp"}, {"n": 104, "title": "어떤 유형일까요? Q1. \"씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오.", "full": "assets/slides/s104.webp"}, {"n": 105, "title": "어떤 유형일까요? Q1. \"씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오.", "full": "assets/slides/s105.webp"}, {"n": 106, "title": "어떤 유형일까요? Q2. \"인물의 말과 행동을 근거로 까닭을 쓰시오.", "full": "assets/slides/s106.webp"}, {"n": 107, "title": "어떤 유형일까요? Q2. \"인물의 말과 행동을 근거로 까닭을 쓰시오.", "full": "assets/slides/s107.webp"}, {"n": 108, "title": "어떤 유형일까요? Q3. \"나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오.", "full": "assets/slides/s108.webp"}, {"n": 109, "title": "어떤 유형일까요? Q3. \"나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오.", "full": "assets/slides/s109.webp"}, {"n": 110, "title": "어떤 유형일까요? Q4. \"까닭을 자신의 생각을 근거로 들어 논술하시오.", "full": "assets/slides/s110.webp"}, {"n": 111, "title": "어떤 유형일까요? Q4. \"까닭을 자신의 생각을 근거로 들어 논술하시오.", "full": "assets/slides/s111.webp"}, {"n": 112, "title": "어떤 유형일까요? Q5. \"그래프를 보고해결 방안을 제안하고 이유를 논술하시오.", "full": "assets/slides/s112.webp"}, {"n": 113, "title": "어떤 유형일까요? Q5. \"그래프를 보고해결 방안을 제안하고 이유를 논술하시오.", "full": "assets/slides/s113.webp"}, {"n": 114, "title": "어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)", "full": "assets/slides/s114.webp"}, {"n": 115, "title": "어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)", "full": "assets/slides/s115.webp"}, {"n": 116, "title": "Q1 씨앗이 싹트는 데 필요한 조건을 두 가지 쓰세요. 까닭을 자신의 생각을 근…", "full": "assets/slides/s116.webp"}, {"n": 117, "title": "[활동2] 건의서 작성 활동이 곧 서·논술형 평가 - 타인을 논리적으로 설득하기…", "full": "assets/slides/s117.webp"}, {"n": 118, "title": "서·논술형 평가 문항 개발", "full": "assets/slides/s118.webp"}, {"n": 119, "title": "어떤 문항이 더 매력적인가요?", "full": "assets/slides/s119.webp"}, {"n": 120, "title": "어떤 문항이 더 매력적인가요?", "full": "assets/slides/s120.webp"}, {"n": 121, "title": "좋은 서·논술형 평가 문항은? 성취기준과의 정합성 명확한 평가 요소 학생이 수행…", "full": "assets/slides/s121.webp"}, {"n": 122, "title": "서·논술형 평가 문항 개발 절차 성취기준 분석 및 학생 탐구 질문 도출 평가 목…", "full": "assets/slides/s122.webp"}, {"n": 123, "title": "평가 장면 구성시 고려사항 성취기준 학생들은 무엇을 알고, 할 수 있어야 하는가…", "full": "assets/slides/s123.webp"}, {"n": 124, "title": "교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…", "full": "assets/slides/s124.webp"}, {"n": 125, "title": "교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…", "full": "assets/slides/s125.webp"}, {"n": 126, "title": "평가 요소 선정하기", "full": "assets/slides/s126.webp"}, {"n": 127, "title": "서·논술형 평가 문항 구성하기", "full": "assets/slides/s127.webp"}, {"n": 128, "title": "학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …", "full": "assets/slides/s128.webp"}, {"n": 129, "title": "학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …", "full": "assets/slides/s129.webp"}, {"n": 130, "title": "인지적 사고 수준 출처: https://m.cafe.daum.net/moral-…", "full": "assets/slides/s130.webp"}, {"n": 131, "title": "고차적 사고를 촉진하는 서·논술형 문항 개발", "full": "assets/slides/s131.webp"}, {"n": 132, "title": "서·논술형 평가 문항 개발시 고려사항", "full": "assets/slides/s132.webp"}, {"n": 133, "title": "서·논술형 평가 문항 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(202…", "full": "assets/slides/s133.webp"}, {"n": 134, "title": "채점기준표 개발", "full": "assets/slides/s134.webp"}, {"n": 135, "title": "채점기준표란? 배움이 제대로 일어났는지 어떻게 확인할 수 있을까? •학생들이 과…", "full": "assets/slides/s135.webp"}, {"n": 136, "title": "어떤 채점기준표가 더 매력적인가요?", "full": "assets/slides/s136.webp"}, {"n": 137, "title": "어떤 채점기준표가 더 매력적인가요?", "full": "assets/slides/s137.webp"}, {"n": 138, "title": "채점기준 왜 중요한가요? •학습목표와 기준에 맞게 수업을 설계하는 데 도움을 줌…", "full": "assets/slides/s138.webp"}, {"n": 139, "title": "채점기준표의 구성 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부}", "full": "assets/slides/s139.webp"}, {"n": 140, "title": "채점기준표 개발 절차 수행평가 과제의 목표 확인하기 수행평가 과제 분석 및 목록…", "full": "assets/slides/s140.webp"}, {"n": 141, "title": "채점기준표 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부)", "full": "assets/slides/s141.webp"}, {"n": 142, "title": "배운 내용을 정리해요 서논술형 평가의 유형 서논술형 평가 문항의 개발 채점기준표…", "full": "assets/slides/s142.webp"}, {"n": 143, "title": "경청해 주셔서 감사합니다. 대부분의 자료는 2026 학생 질문 중심 수업·평가 …", "full": "assets/slides/s143.webp"}];
+
+  /* --------------------------------------------------------
+     QR — 배포 주소를 따로 적지 않아도 지금 열린 주소로 만든다.
+     설정에 url이 있으면 그것을 쓰고, file://로 열었으면 직접 입력받는다.
+     -------------------------------------------------------- */
+
+  var LS_KEY = "lecture-site-url";
+  var urlBox   = document.getElementById("qrUrl");
+  var holder   = document.getElementById("qrHolder");
+  var bigBox   = document.getElementById("qrBig");
+  var bigUrl   = document.getElementById("qrBigUrl");
+  var setupIn  = document.getElementById("qrInput");
+
+  function currentUrl() {
+    if (CFG.site && CFG.site.url) return CFG.site.url;
+    try {
+      var saved = localStorage.getItem(LS_KEY);
+      if (saved) return saved;
+    } catch (e) { /* 사생활 보호 모드 — 저장 없이 진행 */ }
+    if (location.protocol === "file:") return "";
+    return location.origin + location.pathname.replace(/index\.html$/, "");
+  }
+
+  function drawQr(target, text, cell) {
+    if (!target) return;
+    target.innerHTML = "";
+    if (!text) {
+      target.classList.add("is-empty");
+      target.textContent = "주소가 아직 없습니다. 아래 ⚙에서 배포 주소를 넣으면 QR이 바로 만들어집니다.";
+      return;
+    }
+    target.classList.remove("is-empty");
+    try {
+      var qr = qrcode(0, "M");
+      qr.addData(text);
+      qr.make();
+      target.innerHTML = qr.createSvgTag({ cellSize: cell || 4, margin: 0, scalable: true });
+      var svg = target.querySelector("svg");
+      if (svg) {
+        svg.setAttribute("role", "img");
+        svg.setAttribute("aria-label", "이 페이지 주소의 QR 코드");
+        svg.removeAttribute("width");
+        svg.removeAttribute("height");
+      }
+    } catch (e) {
+      target.classList.add("is-empty");
+      target.textContent = "QR을 만들지 못했습니다: " + text;
+    }
+  }
+
+  function renderQr() {
+    var u = currentUrl();
+    drawQr(holder, u, 4);
+    drawQr(bigBox, u, 8);
+    var label = u || "(배포 전)";
+    if (urlBox) urlBox.textContent = label;
+    if (bigUrl) bigUrl.textContent = label;
+    if (setupIn && !setupIn.value) setupIn.value = u;
+  }
+
+  renderQr();
+
+  if (setupIn) {
+    setupIn.addEventListener("input", function () {
+      var v = setupIn.value.trim();
+      try { v ? localStorage.setItem(LS_KEY, v) : localStorage.removeItem(LS_KEY); } catch (e) {}
+      var u = v || currentUrl();
+      drawQr(holder, u, 4);
+      drawQr(bigBox, u, 8);
+      if (urlBox) urlBox.textContent = u || "(배포 전)";
+      if (bigUrl) bigUrl.textContent = u || "(배포 전)";
+    });
+  }
+
+  var copyBtn = document.getElementById("qrCopy");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function () {
+      var u = currentUrl();
+      if (!u) return;
+      var done = function () {
+        var old = copyBtn.textContent;
+        copyBtn.textContent = "복사됨 ✓";
+        setTimeout(function () { copyBtn.textContent = old; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(u).then(done, function () {});
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = u; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  /* QR 전체화면 — 강의장 프로젝터에 띄우는 용도 */
+  var qrFull = document.getElementById("qrFull");
+  function openQrFull() { qrFull.classList.add("is-open"); document.body.style.overflow = "hidden"; }
+  function closeQrFull() { qrFull.classList.remove("is-open"); document.body.style.overflow = ""; }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-qr-open]"), function (b) {
+    b.addEventListener("click", openQrFull);
+  });
+  document.getElementById("qrFullClose").addEventListener("click", closeQrFull);
+  qrFull.addEventListener("click", function (e) { if (e.target === qrFull) closeQrFull(); });
+
+  /* --------------------------------------------------------
+     갤러리 탭
+     -------------------------------------------------------- */
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var figures = Array.prototype.slice.call(document.querySelectorAll(".thumb"));
+  var visible = figures.slice();
+
+  var activePart = "all";
+  function applyFilter(part) {
+    activePart = part;
+    var query = document.getElementById("slideSearch").value.trim().toLowerCase();
+    visible = [];
+    figures.forEach(function (f) {
+      var hit = (part === "all" || f.dataset.part === part) && (!query || f.dataset.search.toLowerCase().includes(query));
+      f.style.display = hit ? "" : "none";
+      if (hit) visible.push(f);
+    });
+    tabs.forEach(function (t) {
+      t.setAttribute("aria-selected", String(t.dataset.part === part));
+    });
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () { applyFilter(t.dataset.part); });
+  });
+
+  document.getElementById("slideSearch").addEventListener("input", function () { applyFilter(activePart); });
+
+  /* 여정 카드 → 그 파트만 걸러 놓고 갤러리로 내려보낸다 */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-jump]"), function (card) {
+    card.addEventListener("click", function () { applyFilter(card.dataset.jump); });
+  });
+
+  /* --------------------------------------------------------
+     라이트박스
+     -------------------------------------------------------- */
+
+  var lb      = document.getElementById("lb");
+  var lbImg   = document.getElementById("lbImg");
+  var lbCount = document.getElementById("lbCount");
+  var lbTitle = document.getElementById("lbTitle");
+  var lbPrev  = document.getElementById("lbPrev");
+  var lbNext  = document.getElementById("lbNext");
+  var lbOpen  = document.getElementById("lbOpen");
+  var lbVideo = document.getElementById("lbVideo");
+  var lastFocus = null;
+  var cursor = 0;
+
+  function show(i) {
+    if (i < 0 || i >= visible.length) return;
+    cursor = i;
+    var fig = visible[i];
+    var idx = parseInt(fig.dataset.index, 10);
+    var s = SLIDES[idx];
+    lbImg.src = s.full;
+    lbImg.alt = "슬라이드 " + s.n + (s.title ? " — " + s.title : "");
+    lbCount.textContent = s.n + " / " + SLIDES.length;
+    lbTitle.textContent = s.title || "";
+    lbOpen.href = s.full;
+    lbPrev.disabled = i === 0;
+    lbNext.disabled = i === visible.length - 1;
+    if (lbVideo) lbVideo.style.display = s.video ? "" : "none";
+  }
+
+  function openLb(i) {
+    lastFocus = document.activeElement;
+    lb.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    show(i);
+    document.getElementById("lbClose").focus();
+  }
+
+  function closeLb() {
+    lb.classList.remove("is-open");
+    document.body.style.overflow = "";
+    lbImg.removeAttribute("src");
+    if (lastFocus) lastFocus.focus();
+  }
+
+  figures.forEach(function (f) {
+    f.addEventListener("click", function () { openLb(visible.indexOf(f)); });
+    /* 썸네일은 figure라 기본 키 동작이 없다 — 엔터·스페이스를 직접 받는다 */
+    f.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(visible.indexOf(f)); }
+    });
+  });
+
+  document.getElementById("lbClose").addEventListener("click", closeLb);
+  lbPrev.addEventListener("click", function () { show(cursor - 1); });
+  lbNext.addEventListener("click", function () { show(cursor + 1); });
+  document.getElementById("lbStage").addEventListener("click", function (e) {
+    if (e.target === e.currentTarget) closeLb();
+  });
+
+  /* 스와이프 */
+  var tx = 0, ty = 0;
+  lb.addEventListener("touchstart", function (e) {
+    tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) show(cursor + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  /* 키보드 */
+  document.addEventListener("keydown", function (e) {
+    if (qrFull.classList.contains("is-open")) {
+      if (e.key === "Escape") closeQrFull();
+      return;
+    }
+    if (lb.classList.contains("is-open")) {
+      if (e.key === "Escape") closeLb();
+      else if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); show(cursor + 1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); show(cursor - 1); }
+      else if (e.key === "Home") { e.preventDefault(); show(0); }
+      else if (e.key === "End") { e.preventDefault(); show(visible.length - 1); }
+      return;
+    }
+    var t = e.target.tagName;
+    if (t === "INPUT" || t === "TEXTAREA") return;
+    if (e.key === "q" || e.key === "Q" || e.key === "ㅂ") openQrFull();
+  });
+
+  var printBtn = document.getElementById("printBtn");
+  if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+})();
+</script>
+</body>
+</html>
