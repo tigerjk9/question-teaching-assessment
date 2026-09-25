@@ -859,6 +859,53 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 .tool-mini.sec:hover { border-color: var(--key); color: var(--key); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tool-mini:not(.sec) { color: #17122A; } }
 
+/* ============================================================
+   휴대전화 최적화 — 강의자용 탭 요소를 좁은 화면에 맞춘다
+   ============================================================ */
+@media (max-width: 700px) {
+  /* 상단 바: 제목 + 역할 토글 + QR만 한 줄로. 앵커 링크는 스크롤로 대신한다
+     (body.is-instructor .nav-instr 규칙보다 우선하도록 같은 선택자를 명시) */
+  .topbar-nav a,
+  body.is-instructor .topbar-nav a.nav-instr { display: none; }
+  .topbar .wrap { gap: 9px; }
+  .topbar-title { font-size: 13px; }
+  .role-seg { padding: 2px; }
+  .role-seg button { padding: 6px 10px; font-size: 12px; }
+  .role-seg .lock { display: none; }               /* 자물쇠 글리프는 좁은 화면에서 생략 */
+
+  /* 강사 밴드 여백·제목 */
+  .instr-badge { font-size: 12px; }
+  .instr-sub { font-size: 16.5px; margin: 28px 0 12px; }
+
+  /* 강사 도구 버튼: 아이콘 조금 줄이고 여백 축소 */
+  .tool { padding: 15px 16px; gap: 12px; }
+  .tool .ic { width: 42px; height: 42px; }
+
+  /* 타이머: 큰 숫자와 구간 이름이 겹치지 않게 세로로 */
+  .timer { padding: 18px; }
+  .timer-main { gap: 6px 20px; }
+  .timer-seg { padding-bottom: 0; }
+  .timer-ctrl button { flex: 1; text-align: center; }
+}
+@media (max-width: 560px) {
+  /* 상단 바: 제목을 생략하고 모드 토글 + QR만 남겨 겹침을 없앤다(제목은 바로 아래 히어로에 있음) */
+  .topbar-title { display: none; }
+
+  /* 일정 필터: 집계 수치를 다음 줄 전체 폭으로 내려 잘리지 않게 */
+  .sched-filter { gap: 8px 10px; }
+  .sched-filter .cnt { margin-left: 0; width: 100%; }
+  .sched-bar { gap: 8px; }
+  .sched-card { padding: 14px; }
+
+  /* 만족도 조사 카드: QR과 글을 세로로 */
+  .survey-card { gap: 14px; }
+
+  /* 잠금·확대 모달 여백 축소 */
+  .gate .card { padding: 24px 20px; }
+  .schedm .inner { padding: 16px; }
+  .schedm .m-top h2 { font-size: 16px; }
+}
+
 /* 주관 기관 서명(대전광역시교육청 초등교육과) — 흰 판 위에 얹어 밝기 무관 */
 .org {
   display: inline-flex; align-items: center; gap: 12px;
@@ -871,7 +918,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 </head>
 <body>
 
-<a class="skip" href="#downloads">자료 받기로 건너뛰기</a>
+<a class="skip" href="#slides">슬라이드로 건너뛰기</a>
 
 <header class="topbar">
   <div class="wrap">
@@ -884,7 +931,6 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
         <a href="#instructor" class="nav-instr">강사 자료</a>
         <a href="#journey">목차</a>
         <a href="#slides">슬라이드</a>
-        <a href="#downloads" class="opt">PDF</a>
         <button class="qr-btn" data-qr-open type="button">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm8-2h3v3h-3v-3zm5 0h3v3h-3v-3zm-5 5h3v3h-3v-3zm5 0h3v3h-3v-3z"/></svg>
           QR 띄우기
@@ -899,7 +945,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div>
       <span class="eyebrow"><span class="dot"></span>2026 학생 질문 중심 수업·평가 연수</span>
       <h1 class="hero-title">질문 중심 수업과 서·논술형 평가<span class="hero-accent">질문으로 가르치고 배우기 · 정답을 넘어 더 깊은 생각으로</span></h1>
-      <p class="hero-summary">학생이 스스로 질문을 만들어 배우는 수업과, 학생의 사고 과정이 드러나는 서·논술형 평가를 다룹니다. 장을 골라 슬라이드를 크게 보거나 PDF로 내려받을 수 있습니다.</p>
+      <p class="hero-summary">학생이 스스로 질문을 만들어 배우는 수업과, 학생의 사고 과정이 드러나는 서·논술형 평가를 다룹니다. 장을 골라 슬라이드를 크게 볼 수 있습니다.</p>
       <div class="hero-meta">
           <span class="chip">슬라이드 <b>143장 · 2부 · 6개 장</b></span>
           <span class="chip">질문 중심 수업 <b>약 2시간</b> · 평가 <b>약 1시간</b></span>
@@ -932,23 +978,17 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
         <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h4v1.5H8V10z"/></svg>
         </span>
-        <span class="t"><b>현장 강의용 대본 (PDF)</b><span>3시간 연수 진행 순서와 발화 대본 · 내려받기</span></span>
-        <span class="go" aria-hidden="true">↓</span>
-      </a>
+        <span class="t"><b>현장 강의용 대본 (PDF)</b><span>3시간 연수 진행 순서와 발화 대본 · 내려받기</span></span>      </a>
       <a class="tool" href="https://joo.is/%EC%A7%88%EB%AC%B8%EC%84%A0%EB%8F%84%EA%B5%90%EC%82%AC" target="_blank" rel="noopener">
         <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3.2a6.8 6.8 0 0 1 0 13.6c-1.9 0-3.1-1.3-3.1-2.9 0-1 .6-1.8 1.4-2.4.5-.4.8-.8.8-1.3 0-.7-.6-1.2-1.5-1.2-1.3 0-2.2 1-2.2 2.6H5.2C5.2 8 8 5.2 12 5.2z"/></svg>
         </span>
-        <span class="t"><b>캔바 템플릿 열기</b><span>joo.is/질문선도교사 · 새 탭에서 편집</span></span>
-        <span class="go" aria-hidden="true">↗</span>
-      </a>
+        <span class="t"><b>캔바 템플릿 열기</b><span>joo.is/질문선도교사 · 새 탭에서 편집</span></span>      </a>
       <a class="tool" href="pdf/question-teaching-assessment-slides.pdf" download>
         <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-6l3 3v.5H7V20l3-3H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 2v9h14V6H5z"/></svg>
         </span>
-        <span class="t"><b>발표 슬라이드 (PDF · 143장)</b><span>강의용 전체 슬라이드 · 내려받기</span></span>
-        <span class="go" aria-hidden="true">↓</span>
-      </a>
+        <span class="t"><b>발표 슬라이드 (PDF · 143장)</b><span>강의용 전체 슬라이드 · 내려받기</span></span>      </a>
     </div>
 
     <h3 class="instr-sub"><span class="no" aria-hidden="true">1</span> 연수 진행 타이머</h3>
@@ -1265,22 +1305,6 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     </div>
   </div>
 </section>
-<section class="band" id="downloads">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>발표 자료 내려받기</h2>
-      <p>PDF는 글꼴 설치 없이 어디서나 열립니다.</p>
-    </div>
-    <div class="dl-list">
-    <a class="dl" href="pdf/question-teaching-assessment-slides.pdf" download>
-      <span class="ic" aria-hidden="true">PDF</span>
-      <span class="t"><b>PDF · 143장 발표 자료</b><span>질문 중심 수업 + 서·논술형 평가 전체 슬라이드</span></span>
-      <span class="sz">15MB</span>
-    </a>
-    </div>
-  </div>
-</section>
-
 </main>
 <footer class="foot">
   <div class="wrap">
@@ -1296,11 +1320,6 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
         <b>자료 안내</b>
         <div>영상이 들어가는 슬라이드는 이 웹에서 재생되지 않습니다. 실제 발표에서 시청하세요.</div>
         <div>대부분의 자료는 2026 학생 질문 중심 수업·평가 초등 선도교원 연수에서 발췌했습니다.</div>
-      </div>
-      <div>
-        <b>인쇄 / PDF 저장</b>
-        <div style="margin-bottom:10px">메뉴와 버튼을 뺀 A4 형태로 출력됩니다.</div>
-        <button class="print-btn" type="button" id="printBtn">이 페이지 인쇄하기</button>
       </div>
     </div>
     <p class="fine">© 2026 대전광역시교육청 초등교육과 · 학생 질문 중심 수업·평가 역량 강화 연수 자료입니다. 영상이 포함된 슬라이드는 공유용 웹에서 재생되지 않습니다.</p>
@@ -1602,8 +1621,6 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     if (e.key === "q" || e.key === "Q" || e.key === "ㅂ") openQrFull();
   });
 
-  var printBtn = document.getElementById("printBtn");
-  if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
 })();
 </script>
 <script>
@@ -1615,7 +1632,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 (function () {
   "use strict";
 
-  var PASS = "질문선도교사";
+  var PASS = "question2026";
   var SKEY = "qta-instructor-unlocked";
   var body = document.body;
   var segBtns = Array.prototype.slice.call(document.querySelectorAll(".role-seg button"));
