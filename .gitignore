@@ -1,0 +1,6 @@
+# oh-my-claudecode 내부 상태
+.omc/
+
+# OS
+Thumbs.db
+.DS_Store

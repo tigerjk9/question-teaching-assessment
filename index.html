@@ -582,6 +582,225 @@ footer.foot .fine {
   border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.55;text-align:center}
 .lb-video b{color:#F1ED65;font-weight:800}
 </style>
+<style>
+/* ============================================================
+   보기 모드 — 수강자용 / 강의자용, 강사 전용 자료
+   기존 색 토큰(--key, --surface, --rule …)을 그대로 쓴다.
+   ============================================================ */
+
+/* 상단 바의 역할 토글 */
+.role-seg {
+  display: inline-flex; gap: 3px; padding: 3px; flex: none;
+  background: var(--surface-2); border: 1px solid var(--rule); border-radius: 99px;
+}
+.role-seg button {
+  font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  border: 0; background: transparent; color: var(--ink-2);
+  padding: 6px 13px; border-radius: 99px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.role-seg button[aria-selected="true"] { background: var(--key); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .role-seg button[aria-selected="true"] { color: #17122A; }
+}
+.role-seg .lock { font-size: 11px; opacity: .85; }
+@media (max-width: 560px) { .role-seg button { padding: 6px 11px; font-size: 12px; } }
+
+/* 강사 전용 내비 링크 — 잠금 해제 뒤에만 보인다 */
+.nav-instr { display: none; }
+body.is-instructor .nav-instr { display: inline-block; }
+
+/* 강사 전용 밴드 — 비활성일 때 숨김 */
+#instructor { display: none; }
+body.is-instructor #instructor { display: block; }
+section.band.instr {
+  background:
+    radial-gradient(120% 100% at 100% 0, color-mix(in srgb, var(--lav) 46%, transparent), transparent 60%),
+    var(--lav-soft);
+  border-block: 1px solid var(--rule);
+}
+.instr-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--key); color: #fff;
+  font-size: 12.5px; font-weight: 800; letter-spacing: .01em;
+  padding: 6px 14px; border-radius: 99px; margin-bottom: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .instr-badge { color: #17122A; }
+}
+.instr-badge .lock { font-size: 12px; }
+
+/* 강사 도구 버튼 */
+.tool-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.tool {
+  display: flex; align-items: center; gap: 15px; text-decoration: none;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 15px;
+  padding: 18px 20px; box-shadow: var(--shadow-1); color: var(--ink);
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.tool:hover { transform: translateY(-2px); border-color: var(--key); box-shadow: var(--shadow-2); }
+.tool .ic {
+  flex: none; width: 46px; height: 46px; border-radius: 12px;
+  display: grid; place-items: center; font-weight: 800; font-size: 13px;
+  background: color-mix(in srgb, var(--key) 14%, transparent); color: var(--key);
+}
+.tool .ic svg { width: 22px; height: 22px; fill: currentColor; }
+.tool .t { flex: 1; min-width: 0; }
+.tool .t b { display: block; font-size: 15.5px; font-weight: 800; letter-spacing: -.02em; }
+.tool .t span { display: block; font-size: 13px; color: var(--ink-3); margin-top: 2px; overflow-wrap: anywhere; }
+.tool .go { flex: none; color: var(--key); font-size: 20px; font-weight: 800; }
+
+/* 하위 제목 */
+.instr-sub {
+  margin: 34px 0 14px; font-size: 18px; font-weight: 800; letter-spacing: -.02em;
+  display: flex; align-items: center; gap: 9px;
+}
+.instr-sub .no {
+  flex: none; width: 26px; height: 26px; border-radius: 8px; font-size: 13px;
+  display: grid; place-items: center; background: var(--key); color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .instr-sub .no { color: #17122A; }
+}
+
+/* 연수 일정표 */
+.sched-card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 16px;
+  padding: 18px; box-shadow: var(--shadow-1);
+}
+.sched-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 12px;
+}
+.sched-bar .meta { font-size: 13.5px; color: var(--ink-2); font-weight: 600; }
+.sched-bar .meta b { color: var(--key); font-weight: 800; }
+.sched-zoom {
+  font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  padding: 8px 14px; border-radius: 10px; white-space: nowrap;
+  background: var(--key); color: #fff; border: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.sched-zoom:hover { background: var(--key-deep); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sched-zoom { color: #17122A; }
+}
+.sched-zoom svg { width: 15px; height: 15px; fill: currentColor; }
+.sched-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
+table.sched { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px; }
+table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); padding: 0 0 8px; caption-side: top; }
+.sched th, .sched td {
+  border: 1px solid var(--rule); padding: 8px 9px; text-align: center; white-space: nowrap;
+}
+.sched thead th { background: var(--key); color: #fff; font-weight: 700; }
+.sched thead th.grp { background: var(--key-deep); font-weight: 800; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sched thead th { color: #17122A; }
+}
+.sched tbody td.sch { text-align: left; font-weight: 700; color: var(--ink); }
+.sched tbody td.num, .sched tbody td.cnt { font-variant-numeric: tabular-nums; }
+.sched tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-2) 60%, transparent); }
+.sched tbody tr:hover td { background: var(--lav-soft); }
+.sched-tap {
+  margin-top: 10px; font-size: 12.5px; color: var(--ink-3); text-align: center;
+}
+
+/* 제출 안내 체크리스트 */
+.submit-note {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-left: 4px solid var(--magenta); border-radius: 0 14px 14px 0;
+  padding: 20px 22px; box-shadow: var(--shadow-1);
+}
+.submit-note h3 { font-size: 16px; font-weight: 800; letter-spacing: -.02em; }
+.submit-note .to {
+  margin-top: 6px; font-size: 13.5px; color: var(--ink-2);
+}
+.submit-note .to b { color: var(--magenta); font-weight: 800; }
+.checklist { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.checklist li { display: flex; gap: 10px; align-items: flex-start; }
+.checklist label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 14.5px; line-height: 1.5; }
+.checklist input { width: 19px; height: 19px; margin-top: 1px; accent-color: var(--key); flex: none; cursor: pointer; }
+.checklist input:checked + span { color: var(--ink-3); text-decoration: line-through; }
+.checklist .badge {
+  display: inline-block; font-size: 11.5px; font-weight: 800; color: var(--key);
+  background: color-mix(in srgb, var(--key) 12%, transparent); border-radius: 6px; padding: 1px 7px; margin-right: 6px;
+}
+
+/* 잠금(비밀번호) 모달 */
+.gate {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  align-items: center; justify-content: center; padding: 20px;
+  background: rgba(14,10,22,.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.gate.is-open { display: flex; }
+.gate .card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 20px;
+  box-shadow: var(--shadow-3); padding: 28px; width: 100%; max-width: 380px; text-align: center;
+}
+.gate .key-ic {
+  width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 14px;
+  display: grid; place-items: center; background: color-mix(in srgb, var(--key) 14%, transparent);
+}
+.gate .key-ic svg { width: 26px; height: 26px; fill: var(--key); }
+.gate h2 { font-size: 19px; font-weight: 800; letter-spacing: -.02em; }
+.gate p { margin-top: 8px; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
+.gate .field { margin-top: 18px; text-align: left; }
+.gate label { font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.gate input {
+  box-sizing: border-box; width: 100%; margin-top: 7px; font: inherit; font-size: 15px;
+  padding: 12px 14px; border: 1px solid var(--rule); border-radius: 11px;
+  background: var(--paper); color: var(--ink);
+}
+.gate input:focus { outline: none; border-color: var(--key); box-shadow: 0 0 0 3px color-mix(in srgb, var(--key) 22%, transparent); }
+.gate .err { margin-top: 9px; font-size: 13px; font-weight: 700; color: var(--magenta); display: none; }
+.gate.has-err .err { display: block; }
+.gate .go {
+  width: 100%; margin-top: 16px; font: inherit; font-size: 15px; font-weight: 800; cursor: pointer;
+  padding: 13px; border: 0; border-radius: 12px; background: var(--key); color: #fff;
+}
+.gate .go:hover { background: var(--key-deep); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .gate .go { color: #17122A; }
+}
+.gate .cancel {
+  margin-top: 10px; font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer;
+  background: none; border: 0; color: var(--ink-3); padding: 6px;
+}
+.gate .cancel:hover { color: var(--ink); }
+
+/* 일정표 확대 모달 */
+.schedm {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  align-items: center; justify-content: center; padding: 16px;
+  background: rgba(14,10,22,.86);
+}
+.schedm.is-open { display: flex; }
+.schedm .inner {
+  background: var(--surface); border-radius: 18px; box-shadow: var(--shadow-3);
+  width: 100%; max-width: 1080px; max-height: 92vh; overflow: auto; padding: 22px;
+}
+.schedm .m-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.schedm .m-top h2 { font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
+.schedm .m-top p { font-size: 13px; color: var(--ink-3); margin-top: 3px; }
+.schedm .m-close {
+  flex: none; width: 40px; height: 40px; border-radius: 11px; cursor: pointer; line-height: 1;
+  background: var(--surface-2); border: 1px solid var(--rule); color: var(--ink); font-size: 20px;
+}
+.schedm .m-close:hover { border-color: var(--key); color: var(--key); }
+.schedm table.sched { font-size: 14px; }
+.schedm .sched caption { display: none; }  /* 모달 상단에 이미 주관·시간을 적었다 */
+
+/* 주관 기관 서명(대전광역시교육청 초등교육과) — 흰 판 위에 얹어 밝기 무관 */
+.org {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #fff; border-radius: 12px; padding: 11px 16px; margin-top: 2px;
+}
+.org img { width: 172px; height: auto; }
+.org .org-dept { font-size: 15px; font-weight: 800; color: #55575A; letter-spacing: -.01em; white-space: nowrap; }
+@media (max-width: 420px) { .org img { width: 148px; } .org .org-dept { font-size: 13.5px; } }
+</style>
 </head>
 <body>
 
@@ -590,7 +809,12 @@ footer.foot .fine {
 <header class="topbar">
   <div class="wrap">
     <span class="topbar-title">질문 중심 수업과 서·논술형 평가</span>
+    <div class="role-seg" role="tablist" aria-label="보기 모드">
+      <button type="button" data-role="learner" role="tab" aria-selected="true">수강자용</button>
+      <button type="button" data-role="instructor" role="tab" aria-selected="false">강의자용 <span class="lock" aria-hidden="true">🔒</span></button>
+    </div>
     <nav class="topbar-nav" aria-label="바로가기">
+        <a href="#instructor" class="nav-instr">강사 자료</a>
         <a href="#journey">목차</a>
         <a href="#slides">슬라이드</a>
         <a href="#downloads" class="opt">PDF</a>
@@ -626,6 +850,98 @@ footer.foot .fine {
         <button type="button" data-qr-open>크게 보기</button>
       </div>
     </aside>
+  </div>
+</section>
+<section class="band instr" id="instructor" aria-label="강사 전용 자료">
+  <div class="wrap">
+    <span class="instr-badge"><span class="lock" aria-hidden="true">🔒</span> 강사 전용 · 질문 선도교사</span>
+    <div class="sec-head">
+      <h2>강의를 여는 강사 준비 자료</h2>
+      <p>현장 강의용 대본과 캔바 템플릿, 학교별 연수 일정, 연수 후 제출 안내를 한자리에 모았습니다. 이 영역은 강의자용에서만 보입니다.</p>
+    </div>
+
+    <div class="tool-grid">
+      <a class="tool" href="pdf/field-lecture-script.pdf" download>
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h4v1.5H8V10z"/></svg>
+        </span>
+        <span class="t"><b>현장 강의용 대본 (PDF)</b><span>3시간 연수 진행 순서와 발화 대본 · 내려받기</span></span>
+        <span class="go" aria-hidden="true">↓</span>
+      </a>
+      <a class="tool" href="https://joo.is/%EC%A7%88%EB%AC%B8%EC%84%A0%EB%8F%84%EA%B5%90%EC%82%AC" target="_blank" rel="noopener">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3.2a6.8 6.8 0 0 1 0 13.6c-1.9 0-3.1-1.3-3.1-2.9 0-1 .6-1.8 1.4-2.4.5-.4.8-.8.8-1.3 0-.7-.6-1.2-1.5-1.2-1.3 0-2.2 1-2.2 2.6H5.2C5.2 8 8 5.2 12 5.2z"/></svg>
+        </span>
+        <span class="t"><b>캔바 템플릿 열기</b><span>joo.is/질문선도교사 · 새 탭에서 편집</span></span>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="tool" href="pdf/question-teaching-assessment-slides.pdf" download>
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-6l3 3v.5H7V20l3-3H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 2v9h14V6H5z"/></svg>
+        </span>
+        <span class="t"><b>발표 슬라이드 (PDF · 143장)</b><span>강의용 전체 슬라이드 · 내려받기</span></span>
+        <span class="go" aria-hidden="true">↓</span>
+      </a>
+    </div>
+
+    <h3 class="instr-sub"><span class="no" aria-hidden="true">1</span> 학교별 연수 일정</h3>
+    <div class="sched-card">
+      <div class="sched-bar">
+        <span class="meta">2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수 · <b>총 15개교</b> · 신청 교원 <b>340명</b></span>
+        <button type="button" class="sched-zoom" id="schedZoom">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-1 2v2H7v2h2v2h2V10h2V8h-2V6H9z"/></svg>
+          표 크게 보기
+        </button>
+      </div>
+      <div class="sched-scroll" id="schedTap" role="button" tabindex="0" aria-label="연수 일정표 크게 보기">
+        <table class="sched" id="schedTable">
+          <caption>주관: 대전광역시교육청 초등교육과 · 연수 시간 3시간(14:00~17:00)</caption>
+          <thead>
+            <tr>
+              <th rowspan="2">연번</th>
+              <th rowspan="2">학교명</th>
+              <th rowspan="2">희망 교원 수(명)</th>
+              <th rowspan="2">학교 연수 장소</th>
+              <th rowspan="2">연수 일시</th>
+              <th class="grp" colspan="2">강사</th>
+            </tr>
+            <tr>
+              <th>질문수업 (2)</th>
+              <th>학생평가 (1)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">1</td><td class="sch">대전글꽃초등학교</td><td class="cnt">9</td><td>수업공개실</td><td>11. 18.(수) 14:00~17:00</td><td>김보옥</td><td>김인선</td></tr>
+            <tr><td class="num">2</td><td class="sch">대전대신초등학교</td><td class="cnt">11</td><td>다목적실</td><td>10. 28.(수) 14:00~17:00</td><td>임종숙</td><td>김인선</td></tr>
+            <tr><td class="num">3</td><td class="sch">대전삼성초등학교</td><td class="cnt">18</td><td>영어실</td><td>10. 28.(수) 14:00~17:00</td><td>송소영</td><td>김도균</td></tr>
+            <tr><td class="num">4</td><td class="sch">동대전초등학교</td><td class="cnt">8</td><td>4-3교실</td><td>11. 4.(수) 14:00~17:00</td><td>이경순</td><td>김보옥</td></tr>
+            <tr><td class="num">5</td><td class="sch">산서초등학교</td><td class="cnt">9</td><td>과학실</td><td>10. 21.(수) 14:00~17:00</td><td>임종숙</td><td>송소영</td></tr>
+            <tr><td class="num">6</td><td class="sch">남선초등학교</td><td class="cnt">9</td><td>배움터</td><td>10. 14.(수) 14:00~17:00</td><td>김도균</td><td>유소이</td></tr>
+            <tr><td class="num">7</td><td class="sch">대전구봉초등학교</td><td class="cnt">40</td><td>시청각실</td><td>10. 28.(수) 14:00~17:00</td><td>황지연</td><td>김진관</td></tr>
+            <tr><td class="num">8</td><td class="sch">대전노은초등학교</td><td class="cnt">40</td><td>다목적실</td><td>10. 7.(수) 14:00~17:00</td><td>이초희</td><td>김도균</td></tr>
+            <tr><td class="num">9</td><td class="sch">대전도마초등학교</td><td class="cnt">30</td><td>시청각실</td><td>10. 14.(수) 14:00~17:00</td><td>박찬미</td><td>김진관</td></tr>
+            <tr><td class="num">10</td><td class="sch">대전둔원초등학교</td><td class="cnt">20</td><td>과학1실</td><td>10. 28.(수) 14:00~17:00</td><td>이경순</td><td>김순환</td></tr>
+            <tr><td class="num">11</td><td class="sch">대전선유초등학교</td><td class="cnt">50</td><td>아이꿈터(다목적실)</td><td>11. 4.(수) 14:00~17:00</td><td>황지연</td><td>박찬미</td></tr>
+            <tr><td class="num">12</td><td class="sch">대전신계초등학교</td><td class="cnt">45</td><td>시청각실</td><td>11. 2.(월) 14:00~17:00</td><td>이은주</td><td>이미진</td></tr>
+            <tr><td class="num">13</td><td class="sch">대전유천초등학교</td><td class="cnt">30</td><td>시청각실</td><td>11. 4.(수) 14:00~17:00</td><td>이보라</td><td>유소이</td></tr>
+            <tr><td class="num">14</td><td class="sch">진잠초등학교</td><td class="cnt">10</td><td>맑은쉼터<span class="sr-only">(원본 표기: 맑은쉼,터)</span></td><td>10. 27.(화) 14:00~17:00</td><td>신화영</td><td>이미진</td></tr>
+            <tr><td class="num">15</td><td class="sch">학하초등학교</td><td class="cnt">11</td><td>4-1 교실</td><td>10. 12.(월) 14:00~17:00</td><td>신화영</td><td>김순환</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sched-tap">표를 누르면 크게 볼 수 있습니다.</p>
+    </div>
+
+    <h3 class="instr-sub"><span class="no" aria-hidden="true">2</span> 연수 후 제출 안내</h3>
+    <div class="submit-note">
+      <h3>연수를 마치면 아래 세 가지를 제출합니다</h3>
+      <p class="to">제출처: <b>황영희 장학사</b> · 업무포털 내부 메일</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><span class="badge">01</span>연수 운영 만족도 조사 실시 결과</span></label></li>
+        <li><label><input type="checkbox"><span><span class="badge">02</span>연수등록부</span></label></li>
+        <li><label><input type="checkbox"><span><span class="badge">03</span>연수 사진 2매</span></label></li>
+      </ul>
+    </div>
   </div>
 </section>
 <section class="band" id="journey">
@@ -861,9 +1177,11 @@ footer.foot .fine {
   <div class="wrap">
     <div class="frow">
       <div>
-        <b>이어서 보기</b>
-        <div><a href="https://tigerjk9.github.io" target="_blank" rel="noopener">김진관의 연구 블로그</a></div>
-        <div><a href="https://tigerjk9.github.io/lectures/" target="_blank" rel="noopener">닷커넥터 자료실</a></div>
+        <b>주관</b>
+        <div class="org">
+          <img src="assets/dje-signature.png" alt="대전광역시교육청 심벌마크">
+          <span class="org-dept">초등교육과</span>
+        </div>
       </div>
       <div>
         <b>자료 안내</b>
@@ -876,7 +1194,7 @@ footer.foot .fine {
         <button class="print-btn" type="button" id="printBtn">이 페이지 인쇄하기</button>
       </div>
     </div>
-    <p class="fine">© 2026 학생 질문 중심 수업·평가 연수 발표 원고 · 큐레이션 김진관(닷커넥터). 강연용 공유 자료입니다.</p>
+    <p class="fine">© 2026 대전광역시교육청 초등교육과 · 학생 질문 중심 수업·평가 역량 강화 연수 자료입니다. 영상이 포함된 슬라이드는 공유용 웹에서 재생되지 않습니다.</p>
   </div>
 </footer>
 <!-- 라이트박스 -->
@@ -907,6 +1225,37 @@ footer.foot .fine {
     <button class="close" id="qrFullClose">닫기 (Esc)</button>
   </div>
 </div>
+
+<!-- 강의자용 잠금(비밀번호) -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="card">
+    <div class="key-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9zm3 4a2 2 0 0 1 1 3.7V19a1 1 0 0 1-2 0v-2.3A2 2 0 0 1 12 13z"/></svg></div>
+    <h2 id="gateTitle">강의자용 입장</h2>
+    <p>강의자용 자료는 비밀번호가 필요합니다. 수강자용은 비밀번호 없이 바로 볼 수 있습니다.</p>
+    <form class="field" id="gateForm">
+      <label for="gateInput">비밀번호</label>
+      <input type="password" id="gateInput" autocomplete="off" placeholder="비밀번호를 입력하세요">
+      <p class="err" id="gateErr">비밀번호가 일치하지 않습니다. 다시 확인해 주세요.</p>
+      <button type="submit" class="go">입장하기</button>
+    </form>
+    <button type="button" class="cancel" id="gateCancel">수강자용으로 돌아가기</button>
+  </div>
+</div>
+
+<!-- 연수 일정표 확대 -->
+<div class="schedm" id="schedModal" role="dialog" aria-modal="true" aria-label="연수 일정표 크게 보기">
+  <div class="inner">
+    <div class="m-top">
+      <div>
+        <h2>2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수 일정</h2>
+        <p>주관: 대전광역시교육청 초등교육과 · 총 15개교 · 신청 교원 340명 · 연수 시간 3시간(14:00~17:00)</p>
+      </div>
+      <button type="button" class="m-close" id="schedClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="sched-scroll" id="schedModalBody"></div>
+  </div>
+</div>
+
 <script src="assets/vendor/qrcode.js"></script>
 <script>
 (function () {
@@ -1146,6 +1495,124 @@ footer.foot .fine {
 
   var printBtn = document.getElementById("printBtn");
   if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+})();
+</script>
+<script>
+/* ============================================================
+   보기 모드(수강자용/강의자용) · 강의자용 잠금 · 연수 일정표 확대
+   비밀번호는 화면 표시를 나누는 가벼운 잠금이다. 정적 페이지라
+   소스에서 값을 볼 수 있으므로 민감 정보 보호용이 아니다.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var PASS = "질문선도교사";
+  var SKEY = "qta-instructor-unlocked";
+  var body = document.body;
+  var segBtns = Array.prototype.slice.call(document.querySelectorAll(".role-seg button"));
+  var instrSection = document.getElementById("instructor");
+
+  var gate = document.getElementById("gate");
+  var gateForm = document.getElementById("gateForm");
+  var gateInput = document.getElementById("gateInput");
+  var gateCancel = document.getElementById("gateCancel");
+
+  function unlocked() {
+    try { return sessionStorage.getItem(SKEY) === "1"; } catch (e) { return false; }
+  }
+  function setUnlocked(v) {
+    try { v ? sessionStorage.setItem(SKEY, "1") : sessionStorage.removeItem(SKEY); } catch (e) {}
+  }
+
+  function setRole(role) {
+    var instr = role === "instructor";
+    body.classList.toggle("is-instructor", instr);
+    segBtns.forEach(function (b) {
+      b.setAttribute("aria-selected", String(b.dataset.role === role));
+    });
+  }
+  function gotoInstr() {
+    if (instrSection) instrSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function openGate() {
+    gate.classList.add("is-open");
+    gate.classList.remove("has-err");
+    gateInput.value = "";
+    body.style.overflow = "hidden";
+    setTimeout(function () { gateInput.focus(); }, 30);
+  }
+  function closeGate() {
+    gate.classList.remove("is-open");
+    body.style.overflow = "";
+  }
+
+  segBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (b.dataset.role === "instructor") {
+        if (unlocked()) { setRole("instructor"); gotoInstr(); }
+        else openGate();
+      } else {
+        setRole("learner");
+      }
+    });
+  });
+
+  gateForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (gateInput.value === PASS) {
+      setUnlocked(true);
+      closeGate();
+      setRole("instructor");
+      gotoInstr();
+    } else {
+      gate.classList.add("has-err");
+      gateInput.select();
+    }
+  });
+  gateInput.addEventListener("input", function () { gate.classList.remove("has-err"); });
+  gateCancel.addEventListener("click", function () { closeGate(); setRole("learner"); });
+  gate.addEventListener("click", function (e) { if (e.target === gate) { closeGate(); setRole(unlocked() ? "instructor" : "learner"); } });
+
+  /* 같은 세션에서 이미 해제했다면 강의자용을 유지한다(스크롤은 하지 않음) */
+  if (unlocked()) setRole("instructor");
+
+  /* --------- 연수 일정표 확대 모달 --------- */
+  var schedModal = document.getElementById("schedModal");
+  var schedBody = document.getElementById("schedModalBody");
+  var srcTable = document.getElementById("schedTable");
+
+  function openSched() {
+    if (!schedBody.firstChild && srcTable) {
+      var clone = srcTable.cloneNode(true);
+      clone.removeAttribute("id");
+      schedBody.appendChild(clone);
+    }
+    schedModal.classList.add("is-open");
+    body.style.overflow = "hidden";
+  }
+  function closeSched() {
+    schedModal.classList.remove("is-open");
+    body.style.overflow = "";
+  }
+
+  var zoomBtn = document.getElementById("schedZoom");
+  if (zoomBtn) zoomBtn.addEventListener("click", openSched);
+  var tap = document.getElementById("schedTap");
+  if (tap) {
+    tap.addEventListener("click", openSched);
+    tap.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSched(); }
+    });
+  }
+  document.getElementById("schedClose").addEventListener("click", closeSched);
+  schedModal.addEventListener("click", function (e) { if (e.target === schedModal) closeSched(); });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (gate.classList.contains("is-open")) { closeGate(); setRole(unlocked() ? "instructor" : "learner"); }
+    else if (schedModal.classList.contains("is-open")) closeSched();
+  });
 })();
 </script>
 </body>
