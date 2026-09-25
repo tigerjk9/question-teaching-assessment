@@ -792,6 +792,73 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 .schedm table.sched { font-size: 14px; }
 .schedm .sched caption { display: none; }  /* 모달 상단에 이미 주관·시간을 적었다 */
 
+/* 연수 진행 타이머 */
+.timer { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow-1); }
+.timer.warn { border-color: var(--magenta); }
+.timer-main { display: flex; gap: 26px; flex-wrap: wrap; align-items: flex-end; }
+.timer-remain .lbl, .timer-seg .lbl { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink-3); }
+.timer-remain .big {
+  font-size: clamp(40px, 8vw, 60px); font-weight: 800; letter-spacing: -.03em; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--key);
+}
+.timer.warn .timer-remain .big { color: var(--magenta); }
+.timer.done .timer-remain .big { color: var(--ink-3); }
+.timer-seg { padding-bottom: 8px; }
+.timer-seg .seg-name { display: block; font-size: 19px; font-weight: 800; letter-spacing: -.02em; margin-top: 2px; }
+.timer-seg .seg-remain { font-size: 13.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.timer-bar { position: relative; height: 12px; border-radius: 99px; background: var(--surface-2); margin: 18px 0 10px; overflow: hidden; }
+.timer-bar .fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--key), var(--blue)); border-radius: 99px; transition: width .5s linear; }
+.timer.warn .timer-bar .fill { background: linear-gradient(90deg, var(--key), var(--magenta)); }
+.timer-bar .mark { position: absolute; top: -3px; width: 2px; height: 18px; background: var(--ink-3); opacity: .55; }
+.timer-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); font-weight: 600; }
+.timer-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
+.timer-legend i.d1 { background: var(--key); }
+.timer-legend i.d2 { background: var(--blue); }
+.timer-ctrl { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.timer-ctrl button { font-family: inherit; font-size: 14px; font-weight: 800; cursor: pointer; padding: 11px 20px; border-radius: 11px; border: 0; }
+.timer-ctrl .p { background: var(--key); color: #fff; }
+.timer-ctrl .p:hover { background: var(--key-deep); }
+.timer-ctrl .s { background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); }
+.timer-ctrl .s:hover { border-color: var(--key); color: var(--key); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .timer-ctrl .p { color: #17122A; } }
+
+/* 강사별 일정 필터 */
+.sched-filter { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.sched-filter label { font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.sched-filter select {
+  font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 8px 12px; border-radius: 10px;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.sched-filter select:focus { outline: none; border-color: var(--key); }
+.sched-filter .cnt { margin-left: auto; font-size: 13px; color: var(--ink-2); font-weight: 600; }
+.sched-filter .cnt b { color: var(--key); font-weight: 800; }
+
+/* 연수 만족도 조사 QR */
+.survey-card {
+  display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-1);
+}
+.survey-qr {
+  flex: none; width: 122px; height: 122px; border-radius: 12px; background: #fff; border: 1px dashed #c9c3da;
+  display: flex; align-items: center; justify-content: center; padding: 9px; color: #8a84a0; font-size: 11.5px; text-align: center; line-height: 1.5;
+}
+.survey-qr.ready { border-style: solid; border-color: var(--rule); }
+.survey-qr svg { width: 100%; height: 100%; }
+.survey-txt { flex: 1; min-width: 220px; }
+.survey-txt h3 { font-size: 16px; font-weight: 800; letter-spacing: -.02em; }
+.survey-txt p { margin-top: 6px; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
+.survey-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.survey-actions[hidden] { display: none; }  /* 설문 링크가 아직 없으면 버튼을 숨긴다 */
+.tool-mini {
+  font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none;
+  padding: 9px 15px; border-radius: 10px; background: var(--key); color: #fff; border: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.tool-mini:hover { background: var(--key-deep); }
+.tool-mini.sec { background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); }
+.tool-mini.sec:hover { border-color: var(--key); color: var(--key); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tool-mini:not(.sec) { color: #17122A; } }
+
 /* 주관 기관 서명(대전광역시교육청 초등교육과) — 흰 판 위에 얹어 밝기 무관 */
 .org {
   display: inline-flex; align-items: center; gap: 12px;
@@ -884,14 +951,43 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
       </a>
     </div>
 
-    <h3 class="instr-sub"><span class="no" aria-hidden="true">1</span> 학교별 연수 일정</h3>
+    <h3 class="instr-sub"><span class="no" aria-hidden="true">1</span> 연수 진행 타이머</h3>
+    <div class="timer" id="timer">
+      <div class="timer-main">
+        <div class="timer-remain">
+          <span class="lbl">전체 남은 시간</span>
+          <span class="big" id="tRemain">3:00:00</span>
+        </div>
+        <div class="timer-seg">
+          <span class="lbl">현재 구간</span>
+          <span class="seg-name" id="tSegName">질문 중심 수업</span>
+          <span class="seg-remain" id="tSegRemain">이 구간 2:00:00 남음</span>
+        </div>
+      </div>
+      <div class="timer-bar"><div class="fill" id="tFill"></div><span class="mark" style="left:66.66%"></span></div>
+      <div class="timer-legend">
+        <span><i class="d1"></i>질문 중심 수업 · 2시간</span>
+        <span><i class="d2"></i>서·논술형 평가 · 1시간</span>
+      </div>
+      <div class="timer-ctrl">
+        <button type="button" id="tStart" class="p">▶ 시작</button>
+        <button type="button" id="tReset" class="s">처음으로</button>
+      </div>
+    </div>
+
+    <h3 class="instr-sub"><span class="no" aria-hidden="true">2</span> 학교별 연수 일정</h3>
     <div class="sched-card">
       <div class="sched-bar">
-        <span class="meta">2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수 · <b>총 15개교</b> · 신청 교원 <b>340명</b></span>
+        <span class="meta">2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수</span>
         <button type="button" class="sched-zoom" id="schedZoom">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-1 2v2H7v2h2v2h2V10h2V8h-2V6H9z"/></svg>
           표 크게 보기
         </button>
+      </div>
+      <div class="sched-filter">
+        <label for="schedFilter">강사별 보기</label>
+        <select id="schedFilter"><option value="">전체 강사</option></select>
+        <span class="cnt" id="schedCount">총 <b>15</b>개교 · 신청 교원 <b>340</b>명</span>
       </div>
       <div class="sched-scroll" id="schedTap" role="button" tabindex="0" aria-label="연수 일정표 크게 보기">
         <table class="sched" id="schedTable">
@@ -932,7 +1028,20 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
       <p class="sched-tap">표를 누르면 크게 볼 수 있습니다.</p>
     </div>
 
-    <h3 class="instr-sub"><span class="no" aria-hidden="true">2</span> 연수 후 제출 안내</h3>
+    <h3 class="instr-sub"><span class="no" aria-hidden="true">3</span> 연수 만족도 조사</h3>
+    <div class="survey-card" id="surveyCard">
+      <div class="survey-qr" id="surveyQr">설문 링크<br>준비 중</div>
+      <div class="survey-txt">
+        <h3>만족도 조사 QR</h3>
+        <p id="surveyMsg">설문 링크는 추후 제공 예정입니다. 링크가 준비되면 이 자리에 QR과 열기 버튼이 자동으로 표시됩니다.</p>
+        <div class="survey-actions" id="surveyActions" hidden>
+          <a class="tool-mini" id="surveyOpen" target="_blank" rel="noopener">설문 열기 ↗</a>
+          <button type="button" class="tool-mini sec" id="surveyCopy">주소 복사</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="instr-sub"><span class="no" aria-hidden="true">4</span> 연수 후 제출 안내</h3>
     <div class="submit-note">
       <h3>연수를 마치면 아래 세 가지를 제출합니다</h3>
       <p class="to">제출처: <b>황영희 장학사</b> · 업무포털 내부 메일</p>
@@ -1583,7 +1692,8 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
   var srcTable = document.getElementById("schedTable");
 
   function openSched() {
-    if (!schedBody.firstChild && srcTable) {
+    if (srcTable) {
+      schedBody.innerHTML = "";               /* 필터 상태가 확대 표에도 그대로 반영되도록 매번 새로 복제 */
       var clone = srcTable.cloneNode(true);
       clone.removeAttribute("id");
       schedBody.appendChild(clone);
@@ -1607,6 +1717,117 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
   }
   document.getElementById("schedClose").addEventListener("click", closeSched);
   schedModal.addEventListener("click", function (e) { if (e.target === schedModal) closeSched(); });
+
+  /* --------- 강사별 일정 필터 (내 강의만 보기) --------- */
+  var schedFilter = document.getElementById("schedFilter");
+  var schedCount = document.getElementById("schedCount");
+  if (schedFilter && srcTable) {
+    var schedRows = Array.prototype.slice.call(srcTable.querySelectorAll("tbody tr"));
+    var nameSet = {};
+    schedRows.forEach(function (r) {
+      var td = r.querySelectorAll("td");
+      [td[5], td[6]].forEach(function (c) { if (c) { var n = c.textContent.trim(); if (n) nameSet[n] = true; } });
+    });
+    Object.keys(nameSet).sort().forEach(function (n) {
+      var o = document.createElement("option"); o.value = n; o.textContent = n; schedFilter.appendChild(o);
+    });
+    var applySched = function () {
+      var v = schedFilter.value, schools = 0, teachers = 0;
+      schedRows.forEach(function (r) {
+        var td = r.querySelectorAll("td");
+        var hit = !v || td[5].textContent.trim() === v || td[6].textContent.trim() === v;
+        r.style.display = hit ? "" : "none";
+        if (hit) { schools++; teachers += parseInt(td[2].textContent, 10) || 0; }
+      });
+      schedCount.innerHTML = v
+        ? (v + " 강사 · <b>" + schools + "</b>개교 · 교원 <b>" + teachers + "</b>명")
+        : ("총 <b>" + schools + "</b>개교 · 신청 교원 <b>" + teachers + "</b>명");
+    };
+    schedFilter.addEventListener("change", applySched);
+    applySched();
+  }
+
+  /* --------- 연수 진행 타이머 (3시간 · 질문수업 2h + 평가 1h) --------- */
+  var timerEl = document.getElementById("timer");
+  if (timerEl) {
+    var TOTAL = 180 * 60, SEG1 = 120 * 60, TKEY = "qta-timer";
+    var tRemain = document.getElementById("tRemain");
+    var tSegName = document.getElementById("tSegName");
+    var tSegRemain = document.getElementById("tSegRemain");
+    var tFill = document.getElementById("tFill");
+    var tStart = document.getElementById("tStart");
+    var tReset = document.getElementById("tReset");
+    var tState = { running: false, startTs: 0, before: 0 };
+    try { var raw = sessionStorage.getItem(TKEY); if (raw) tState = JSON.parse(raw); } catch (e) {}
+    var tSave = function () { try { sessionStorage.setItem(TKEY, JSON.stringify(tState)); } catch (e) {} };
+    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+    var fmt = function (s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 3600) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60); };
+    var tElapsed = function () {
+      var el = tState.before;
+      if (tState.running) el += (Date.now() - tState.startTs) / 1000;
+      return Math.min(el, TOTAL);
+    };
+    var tRender = function () {
+      var el = tElapsed(), rem = TOTAL - el;
+      tRemain.textContent = fmt(rem);
+      if (rem <= 0) {
+        tSegName.textContent = "연수 종료";
+        tSegRemain.textContent = "3시간 진행 완료";
+        if (tState.running) { tState.running = false; tState.before = TOTAL; tSave(); }
+      } else if (el < SEG1) {
+        tSegName.textContent = "질문 중심 수업";
+        tSegRemain.textContent = "이 구간 " + fmt(SEG1 - el) + " 남음";
+      } else {
+        tSegName.textContent = "서·논술형 평가";
+        tSegRemain.textContent = "이 구간 " + fmt(TOTAL - el) + " 남음";
+      }
+      tFill.style.width = (el / TOTAL * 100).toFixed(2) + "%";
+      timerEl.classList.toggle("warn", rem <= 600 && rem > 0);
+      timerEl.classList.toggle("done", rem <= 0);
+      tStart.textContent = rem <= 0 ? "종료됨" : (tState.running ? "⏸ 일시정지" : (el > 0 ? "▶ 이어서" : "▶ 시작"));
+      tStart.disabled = rem <= 0;
+    };
+    tStart.addEventListener("click", function () {
+      if (tElapsed() >= TOTAL) return;
+      if (tState.running) { tState.before = tElapsed(); tState.running = false; }
+      else { tState.startTs = Date.now(); tState.running = true; }
+      tSave(); tRender();
+    });
+    tReset.addEventListener("click", function () {
+      tState = { running: false, startTs: 0, before: 0 };
+      tSave(); tRender();
+    });
+    tRender();
+    setInterval(tRender, 1000);
+  }
+
+  /* --------- 연수 만족도 조사 QR — 설문 주소가 나오면 SURVEY_URL에 넣으면 켜진다 --------- */
+  var SURVEY_URL = "";  /* 예: "https://forms.gle/..." — 값이 있으면 QR과 버튼이 자동 표시 */
+  var surveyQr = document.getElementById("surveyQr");
+  if (surveyQr && SURVEY_URL) {
+    try {
+      var sq = qrcode(0, "M"); sq.addData(SURVEY_URL); sq.make();
+      surveyQr.innerHTML = sq.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+      var ssvg = surveyQr.querySelector("svg");
+      if (ssvg) { ssvg.removeAttribute("width"); ssvg.removeAttribute("height"); ssvg.setAttribute("role", "img"); ssvg.setAttribute("aria-label", "연수 만족도 조사 QR"); }
+      surveyQr.classList.add("ready");
+      var sMsg = document.getElementById("surveyMsg");
+      if (sMsg) sMsg.textContent = "카메라로 QR을 비추면 만족도 조사 설문이 열립니다.";
+      var sOpen = document.getElementById("surveyOpen");
+      if (sOpen) sOpen.href = SURVEY_URL;
+      var sActions = document.getElementById("surveyActions");
+      if (sActions) sActions.hidden = false;
+      var sCopy = document.getElementById("surveyCopy");
+      if (sCopy) sCopy.addEventListener("click", function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(SURVEY_URL).then(function () {
+            var o = sCopy.textContent; sCopy.textContent = "복사됨 ✓";
+            setTimeout(function () { sCopy.textContent = o; }, 1500);
+          }, function () {});
+        }
+      });
+    } catch (e) {}
+  }
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
