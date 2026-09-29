@@ -853,6 +853,9 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 .survey-txt p { margin-top: 6px; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
 .survey-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .survey-actions[hidden] { display: none; }  /* 설문 링크가 아직 없으면 버튼을 숨긴다 */
+.survey-url { margin-top: 8px; font-size: 13px; word-break: break-all; }
+.survey-url a { color: var(--key); font-weight: 700; text-decoration: none; border-bottom: 1px solid currentColor; }
+.survey-url a:hover { color: var(--key-deep); }
 .tool-mini {
   font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none;
   padding: 9px 15px; border-radius: 10px; background: var(--key); color: #fff; border: 0;
@@ -1075,13 +1078,15 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 
     <h3 class="instr-sub"><span class="no" aria-hidden="true">3</span> 연수 만족도 조사</h3>
     <div class="survey-card" id="surveyCard">
-      <div class="survey-qr" id="surveyQr">설문 링크<br>준비 중</div>
+      <div class="survey-qr" id="surveyQr">QR<br>준비 중</div>
       <div class="survey-txt">
         <h3>만족도 조사 QR</h3>
-        <p id="surveyMsg">설문 링크는 추후 제공 예정입니다. 링크가 준비되면 이 자리에 QR과 열기 버튼이 자동으로 표시됩니다.</p>
-        <div class="survey-actions" id="surveyActions" hidden>
-          <a class="tool-mini" id="surveyOpen" target="_blank" rel="noopener">설문 열기 ↗</a>
+        <p id="surveyMsg">카메라로 QR을 비추면 만족도 조사 설문이 열립니다. 연수를 마칠 무렵 [QR 크게 보기]로 띄워 두면 참석자가 그 자리에서 응답합니다.</p>
+        <p class="survey-url"><a href="https://ksurv.kr/aUM3Njw_Oj8" target="_blank" rel="noopener">https://ksurv.kr/aUM3Njw_Oj8</a></p>
+        <div class="survey-actions" id="surveyActions">
+          <a class="tool-mini" id="surveyOpen" href="https://ksurv.kr/aUM3Njw_Oj8" target="_blank" rel="noopener">설문 열기 ↗</a>
           <button type="button" class="tool-mini sec" id="surveyCopy">주소 복사</button>
+          <button type="button" class="tool-mini sec" id="surveyBig">QR 크게 보기</button>
         </div>
       </div>
     </div>
@@ -1371,6 +1376,17 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div class="big" id="qrBig"></div>
     <div class="u" id="qrBigUrl"></div>
     <button class="close" id="qrFullClose">닫기 (Esc)</button>
+  </div>
+</div>
+
+<!-- 프로젝터용 설문 QR 전체화면(강의자용) -->
+<div class="qr-full" id="surveyFull" role="dialog" aria-modal="true" aria-label="연수 만족도 조사 QR 크게 보기">
+  <div class="inner">
+    <h2>연수 만족도 조사</h2>
+    <p>휴대전화 카메라로 QR을 비추면 설문이 열립니다.</p>
+    <div class="big" id="surveyBigQr"></div>
+    <div class="u">https://ksurv.kr/aUM3Njw_Oj8</div>
+    <button class="close" id="surveyFullClose">닫기 (Esc)</button>
   </div>
 </div>
 
@@ -1838,37 +1854,56 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     setInterval(tRender, 1000);
   }
 
-  /* --------- 연수 만족도 조사 QR — 설문 주소가 나오면 SURVEY_URL에 넣으면 켜진다 --------- */
-  var SURVEY_URL = "";  /* 예: "https://forms.gle/..." — 값이 있으면 QR과 버튼이 자동 표시 */
-  var surveyQr = document.getElementById("surveyQr");
-  if (surveyQr && SURVEY_URL) {
+  /* --------- 연수 만족도 조사 QR — 주소를 바꾸려면 SURVEY_URL만 고친다 --------- */
+  var SURVEY_URL = "https://ksurv.kr/aUM3Njw_Oj8";
+  var surveyFull = document.getElementById("surveyFull");
+
+  function drawSurveyQr(target, cell, label) {
+    if (!target || !SURVEY_URL) return false;
     try {
       var sq = qrcode(0, "M"); sq.addData(SURVEY_URL); sq.make();
-      surveyQr.innerHTML = sq.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
-      var ssvg = surveyQr.querySelector("svg");
-      if (ssvg) { ssvg.removeAttribute("width"); ssvg.removeAttribute("height"); ssvg.setAttribute("role", "img"); ssvg.setAttribute("aria-label", "연수 만족도 조사 QR"); }
-      surveyQr.classList.add("ready");
-      var sMsg = document.getElementById("surveyMsg");
-      if (sMsg) sMsg.textContent = "카메라로 QR을 비추면 만족도 조사 설문이 열립니다.";
-      var sOpen = document.getElementById("surveyOpen");
-      if (sOpen) sOpen.href = SURVEY_URL;
-      var sActions = document.getElementById("surveyActions");
-      if (sActions) sActions.hidden = false;
-      var sCopy = document.getElementById("surveyCopy");
-      if (sCopy) sCopy.addEventListener("click", function () {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(SURVEY_URL).then(function () {
-            var o = sCopy.textContent; sCopy.textContent = "복사됨 ✓";
-            setTimeout(function () { sCopy.textContent = o; }, 1500);
-          }, function () {});
-        }
-      });
-    } catch (e) {}
+      target.innerHTML = sq.createSvgTag({ cellSize: cell, margin: 0, scalable: true });
+      var svg = target.querySelector("svg");
+      if (svg) {
+        svg.removeAttribute("width"); svg.removeAttribute("height");
+        svg.setAttribute("role", "img"); svg.setAttribute("aria-label", label);
+      }
+      return true;
+    } catch (e) { return false; }
   }
+
+  var surveyQr = document.getElementById("surveyQr");
+  if (drawSurveyQr(surveyQr, 4, "연수 만족도 조사 QR")) surveyQr.classList.add("ready");
+  drawSurveyQr(document.getElementById("surveyBigQr"), 8, "연수 만족도 조사 QR");
+
+  var sCopy = document.getElementById("surveyCopy");
+  if (sCopy) sCopy.addEventListener("click", function () {
+    var done = function () {
+      var o = sCopy.textContent; sCopy.textContent = "복사됨 ✓";
+      setTimeout(function () { sCopy.textContent = o; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(SURVEY_URL).then(done, function () {});
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = SURVEY_URL; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  });
+
+  /* 프로젝터에 크게 띄우기 */
+  function openSurveyFull() { surveyFull.classList.add("is-open"); body.style.overflow = "hidden"; }
+  function closeSurveyFull() { surveyFull.classList.remove("is-open"); body.style.overflow = ""; }
+  var sBig = document.getElementById("surveyBig");
+  if (sBig) sBig.addEventListener("click", openSurveyFull);
+  document.getElementById("surveyFullClose").addEventListener("click", closeSurveyFull);
+  surveyFull.addEventListener("click", function (e) { if (e.target === surveyFull) closeSurveyFull(); });
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
-    if (gate.classList.contains("is-open")) { closeGate(); setRole(unlocked() ? "instructor" : "learner"); }
+    if (surveyFull.classList.contains("is-open")) closeSurveyFull();
+    else if (gate.classList.contains("is-open")) { closeGate(); setRole(unlocked() ? "instructor" : "learner"); }
     else if (schedModal.classList.contains("is-open")) closeSched();
   });
 })();
