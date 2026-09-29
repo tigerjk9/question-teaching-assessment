@@ -241,8 +241,16 @@ h1.hero-title {
 .qr-holder.is-empty { color: var(--ink-3); font-size: 13px; padding: 18px; line-height: 1.6; }
 
 .qr-url {
-  font-size: 12.5px; color: var(--ink-3); word-break: break-all; line-height: 1.5;
-  background: var(--surface-2); border-radius: 8px; padding: 8px 10px; margin-bottom: 12px;
+  word-break: break-all; line-height: 1.5;
+  background: var(--surface-2); border-radius: 8px; padding: 9px 11px; margin-bottom: 12px;
+}
+.qr-url .short {
+  display: block; font-size: 15px; font-weight: 800; letter-spacing: -.01em;
+  color: var(--key); text-decoration: none;
+}
+.qr-url .short:hover { color: var(--key-deep); text-decoration: underline; }
+.qr-url .canon {
+  display: block; margin-top: 3px; font-size: 11.5px; color: var(--ink-3);
 }
 .qr-actions { display: flex; gap: 8px; }
 .qr-actions button {
@@ -439,7 +447,8 @@ section.band.alt .tabs { background: var(--surface-2); }
   background: #fff; padding: 16px; border-radius: 20px; border: 1px solid var(--rule);
 }
 .qr-full .big svg { width: 100%; height: 100%; }
-.qr-full .u { font-size: clamp(13px, 1.8vw, 17px); color: var(--ink-3); word-break: break-all; }
+.qr-full .u { font-size: clamp(18px, 3vw, 30px); font-weight: 800; letter-spacing: -.02em; color: var(--key); word-break: break-all; }
+.qr-full .u2 { margin-top: 8px; font-size: clamp(12px, 1.5vw, 15px); color: var(--ink-3); word-break: break-all; }
 .qr-full .close {
   margin-top: 24px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
   padding: 11px 24px; border-radius: 11px; border: 1px solid var(--rule);
@@ -681,11 +690,6 @@ section.band.instr {
 }
 .sched-bar .meta { font-size: 13.5px; color: var(--ink-2); font-weight: 600; }
 .sched-bar .meta b { color: var(--key); font-weight: 800; }
-.sched-bar .duty {
-  font-size: 12.5px; font-weight: 700; color: var(--ink-2); white-space: nowrap;
-  padding: 5px 11px; border-radius: 999px; background: var(--lav-soft); border: 1px solid var(--rule);
-}
-.sched-bar .duty b { color: var(--key); font-weight: 800; }
 .sched-zoom {
   font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
   padding: 8px 14px; border-radius: 10px; white-space: nowrap;
@@ -968,9 +972,12 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 
     <aside class="qr-card">
       <h2><span class="dot"></span>휴대전화로 이어 보기</h2>
-      <p class="qr-hint">카메라로 QR을 비추면 같은 자료가 열립니다.</p>
+      <p class="qr-hint">카메라로 QR을 비추거나 짧은 주소를 입력하면 같은 자료가 열립니다.</p>
       <div class="qr-holder" id="qrHolder"></div>
-      <div class="qr-url" id="qrUrl"></div>
+      <div class="qr-url" id="qrUrl">
+        <a class="short" id="qrShort" href="https://joo.is/%EC%A7%88%EB%AC%B8%EC%88%98%EC%97%85%ED%8F%89%EA%B0%80">joo.is/질문수업평가</a>
+        <span class="canon" id="qrCanon">https://tigerjk9.github.io/question-teaching-assessment/</span>
+      </div>
       <div class="qr-actions">
         <button type="button" id="qrCopy">주소 복사</button>
         <button type="button" data-qr-open>크게 보기</button>
@@ -1032,7 +1039,6 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div class="sched-card">
       <div class="sched-bar">
         <span class="meta">2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수</span>
-        <span class="duty">복무: <b>여비부지급 출장</b></span>
         <button type="button" class="sched-zoom" id="schedZoom">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-1 2v2H7v2h2v2h2V10h2V8h-2V6H9z"/></svg>
           표 크게 보기
@@ -1045,7 +1051,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
       </div>
       <div class="sched-scroll" id="schedTap" role="button" tabindex="0" aria-label="연수 일정표 크게 보기">
         <table class="sched" id="schedTable">
-          <caption>주관: 대전광역시교육청 초등교육과 · 연수 시간 3시간(14:00~17:00) · 복무: 여비부지급 출장</caption>
+          <caption>주관: 대전광역시교육청 초등교육과 · 연수 시간 3시간(14:00~17:00)</caption>
           <thead>
             <tr>
               <th rowspan="2">연번</th>
@@ -1101,6 +1107,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div class="submit-note">
       <h3>연수를 마치면 아래 세 가지를 제출합니다</h3>
       <p class="to">제출처: <b>황영희 장학사</b> · 업무포털 내부 메일</p>
+      <p class="to">복무: <b>여비부지급 출장</b></p>
       <ul class="checklist">
         <li><label><input type="checkbox"><span><span class="badge">01</span>연수 운영 만족도 조사 실시 결과</span></label></li>
         <li><label><input type="checkbox"><span><span class="badge">02</span>연수 등록부(PDF)</span></label></li>
@@ -1380,7 +1387,8 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <h2>질문 중심 수업과 서·논술형 평가</h2>
     <p>발표가 끝난 뒤에도 슬라이드를 다시 볼 수 있습니다.</p>
     <div class="big" id="qrBig"></div>
-    <div class="u" id="qrBigUrl"></div>
+    <div class="u" id="qrBigUrl">joo.is/질문수업평가</div>
+    <div class="u2" id="qrBigCanon">https://tigerjk9.github.io/question-teaching-assessment/</div>
     <button class="close" id="qrFullClose">닫기 (Esc)</button>
   </div>
 </div>
@@ -1418,7 +1426,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div class="m-top">
       <div>
         <h2>2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수 일정</h2>
-        <p>주관: 대전광역시교육청 초등교육과 · 총 15개교 · 신청 교원 340명 · 연수 시간 3시간(14:00~17:00) · 복무: 여비부지급 출장</p>
+        <p>주관: 대전광역시교육청 초등교육과 · 총 15개교 · 신청 교원 340명 · 연수 시간 3시간(14:00~17:00)</p>
       </div>
       <button type="button" class="m-close" id="schedClose" aria-label="닫기">✕</button>
     </div>
@@ -1431,7 +1439,11 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
 (function () {
   "use strict";
 
-  var CFG = {"site": {"url": "https://tigerjk9.github.io/question-teaching-assessment/"}};
+  var CFG = {"site": {
+    "url": "https://tigerjk9.github.io/question-teaching-assessment/",
+    /* 짧은 주소 — url은 QR·링크에 쓰는 퍼센트 인코딩, text는 복사용, label은 화면 표시용 */
+    "short": { "url": "https://joo.is/%EC%A7%88%EB%AC%B8%EC%88%98%EC%97%85%ED%8F%89%EA%B0%80", "text": "https://joo.is/질문수업평가", "label": "joo.is/질문수업평가" }
+  }};
   var SLIDES = [{"n": 1, "title": "-질문으로 가르치고, 질문으로 배우기- ( )초등학교 홍 길 동 생각의 힘을 키…", "full": "assets/slides/s1.webp"}, {"n": 2, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s2.webp"}, {"n": 3, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s3.webp"}, {"n": 4, "title": "왜, 질문인가요?", "full": "assets/slides/s4.webp"}, {"n": 5, "title": "왜, 질문인가요?", "full": "assets/slides/s5.webp"}, {"n": 6, "title": "왜 질문인가", "full": "assets/slides/s6.webp", "video": true}, {"n": 7, "title": "왜, 질문인가요?", "full": "assets/slides/s7.webp"}, {"n": 8, "title": "왜, 질문인가요?", "full": "assets/slides/s8.webp"}, {"n": 9, "title": "왜 질문인가", "full": "assets/slides/s9.webp"}, {"n": 10, "title": "왜 질문인가", "full": "assets/slides/s10.webp"}, {"n": 11, "title": "핵심 아이디어가 뭐지?", "full": "assets/slides/s11.webp"}, {"n": 12, "title": "왜 질문인가", "full": "assets/slides/s12.webp"}, {"n": 13, "title": "5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…", "full": "assets/slides/s13.webp"}, {"n": 14, "title": "5학년 사회 수업에 알맞은 핵심 아이디어를 진술해볼까요? 교육과정-내용체계표 우…", "full": "assets/slides/s14.webp"}, {"n": 15, "title": "왜 질문인가", "full": "assets/slides/s15.webp"}, {"n": 16, "title": "학생의 능동적 수업 참여", "full": "assets/slides/s16.webp"}, {"n": 17, "title": "왜 질문인가", "full": "assets/slides/s17.webp"}, {"n": 18, "title": "왜, 질문인가요? 질문이란?", "full": "assets/slides/s18.webp"}, {"n": 19, "title": "왜, 질문인가요? 질문이란? <탐구 질문> <단원의 탐구질문> 상상 질문 사실적…", "full": "assets/slides/s19.webp"}, {"n": 20, "title": "왜, 질문인가요? 어떻게 만들어요? 맥락없는 학생의 질문은 도움이 되지 않아요.…", "full": "assets/slides/s20.webp"}, {"n": 21, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s21.webp"}, {"n": 22, "title": "교사가 묻는 질문에 반응하기 학생이 자신의 질문을 던짐으로써 스스로 생각하고 활…", "full": "assets/slides/s22.webp"}, {"n": 23, "title": "질문초점 학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) …", "full": "assets/slides/s23.webp"}, {"n": 24, "title": "효과적인 질문 초점의 조건 명확한 초점이 있다 질문이 아니다 새로운 방식의 사고…", "full": "assets/slides/s24.webp"}, {"n": 25, "title": "학생의 입장이 되어 궁금한 질문을 만들어 볼까요?", "full": "assets/slides/s25.webp"}, {"n": 26, "title": "질문 초점의 문제점은 무엇인가요? 질문 초점을 수정한다면?", "full": "assets/slides/s26.webp"}, {"n": 27, "title": "질문 초점과 생성", "full": "assets/slides/s27.webp"}, {"n": 28, "title": "질문 초점과 생성", "full": "assets/slides/s28.webp"}, {"n": 29, "title": "질문 초점과 생성", "full": "assets/slides/s29.webp"}, {"n": 30, "title": "학생의 궁금증을 자극하는 자료 교육과정(핵심 아이디어, 성취기준 등) 관련 자료…", "full": "assets/slides/s30.webp"}, {"n": 31, "title": "명확한 초점이 있다 질문이 아니다 새로운 방식의 사고를 자극하고 촉발한다. 교사…", "full": "assets/slides/s31.webp"}, {"n": 32, "title": "충주시의 복숭아와 고창군의 수박 모두 맛있어 보이네 동물 복지 인증 표시가 있는…", "full": "assets/slides/s32.webp"}, {"n": 33, "title": "질문 초점과 생성", "full": "assets/slides/s33.webp"}, {"n": 34, "title": "질문 초점과 생성", "full": "assets/slides/s34.webp"}, {"n": 35, "title": "질문 초점과 생성", "full": "assets/slides/s35.webp"}, {"n": 36, "title": "보이는 것, 관찰한 것을 문장으로 쓰기 See를 바탕으로 근거를 들어 문장으로 …", "full": "assets/slides/s36.webp"}, {"n": 37, "title": "질문 초점과 생성", "full": "assets/slides/s37.webp"}, {"n": 38, "title": "아이스크림교과서(2026), 5학년교과서 37쪽 유적과 유물로 살펴본 옛 사람들…", "full": "assets/slides/s38.webp"}, {"n": 39, "title": "[앞에서 바라 본 모습] [위에서 바라 본 모습]", "full": "assets/slides/s39.webp"}, {"n": 40, "title": "[앞에서 바라 본 모습] [위에서 바라 본 모습]", "full": "assets/slides/s40.webp"}, {"n": 41, "title": "사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다.", "full": "assets/slides/s41.webp"}, {"n": 42, "title": "[옆에서 바라 본 모습] [위에서 바라 본 모습] 사진 속 ( )과 관련하여 (…", "full": "assets/slides/s42.webp"}, {"n": 43, "title": "사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 신라 사람들은 …", "full": "assets/slides/s43.webp"}, {"n": 44, "title": "[앞에서 바라 본 모습] [위에서 바라 본 모습] <까만 놀이>", "full": "assets/slides/s44.webp"}, {"n": 45, "title": "사람이 배를 타고 노를 젓고 있다. 배 머리쪽에 방울이 보인다. 배 모양 토기를…", "full": "assets/slides/s45.webp"}, {"n": 46, "title": "질문 초점과 생성", "full": "assets/slides/s46.webp"}, {"n": 47, "title": "질문 놀이(질문 지도 만들기) 포스트잇 하나에 질문은 하나씩!", "full": "assets/slides/s47.webp"}, {"n": 48, "title": "질문 초점과 생성", "full": "assets/slides/s48.webp", "video": true}, {"n": 49, "title": "이충렬 감독에게 동영상 관련 질문을 한다면? 장면/자막/배경 음악/효과음 대사/…", "full": "assets/slides/s49.webp"}, {"n": 50, "title": "질문에 따라 답변과 사고의 깊이가 달라진다! 어떤 정보 얻을까? 질문 목적이 뭐…", "full": "assets/slides/s50.webp"}, {"n": 51, "title": "확산적 질문 수렴적 질문 너무 많은 정보를 얻을 수 있다 적확한 답을 얻을 수 …", "full": "assets/slides/s51.webp"}, {"n": 52, "title": "눈처럼 하얀 피부 피처럼 붉은 입술 흑단처럼 검은 머리카락 내가 만약 왕비라면 …", "full": "assets/slides/s52.webp"}, {"n": 53, "title": "새 왕비가 다른 사람과 비교하며 자신의 아름다움을 확인 받고 싶어한 이유는 무엇…", "full": "assets/slides/s53.webp"}, {"n": 54, "title": "난쟁이들의 경고에도 3번씩이나 같은 실수를 반복하며 문을 열어 준 까닭은 무엇일…", "full": "assets/slides/s54.webp"}, {"n": 55, "title": "개선·우선순위·활용", "full": "assets/slides/s55.webp"}, {"n": 56, "title": "나무는 어떻게 약으로 활용될까요? [Why] 이유/원인: 왜 나무는 우리에게 중…", "full": "assets/slides/s56.webp"}, {"n": 57, "title": "개선·우선순위·활용", "full": "assets/slides/s57.webp"}, {"n": 58, "title": "투표 결과 확인-포스트잇 작성-모둠 질문판(아래) 부착 내가 진짜 궁금해하는 내…", "full": "assets/slides/s58.webp"}, {"n": 59, "title": "질문 유목화-모둠의 탐구 질문 선정-칠판에 부착", "full": "assets/slides/s59.webp"}, {"n": 60, "title": "탐구할 가치가 있나? 단원의 탐구 질문을 해결에 도움이 되는가? 우리 힘으로 해…", "full": "assets/slides/s60.webp"}, {"n": 61, "title": "단원에서 알아보고 싶은 탐구 질문을 만들어 볼까요?", "full": "assets/slides/s61.webp"}, {"n": 62, "title": "포스트잇 하나에 질문 하나씩! 굵고 크게!! 이름 기록", "full": "assets/slides/s62.webp"}, {"n": 63, "title": "개선·우선순위·활용", "full": "assets/slides/s63.webp"}, {"n": 64, "title": "아래와 윗 줄에서 각각 하나씩의 질문을 선택해요. 필요한 경우, 두 개 이상의 …", "full": "assets/slides/s64.webp"}, {"n": 65, "title": "개선·우선순위·활용", "full": "assets/slides/s65.webp"}, {"n": 66, "title": "A모둠 B모둠", "full": "assets/slides/s66.webp"}, {"n": 67, "title": "개선·우선순위·활용", "full": "assets/slides/s67.webp"}, {"n": 68, "title": "개선·우선순위·활용", "full": "assets/slides/s68.webp"}, {"n": 69, "title": "단원/수업 시작 단원/수업의 중간 단원/수업의 끝 단원/수업 전체에 대한 학습 …", "full": "assets/slides/s69.webp"}, {"n": 70, "title": "QFT를 통해 개발된 질문을 모두 탐구에 사용해야 하나요? 많은 질문을 바탕으로…", "full": "assets/slides/s70.webp"}, {"n": 71, "title": "개선·우선순위·활용", "full": "assets/slides/s71.webp"}, {"n": 72, "title": "개선·우선순위·활용", "full": "assets/slides/s72.webp"}, {"n": 73, "title": "개선·우선순위·활용", "full": "assets/slides/s73.webp"}, {"n": 74, "title": "개선·우선순위·활용", "full": "assets/slides/s74.webp"}, {"n": 75, "title": "개선·우선순위·활용", "full": "assets/slides/s75.webp"}, {"n": 76, "title": "개선·우선순위·활용", "full": "assets/slides/s76.webp"}, {"n": 77, "title": "탐구 질문을 활용하여 차시 학습을 마무리 할 수 있어요", "full": "assets/slides/s77.webp"}, {"n": 78, "title": "탐구 질문을 활용한 차시 학습 마무리 영상", "full": "assets/slides/s78.webp", "video": true}, {"n": 79, "title": "왜, 질문인가요? 그래서, 질문입니다! 질문으로 배워라. 질문으로 가르쳐라. 목차", "full": "assets/slides/s79.webp"}, {"n": 80, "title": "그래서 질문입니다! 2022 개정 교육과정 내용에 대한 이해 제고 및 학습 증진…", "full": "assets/slides/s80.webp"}, {"n": 81, "title": "개선·우선순위·활용", "full": "assets/slides/s81.webp"}, {"n": 82, "title": "질문 수업 오늘 연수를 질문으로 마무리 해 볼까요? ㄱ ㄴ ㅇ ㄹ ㅁ ㅂ ㅅ ㄷ…", "full": "assets/slides/s82.webp"}, {"n": 83, "title": "개선·우선순위·활용", "full": "assets/slides/s83.webp"}, {"n": 84, "title": "감사합니다 끝!", "full": "assets/slides/s84.webp"}, {"n": 85, "title": "질문과 사고를 여는 서·논술형 평가 -정답을 넘어, 더 깊은 생각으로- 2026…", "full": "assets/slides/s85.webp"}, {"n": 86, "title": "목차 1 2 서논술형 평가의 이해와 설계 원리 서논술형 평가의 유형 3 서논술형…", "full": "assets/slides/s86.webp"}, {"n": 87, "title": "서·논술형 평가의 이해와 설계 원리", "full": "assets/slides/s87.webp"}, {"n": 88, "title": "서논술형 평가는 학생들의 고차원적 사고력을 측정하기 때문에 학생 중심 탐구 수업…", "full": "assets/slides/s88.webp"}, {"n": 89, "title": "문항을 만들기 전에 먼저 살펴보아야 할 것은 무엇일까?", "full": "assets/slides/s89.webp"}, {"n": 90, "title": "•왜 배우는가? •무엇을 이해해야 하는가? •무엇을 할 수 있어야 하는가? 문항…", "full": "assets/slides/s90.webp"}, {"n": 91, "title": "사회과 교육과정은 무엇을 목표로 하고 있을까? [그림] 사회과 교육과정 설계의 …", "full": "assets/slides/s91.webp"}, {"n": 92, "title": "시민의 자질 함양 사회과 교육과정은 무엇을 목표로 하고 있을까? •사회 현상과 …", "full": "assets/slides/s92.webp"}, {"n": 93, "title": "서·논술형 평가 설계 원리", "full": "assets/slides/s93.webp"}, {"n": 94, "title": "성취기준에 문화유산이 들어 있으니, 문화유산을 쓰게 하자! -성취기준의 일부 단…", "full": "assets/slides/s94.webp"}, {"n": 95, "title": "핵심아이디어 성취기준 문화유산은 과거와 현재를 이어주는 자료이다. 지역의 박물관…", "full": "assets/slides/s95.webp"}, {"n": 96, "title": "핵심아이디어 성취기준 성취기준 해설 문화유산은 과거와 현재를 이어주는 자료이다.…", "full": "assets/slides/s96.webp"}, {"n": 97, "title": "생각해보기 학습한 내용을 새로운 상황에 적용하게 하는가? 근거를 바탕으로 비판적…", "full": "assets/slides/s97.webp"}, {"n": 98, "title": "생각해보기 학생의 이해 수준과 사고 과정을 함께 볼 수 있는가? 3. 학생의 사…", "full": "assets/slides/s98.webp"}, {"n": 99, "title": "생각해보기 무엇을 해야 하는가? 어떤 자료를 활용해야 하는가? 어떤 조건을 고려…", "full": "assets/slides/s99.webp"}, {"n": 100, "title": "5. 단계적 사고 확장을 고려한 문항 학생의 이해와 적용이 단계적으로 확장되도록…", "full": "assets/slides/s100.webp"}, {"n": 101, "title": "서·논술형 평가의 유형", "full": "assets/slides/s101.webp"}, {"n": 102, "title": "서술형 문항과 논술형 문항 출처: 한국교육과정평가원(2025), 초등학교 서논술…", "full": "assets/slides/s102.webp"}, {"n": 103, "title": "서·논술형 평가 유형", "full": "assets/slides/s103.webp"}, {"n": 104, "title": "어떤 유형일까요? Q1. \"씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오.", "full": "assets/slides/s104.webp"}, {"n": 105, "title": "어떤 유형일까요? Q1. \"씨앗이 싹트는 데 필요한 조건을 두 가지 쓰시오.", "full": "assets/slides/s105.webp"}, {"n": 106, "title": "어떤 유형일까요? Q2. \"인물의 말과 행동을 근거로 까닭을 쓰시오.", "full": "assets/slides/s106.webp"}, {"n": 107, "title": "어떤 유형일까요? Q2. \"인물의 말과 행동을 근거로 까닭을 쓰시오.", "full": "assets/slides/s107.webp"}, {"n": 108, "title": "어떤 유형일까요? Q3. \"나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오.", "full": "assets/slides/s108.webp"}, {"n": 109, "title": "어떤 유형일까요? Q3. \"나눗셈 과정을 수직선으로 나타내고 결과를 쓰시오.", "full": "assets/slides/s109.webp"}, {"n": 110, "title": "어떤 유형일까요? Q4. \"까닭을 자신의 생각을 근거로 들어 논술하시오.", "full": "assets/slides/s110.webp"}, {"n": 111, "title": "어떤 유형일까요? Q4. \"까닭을 자신의 생각을 근거로 들어 논술하시오.", "full": "assets/slides/s111.webp"}, {"n": 112, "title": "어떤 유형일까요? Q5. \"그래프를 보고해결 방안을 제안하고 이유를 논술하시오.", "full": "assets/slides/s112.webp"}, {"n": 113, "title": "어떤 유형일까요? Q5. \"그래프를 보고해결 방안을 제안하고 이유를 논술하시오.", "full": "assets/slides/s113.webp"}, {"n": 114, "title": "어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)", "full": "assets/slides/s114.webp"}, {"n": 115, "title": "어떤 유형일까요? Q6. 다섯 유형은 서로 결합할 수 없다. (O / X)", "full": "assets/slides/s115.webp"}, {"n": 116, "title": "Q1 씨앗이 싹트는 데 필요한 조건을 두 가지 쓰세요. 까닭을 자신의 생각을 근…", "full": "assets/slides/s116.webp"}, {"n": 117, "title": "[활동2] 건의서 작성 활동이 곧 서·논술형 평가 - 타인을 논리적으로 설득하기…", "full": "assets/slides/s117.webp"}, {"n": 118, "title": "서·논술형 평가 문항 개발", "full": "assets/slides/s118.webp"}, {"n": 119, "title": "어떤 문항이 더 매력적인가요?", "full": "assets/slides/s119.webp"}, {"n": 120, "title": "어떤 문항이 더 매력적인가요?", "full": "assets/slides/s120.webp"}, {"n": 121, "title": "좋은 서·논술형 평가 문항은? 성취기준과의 정합성 명확한 평가 요소 학생이 수행…", "full": "assets/slides/s121.webp"}, {"n": 122, "title": "서·논술형 평가 문항 개발 절차 성취기준 분석 및 학생 탐구 질문 도출 평가 목…", "full": "assets/slides/s122.webp"}, {"n": 123, "title": "평가 장면 구성시 고려사항 성취기준 학생들은 무엇을 알고, 할 수 있어야 하는가…", "full": "assets/slides/s123.webp"}, {"n": 124, "title": "교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…", "full": "assets/slides/s124.webp"}, {"n": 125, "title": "교육과정 분석하기 출처: 2022 개정 교육과정에 따른 성취수준(5~6학년)(2…", "full": "assets/slides/s125.webp"}, {"n": 126, "title": "평가 요소 선정하기", "full": "assets/slides/s126.webp"}, {"n": 127, "title": "서·논술형 평가 문항 구성하기", "full": "assets/slides/s127.webp"}, {"n": 128, "title": "학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …", "full": "assets/slides/s128.webp"}, {"n": 129, "title": "학생의 사고와 수행이 드러나는 발문 출처: 서·논술형 평가 전문성 강화(초등) …", "full": "assets/slides/s129.webp"}, {"n": 130, "title": "인지적 사고 수준 출처: https://m.cafe.daum.net/moral-…", "full": "assets/slides/s130.webp"}, {"n": 131, "title": "고차적 사고를 촉진하는 서·논술형 문항 개발", "full": "assets/slides/s131.webp"}, {"n": 132, "title": "서·논술형 평가 문항 개발시 고려사항", "full": "assets/slides/s132.webp"}, {"n": 133, "title": "서·논술형 평가 문항 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(202…", "full": "assets/slides/s133.webp"}, {"n": 134, "title": "채점기준표 개발", "full": "assets/slides/s134.webp"}, {"n": 135, "title": "채점기준표란? 배움이 제대로 일어났는지 어떻게 확인할 수 있을까? •학생들이 과…", "full": "assets/slides/s135.webp"}, {"n": 136, "title": "어떤 채점기준표가 더 매력적인가요?", "full": "assets/slides/s136.webp"}, {"n": 137, "title": "어떤 채점기준표가 더 매력적인가요?", "full": "assets/slides/s137.webp"}, {"n": 138, "title": "채점기준 왜 중요한가요? •학습목표와 기준에 맞게 수업을 설계하는 데 도움을 줌…", "full": "assets/slides/s138.webp"}, {"n": 139, "title": "채점기준표의 구성 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부}", "full": "assets/slides/s139.webp"}, {"n": 140, "title": "채점기준표 개발 절차 수행평가 과제의 목표 확인하기 수행평가 과제 분석 및 목록…", "full": "assets/slides/s140.webp"}, {"n": 141, "title": "채점기준표 개발 체크리스트 출처: 학생평가 컨설팅 도움 자료집(2023, 교육부)", "full": "assets/slides/s141.webp"}, {"n": 142, "title": "배운 내용을 정리해요 서논술형 평가의 유형 서논술형 평가 문항의 개발 채점기준표…", "full": "assets/slides/s142.webp"}, {"n": 143, "title": "경청해 주셔서 감사합니다. 대부분의 자료는 2026 학생 질문 중심 수업·평가 …", "full": "assets/slides/s143.webp"}];
 
   /* --------------------------------------------------------
@@ -1440,11 +1452,15 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
      -------------------------------------------------------- */
 
   var LS_KEY = "lecture-site-url";
-  var urlBox   = document.getElementById("qrUrl");
+  var shortEl  = document.getElementById("qrShort");
+  var canonEl  = document.getElementById("qrCanon");
   var holder   = document.getElementById("qrHolder");
   var bigBox   = document.getElementById("qrBig");
   var bigUrl   = document.getElementById("qrBigUrl");
+  var bigCanon = document.getElementById("qrBigCanon");
   var setupIn  = document.getElementById("qrInput");
+
+  var SHORT = (CFG.site && CFG.site.short) || null;
 
   function currentUrl() {
     if (CFG.site && CFG.site.url) return CFG.site.url;
@@ -1473,7 +1489,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
       var svg = target.querySelector("svg");
       if (svg) {
         svg.setAttribute("role", "img");
-        svg.setAttribute("aria-label", "이 페이지 주소의 QR 코드");
+        svg.setAttribute("aria-label", "이 자료의 짧은 주소 QR 코드");
         svg.removeAttribute("width");
         svg.removeAttribute("height");
       }
@@ -1483,14 +1499,21 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     }
   }
 
+  /* QR과 복사 버튼은 짧은 주소를 쓰고, 원본 주소는 아래에 그대로 남긴다. */
+  function shareUrl() { return (SHORT && SHORT.url) || currentUrl(); }
+  function copyUrl()  { return (SHORT && SHORT.text) || currentUrl(); }
+
   function renderQr() {
-    var u = currentUrl();
-    drawQr(holder, u, 4);
-    drawQr(bigBox, u, 8);
-    var label = u || "(배포 전)";
-    if (urlBox) urlBox.textContent = label;
+    var canon = currentUrl();
+    var share = shareUrl();
+    drawQr(holder, share, 4);
+    drawQr(bigBox, share, 8);
+    var label = (SHORT && SHORT.label) || canon || "(배포 전)";
+    if (shortEl) { shortEl.textContent = label; if (share) shortEl.href = share; }
+    if (canonEl) canonEl.textContent = canon || "(배포 전)";
     if (bigUrl) bigUrl.textContent = label;
-    if (setupIn && !setupIn.value) setupIn.value = u;
+    if (bigCanon) bigCanon.textContent = SHORT ? canon : "";
+    if (setupIn && !setupIn.value) setupIn.value = canon;
   }
 
   renderQr();
@@ -1499,18 +1522,14 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     setupIn.addEventListener("input", function () {
       var v = setupIn.value.trim();
       try { v ? localStorage.setItem(LS_KEY, v) : localStorage.removeItem(LS_KEY); } catch (e) {}
-      var u = v || currentUrl();
-      drawQr(holder, u, 4);
-      drawQr(bigBox, u, 8);
-      if (urlBox) urlBox.textContent = u || "(배포 전)";
-      if (bigUrl) bigUrl.textContent = u || "(배포 전)";
+      renderQr();
     });
   }
 
   var copyBtn = document.getElementById("qrCopy");
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
-      var u = currentUrl();
+      var u = copyUrl();
       if (!u) return;
       var done = function () {
         var old = copyBtn.textContent;
