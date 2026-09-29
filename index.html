@@ -681,6 +681,11 @@ section.band.instr {
 }
 .sched-bar .meta { font-size: 13.5px; color: var(--ink-2); font-weight: 600; }
 .sched-bar .meta b { color: var(--key); font-weight: 800; }
+.sched-bar .duty {
+  font-size: 12.5px; font-weight: 700; color: var(--ink-2); white-space: nowrap;
+  padding: 5px 11px; border-radius: 999px; background: var(--lav-soft); border: 1px solid var(--rule);
+}
+.sched-bar .duty b { color: var(--key); font-weight: 800; }
 .sched-zoom {
   font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
   padding: 8px 14px; border-radius: 10px; white-space: nowrap;
@@ -1027,6 +1032,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div class="sched-card">
       <div class="sched-bar">
         <span class="meta">2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수</span>
+        <span class="duty">복무: <b>여비부지급 출장</b></span>
         <button type="button" class="sched-zoom" id="schedZoom">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-1 2v2H7v2h2v2h2V10h2V8h-2V6H9z"/></svg>
           표 크게 보기
@@ -1039,7 +1045,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
       </div>
       <div class="sched-scroll" id="schedTap" role="button" tabindex="0" aria-label="연수 일정표 크게 보기">
         <table class="sched" id="schedTable">
-          <caption>주관: 대전광역시교육청 초등교육과 · 연수 시간 3시간(14:00~17:00)</caption>
+          <caption>주관: 대전광역시교육청 초등교육과 · 연수 시간 3시간(14:00~17:00) · 복무: 여비부지급 출장</caption>
           <thead>
             <tr>
               <th rowspan="2">연번</th>
@@ -1097,7 +1103,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
       <p class="to">제출처: <b>황영희 장학사</b> · 업무포털 내부 메일</p>
       <ul class="checklist">
         <li><label><input type="checkbox"><span><span class="badge">01</span>연수 운영 만족도 조사 실시 결과</span></label></li>
-        <li><label><input type="checkbox"><span><span class="badge">02</span>연수등록부</span></label></li>
+        <li><label><input type="checkbox"><span><span class="badge">02</span>연수 등록부(PDF)</span></label></li>
         <li><label><input type="checkbox"><span><span class="badge">03</span>연수 사진 2매</span></label></li>
       </ul>
     </div>
@@ -1412,7 +1418,7 @@ table.sched caption { text-align: left; font-size: 12.5px; color: var(--ink-3); 
     <div class="m-top">
       <div>
         <h2>2026 학교로 찾아가는 학생 질문 중심 수업·평가 역량 강화 연수 일정</h2>
-        <p>주관: 대전광역시교육청 초등교육과 · 총 15개교 · 신청 교원 340명 · 연수 시간 3시간(14:00~17:00)</p>
+        <p>주관: 대전광역시교육청 초등교육과 · 총 15개교 · 신청 교원 340명 · 연수 시간 3시간(14:00~17:00) · 복무: 여비부지급 출장</p>
       </div>
       <button type="button" class="m-close" id="schedClose" aria-label="닫기">✕</button>
     </div>
